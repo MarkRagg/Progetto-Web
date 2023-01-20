@@ -5,8 +5,6 @@ CREATE  TABLE socialnetwork.reaction (
 	reaction_info        VARCHAR(100)  NOT NULL     
  ) engine=InnoDB;
 
-CREATE  TABLE socialnetwork.tbl ( 
- );
 
 CREATE  TABLE socialnetwork.universita ( 
 	uni_id               INT  NOT NULL     PRIMARY KEY,
@@ -63,7 +61,7 @@ CREATE  TABLE socialnetwork.user_info (
 	date_of_birth        DATE  NOT NULL     ,
 	birthplace           VARCHAR(100)  NOT NULL     ,
 	uni_residence        VARCHAR(100)  NOT NULL     ,
-	corso_id             INT  NOT NULL     
+	corso_id             INT       
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.comment ( 

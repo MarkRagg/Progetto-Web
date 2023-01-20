@@ -9,41 +9,20 @@
     </header>
     <main>
       <section>
-        <table>
-          <tr>
-            <th><button type="button" href="...">Log in</button></th>
-            <th><button type="button" disabled>Sign in</button></th>
-          </tr>
-          <tr>
-            <td>Email</td>
-            <td><input type="text"\></td>
-          </tr>
-          <tr>
-            <td>Password</td>
-            <td><input type="password"\></td>
-          </tr>
-          <tr>
-            <td>Name</td>
-            <td><input type="text"\></td>
-          </tr>
-          <tr>
-            <td>Surname</td>
-            <td><input type="text"\></td>
-          </tr>
-          <tr>
-            <td>Date of birth</td>
-            <td><input type="date"\></td>
-          </tr>
-          <tr>
-            <td>Residence</td>
-            <td><select>
+        <ul>
+          <li><button type="button" href="...">Log in</button><button type="button" disabled>Sign in</button></li>
+          <li><label for="email">Email</label><input type="email" id ="email" name="email"/></li>
+          <li><label for="password">Password</label><input type="password" id="password" name="password"/></li>
+          <li><label for="name">Name</label><input type="text" id="name" name="name"/></li>
+          <li><label for="surname">Surname</label><input type="text" id="surname" name="surname"/></li>
+          <li><label for="date">Date</label><input type="date" id="date" name="date"/></li>
+          <li><label for="residence">Residence</label>
+            <select>
               <option value="Example">Example</option>
               <!--TODO WITH JS-->
               </select>
-            </td>
-          </tr>
-        </table>
-        <button type="button" href="...">Register</button>
+            </li>
+        <button type="submit" href="...">Register</button>
       </section>
     </main>
     <footer>

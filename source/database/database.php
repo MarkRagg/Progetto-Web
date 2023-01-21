@@ -8,8 +8,11 @@ class DatabaseManager {
         if($this->db->connect_error) {
             die("Connessione fallita al db");
         }
-        
+    }
 
+    public function __destruct()
+    {
+        $this->db->close();
     }
     
     public function AddUser($nickname, $email, $passw, $name, $surname, $date, $residence) {

@@ -16,7 +16,14 @@ class DatabaseManager {
         $user_query = $this->db->prepare("INSERT INTO user (user_id, password, email)
                         VALUES (?, ?, ?);");
         $user_query->bind_param("sss", $nickname, $passw, $email);
-        $user_query->execute();
+        $first_result = $user_query->execute();
+
+        $user_info_query = $this->db->prepare("INSERT INTO user_info(user_id, name, surname, date_of_birth, birthplace, uni_residence)
+                                            VALUES(?, ?, ?, ?, ?, ?);");                     
+        $user_info_query->bind_param("ssssss", $nickname, $name, $surname, $date, $residence, $residence);
+        $second_result = $user_info_query->execute();
+
+        return $first_result == true && $second_result == true;
     }
 }
     

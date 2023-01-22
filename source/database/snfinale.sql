@@ -5,7 +5,6 @@ CREATE  TABLE socialnetwork.reaction (
 	reaction_info        VARCHAR(100)  NOT NULL     
  ) engine=InnoDB;
 
-
 CREATE  TABLE socialnetwork.universita ( 
 	uni_id               INT  NOT NULL     PRIMARY KEY,
 	nome                 VARCHAR(50)  NOT NULL     ,
@@ -61,7 +60,8 @@ CREATE  TABLE socialnetwork.user_info (
 	date_of_birth        DATE  NOT NULL     ,
 	birthplace           VARCHAR(100)  NOT NULL     ,
 	uni_residence        VARCHAR(100)  NOT NULL     ,
-	corso_id             INT       
+	corso_id             INT       ,
+	user_image           VARCHAR(100)       
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.comment ( 
@@ -157,3 +157,4 @@ ALTER TABLE socialnetwork.comment MODIFY comment_id INT  NOT NULL   COMMENT 'chi
 ALTER TABLE socialnetwork.notifche MODIFY user_1_id VARCHAR(20)  NOT NULL   COMMENT 'user che fa l''azione';
 
 ALTER TABLE socialnetwork.notifche MODIFY tipologia INT  NOT NULL   COMMENT 'follow(1), reaction(2), commento(3)';
+

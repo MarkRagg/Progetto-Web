@@ -41,6 +41,15 @@ class DatabaseManager {
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function checkValueInDb($field, $column, $id) {
+        $stmt = $this->db->prepare("SELECT * FROM $field A WHERE A.$column = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return empty($result->fetch_all(MYSQLI_ASSOC));
+    }
+
     private function getNewId($i, $z){
         $stmt = $this->db->prepare("SELECT Max($i) FROM $z");
         $stmt->execute();

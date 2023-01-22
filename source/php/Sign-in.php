@@ -1,6 +1,12 @@
 <?php
 require_once("db_config.php");
-$query_result = $dbh->addUser($_POST["nickname"], $_POST["email"], $_POST["password"], $_POST["name"], $_POST["surname"], $_POST["date"], $_POST["residence"]);
+if($dbh->checkValueInDb("user", "user_id", $_POST["nickname"])) {
+  $query_result = $dbh->addUser($_POST["nickname"], $_POST["email"], $_POST["password"], $_POST["name"], $_POST["surname"], $_POST["date"], $_POST["residence"]);
+} else {
+  $error = true;
+  header("Location: ../html/Sign-in.html", true, 301);
+  exit();
+}
 
 ?>
 

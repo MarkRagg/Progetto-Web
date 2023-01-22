@@ -20,11 +20,14 @@ class DatabaseManager {
                         VALUES (?, ?, ?);");
         $user_query->bind_param("sss", $nickname, $passw, $email);
         $first_result = $user_query->execute();
-
-        $user_info_query = $this->db->prepare("INSERT INTO user_info(user_id, name, surname, date_of_birth, birthplace, uni_residence)
-                                            VALUES(?, ?, ?, ?, ?, ?);");                     
-        $user_info_query->bind_param("ssssss", $nickname, $name, $surname, $date, $residence, $residence);
+        
+        $id = $this->getNewId("user_info_count", "user_info");
+        
+        $user_info_query = $this->db->prepare("INSERT INTO user_info(user_info_count, user_id, name, surname, date_of_birth, birthplace, uni_residence)
+                                            VALUES(?, ?, ?, ?, ?, ?, ?);");                     
+        $user_info_query->bind_param("sssssss",$id, $nickname, $name, $surname, $date, $residence, $residence);
         $second_result = $user_info_query->execute();
+        
 
         return $first_result == true && $second_result == true;
     }
@@ -37,5 +40,15 @@ class DatabaseManager {
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    private function getNewId($i, $z){
+        $stmt = $this->db->prepare("SELECT Max($i) FROM $z");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $array = $result->fetch_all(MYSQLI_ASSOC);
+        $id = $array[0]["Max($i)"] + 1;
+        return $id;
+    }
+
 }  
 ?>

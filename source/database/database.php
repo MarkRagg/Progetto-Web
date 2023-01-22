@@ -15,7 +15,7 @@ class DatabaseManager {
         $this->db->close();
     }
     
-    public function AddUser($nickname, $email, $passw, $name, $surname, $date, $residence) {
+    public function addUser($nickname, $email, $passw, $name, $surname, $date, $residence) {
         $user_query = $this->db->prepare("INSERT INTO user (user_id, password, email)
                         VALUES (?, ?, ?);");
         $user_query->bind_param("sss", $nickname, $passw, $email);
@@ -28,6 +28,14 @@ class DatabaseManager {
 
         return $first_result == true && $second_result == true;
     }
-}
-    
+
+    public function login($email, $passw) {
+        $stmt = $this->db->prepare("SELECT * FROM user U WHERE U.email = ? AND U.password = ?");
+        $stmt->bind_param("ss", $email, $passw);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+}  
 ?>

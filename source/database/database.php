@@ -15,6 +15,9 @@ class DatabaseManager {
         $this->db->close();
     }
     
+    /**
+     * it insert a user into the db
+     */
     public function addUser($nickname, $email, $passw, $name, $surname, $date, $residence) {
         $user_query = $this->db->prepare("INSERT INTO user (user_id, password, email)
                         VALUES (?, ?, ?);");
@@ -38,9 +41,9 @@ class DatabaseManager {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return count($result->fetch_all(MYSQLI_ASSOC)) != 0;
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
-
+    
     public function checkValueInDb($table, $field, $id) {
         $stmt = $this->db->prepare("SELECT * FROM $table A WHERE A.$field = ?");
         $stmt->bind_param("s", $id);

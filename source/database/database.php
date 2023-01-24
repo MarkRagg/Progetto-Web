@@ -41,8 +41,8 @@ class DatabaseManager {
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function checkValueInDb($field, $column, $id) {
-        $stmt = $this->db->prepare("SELECT * FROM $field A WHERE A.$column = ?");
+    public function checkValueInDb($table, $field, $id) {
+        $stmt = $this->db->prepare("SELECT * FROM $table A WHERE A.$field = ?");
         $stmt->bind_param("s", $id);
         $stmt->execute();
         $result = $stmt->get_result();

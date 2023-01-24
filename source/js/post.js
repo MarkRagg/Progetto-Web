@@ -1,3 +1,5 @@
+//${post_data[i]["user_image"]}
+
 function generatePost(post_data){
     let section = 
     `
@@ -13,7 +15,7 @@ function generatePost(post_data){
                             <div class="bg-white border mt-2">
                                 <div>
                                     <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                                        <div class="d-flex flex-row align-items-center feed-text px-2"><img src="${post_data[i]["user_image"]}" alt=""/>
+                                        <div class="d-flex flex-row align-items-center feed-text px-2"><img src="https://www.w3schools.com/html/workplace.jpg" width="50" height="50" alt=""/>
                                             <div class="d-flex flex-column flex-wrap ml-2"><a class="nav-link" href="profile.php"> ${post_data[i]["author"]} </a></div>
                                         </div>
                                         <div class="feed-icon px-2"><em class="fa fa-ellipsis-v text-black-50"></em></div>

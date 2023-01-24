@@ -10,8 +10,28 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     </head>
     <body class="">
-        <header>
-        </header>
+    <header class="p-3 mb-3 border-bottom">
+            <div class="container">
+              <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="#" class="d-flex d-none d-xxl-block align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                    <img src="https://i.ebayimg.com/images/g/o4EAAOSw9h1hcCxV/s-l500.jpg" alt="" width="50" height="50" class="rounded-circle">
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                  <li><a href="#" class="nav-link px-2 link-dark">Home</a></li>
+                  <li><a href="#" class="nav-link px-2 link-dark">Corsi</a></li>
+                  <li><a href="#" class="nav-link px-2 link-dark">Notifiche</a></li>
+                </ul>
+                <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form> -->
+                <div>
+                  <a href="../php/profile.php" class="d-block link-dark text-decoration-none" id="dropdownUser1" aria-expanded="false">
+                    <img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png" alt="" width="32" height="32" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </header>
         <main>
             <?php
             if (isset($templateParams["name"])) {
@@ -22,8 +42,8 @@
         <footer>
             <nav class="fixed-bottom">
                 <ul class="nav nav-pills justify-content-center nav-fill">
-                    <li class="nav-item h4"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item h4"><a class="nav-link active" aria-current="page" href="#">Profilo</a></li>
+                    <li class="nav-item h4"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item h4"><a class="nav-link" aria-current="page" href="#">Profilo</a></li>
                     <li class="nav-item h4"><a class="nav-link" href="#">Notifiche</a></li>
                 </ul>
             </nav>

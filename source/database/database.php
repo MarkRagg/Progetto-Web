@@ -69,5 +69,27 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+    
+    /**
+     * given an author, returns all the posts of that author
+     */
+    public function getPostFromUser($author) {
+        $stmt = $this->db->prepare("SELECT * FROM post WHERE author = ?");
+        $stmt->bind_param("s", $author);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
+     * returns n posts
+     */
+    public function getPosts($n) {
+        $stmt = $this->db->prepare("SELECT * FROM post ORDER BY RAND() LIMIT ?");
+        $stmt->bind_param("i", $n);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }  
 ?>

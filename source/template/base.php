@@ -29,6 +29,11 @@
                     <img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png" alt="" width="32" height="32" class="rounded-circle">
                   </a>
                 </div>
+                <div>
+                  <button type="button" class="btn btn-outline-info btn-sm mb-3 mb-lg-0 me-lg-3">
+                    <span class="glyphicon glyphicon-log-out"></span> Log out
+                  </button>
+                </div>
               </div>
             </div>
           </header>

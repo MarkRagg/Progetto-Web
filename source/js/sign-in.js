@@ -1,16 +1,17 @@
 function generateForm(loginerror = null) {
   let form = `
   <section>
+    <div class="container text-center border border-primary">
     <button type="button" onclick="location.href='../php/Login.php';">Log in</button><button type="button" disabled>Sign in</button>
     <form action="../php/Sign-in.php" method="POST">
-    <ul>
-      <li><label for="nickname">Nickname</label><input type="text" id="nickname" name="nickname"/></li>
-      <li><label for="email">Email</label><input type="email" id ="email" name="email"/></li>
-      <li><label for="password">Password</label><input type="password" id="password" name="password"/></li>
-      <li><label for="name">Name</label><input type="text" id="name" name="name"/></li>
-      <li><label for="surname">Surname</label><input type="text" id="surname" name="surname"/></li>
-      <li><label for="date">Date</label><input type="date" id="date" name="date"/></li>
-      <li><label for="residence">Residence</label>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><label for="nickname">Nickname</label><input type="text" id="nickname" name="nickname"/></li>
+      <li class="list-group-item"><label for="email">Email</label><input type="email" id ="email" name="email"/></li>
+      <li class="list-group-item"><label for="password">Password</label><input type="password" id="password" name="password"/></li>
+      <li class="list-group-item"><label for="name">Name</label><input type="text" id="name" name="name"/></li>
+      <li class="list-group-item"><label for="surname">Surname</label><input type="text" id="surname" name="surname"/></li>
+      <li class="list-group-item"><label for="date">Date</label><input type="date" id="date" name="date"/></li>
+      <li class="list-group-item"><label for="residence">Residence</label>
         <select id="residence" name="residence">
           <option value="Example">Example</option>
           </select>
@@ -19,6 +20,7 @@ function generateForm(loginerror = null) {
     <button type="submit">Register</button>
     <p class="text-danger"></p>
     </form>
+    </div>
   </section>
   `;
   return form;

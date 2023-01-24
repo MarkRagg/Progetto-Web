@@ -41,13 +41,13 @@ class DatabaseManager {
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function checkValueInDb($field, $column, $id) {
-        $stmt = $this->db->prepare("SELECT * FROM $field A WHERE A.$column = ?");
+    public function checkValueInDb($table, $column, $id) {
+        $stmt = $this->db->prepare("SELECT * FROM $table A WHERE A.$column = ?");
         $stmt->bind_param("s", $id);
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return empty($result->fetch_all(MYSQLI_ASSOC));
+        return !empty($result->fetch_all(MYSQLI_ASSOC));
     }
 
     private function getNewId($i, $z){
@@ -59,5 +59,15 @@ class DatabaseManager {
         return $id;
     }
 
+    /**
+     * Returns a user's data given their username
+     */
+    public function getUserInfo($user_id) {
+        $stmt = $this->db->prepare("SELECT name, surname, date_of_birth, uni_residence, corso_id, user_image FROM user_info WHERE user_id = ?");
+        $stmt->bind_param("s", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }  
 ?>

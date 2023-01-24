@@ -2,7 +2,7 @@ function generateForm(loginerror = null) {
   let form = `
   <section>
     <button type="button" disabled>Log in</button><button type="button" onclick="location.href='../php/index.php';">Sign in</button>
-    <form action="../php/api-login.php" method="POST">
+    <form action="../php/Login.php" method="POST">
     <ul>
       <li><label for="email">Email</label><input type="email" id ="email" name="email"/></li>
       <li><label for="password">Password</label><input type="password" id="password" name="password"/></li>
@@ -30,6 +30,7 @@ function visualizeSuccess() {
 
 const main = document.querySelector("main");
 axios.get('api-login.php').then(response => {
+    console.log("a");
     if (response.data["login-result"]) {
         // User Login succesfully
         visualizeSuccess();
@@ -48,11 +49,11 @@ function VisualizeLoginForm() {
       event.preventDefault();
       const email = document.querySelector("#email").value;
       const password = document.querySelector("#password").value;
-      signin(email, password);
+      login(email, password);
   });
 }
 
-function signin(email, password) {
+function login(email, password) {
   const formData = new FormData();
 
   formData.append('email', email);
@@ -62,7 +63,7 @@ function signin(email, password) {
       if (response.data["login-result"]) {
         visualizeSuccess();
       } else {
-        document.querySelector("form > p").innerText = response.data["login-error"];
+        document.querySelector("form p").innerText = response.data["login-error"];
       }
   });
 }

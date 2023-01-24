@@ -38,7 +38,7 @@ class DatabaseManager {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return !empty($result->fetch_all(MYSQLI_ASSOC));
+        return count($result->fetch_all(MYSQLI_ASSOC)) != 0;
     }
 
     public function checkValueInDb($table, $field, $id) {

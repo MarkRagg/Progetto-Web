@@ -2,7 +2,7 @@
 require_once 'db_config.php';
 
 $templateParams["title"] = "Login";
-$templateParams["name"] = "template-login.php";
+$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js","../js/login.js");
 
 require '../template/Login-base.php';
 ?>

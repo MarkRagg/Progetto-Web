@@ -50,12 +50,12 @@ class DatabaseManager {
         return !empty($result->fetch_all(MYSQLI_ASSOC));
     }
 
-    private function getNewId($i, $z){
-        $stmt = $this->db->prepare("SELECT Max($i) FROM $z");
+    private function getNewId($field, $table){
+        $stmt = $this->db->prepare("SELECT Max($field) FROM $table");
         $stmt->execute();
         $result = $stmt->get_result();
         $array = $result->fetch_all(MYSQLI_ASSOC);
-        $id = $array[0]["Max($i)"] + 1;
+        $id = $array[0]["Max($field)"] + 1;
         return $id;
     }
 

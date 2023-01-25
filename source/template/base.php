@@ -13,14 +13,14 @@
     <title><?php echo $templateParams["title"]?></title>
 </head>
 
-<body class="">
+<body class="bg-secondary">
     <header class="p-3 mb-3 border-bottom sticky-top z-index-master navbar-dark bg-dark">
         <div class="container ">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="#" class="d-flex d-none d-xxl-block align-items-center mb-2 mb-lg-0 text-decoration-none">
+                <!--<a href="#" class="d-flex d-none d-xxl-block align-items-center mb-2 mb-lg-0 text-decoration-none"> -->
                     <img src="https://i.ebayimg.com/images/g/o4EAAOSw9h1hcCxV/s-l500.jpg" alt="" width="50" height="50"
                         class="rounded-circle">
-                </a>
+               <!-- </a> -->
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="showhomepage.php" class="nav-link px-2 link-secondary">Home</a></li>
                     <li><a href="#" class="nav-link px-2 ">Corsi</a></li>

@@ -113,5 +113,16 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["followed_count"];
     }
+
+    /** 
+     * add a post to the db
+    */   
+    public function addPost($string, $author){
+        $stmt = $this->db->prepare("INSERT INTO post (post_id, string, author) VALUES (?, ?, ?)");
+        $id = $this->getNewId("post_id", "post");
+        $stmt->bind_param("sss", $id, $string, $author);
+        $result = $stmt->execute();
+        return $result;
+    }
 }  
 ?>

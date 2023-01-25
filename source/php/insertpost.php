@@ -2,7 +2,8 @@
 require_once("db_config.php");
 
 $templateParams["title"] = "Insert Post";
-$templateParams["name"] = "form_add_post.php";
+$templateParams["name"] = "../template/form_add_post.php";
+$templateParams["paginaprofilouser"]= $_SESSION["user_id"];
 
 $testo = $_POST["post"];
 

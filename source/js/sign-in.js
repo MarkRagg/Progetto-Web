@@ -30,7 +30,6 @@ function generateSuccesfullSignin(loginerror = null) {
   let form = `
   <section>
     <h1>Sign-in completed!</h1>
-    <h2>A</h2>
     <button type="button" onclick="location.href='../php/Login.php';">Log in</button>
   </section>`;
   return form;

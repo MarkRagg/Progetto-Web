@@ -3,11 +3,11 @@
  * @param {*} users The list of users to show
  */
 function showUserList(users) {
-    document.getElementById("list")?.remove();
+    document.querySelectorAll("#user")?.forEach(x => x.remove());
     users.forEach(element => {
         let newUser = document.createElement("div");
         newUser.innerHTML = `
-        <div class="container mt-4 mb-5" id="list">
+        <div class="container mt-4 mb-5" id="user">
             <div class="d-flex justify-content-center row">
                 <div class="col-md-8">
                     <div class="feed p-2">

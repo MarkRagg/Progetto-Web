@@ -41,10 +41,8 @@ if ($templateParams["user_exists"]) {
     $errormsg = $templateParams["errormsg"];
     $main = <<<EOD
     <section>
-        <div class="container">
-            <div class="row">
-                <p class = "--bs-danger-text col-6">$errormsg</p>
-            </div>
+        <div class="bg-danger text-white border border-danger-subtle rounded-3 container-md">
+            <h1 class="text-center">$errormsg</h1>
         </div>
     </section>
     EOD;

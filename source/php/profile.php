@@ -18,7 +18,7 @@ if (isset($_GET["username"])) {
         $templateParams["corso_id"] = $user["corso_id"];
         $templateParams["user_image"] = $user["user_image"];
     } else {
-        $result["errormsg"] = "User not found";
+        $templateParams["errormsg"] = "User not found";
     }
 }
 

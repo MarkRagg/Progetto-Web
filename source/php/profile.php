@@ -17,6 +17,9 @@ if (isset($_GET["username"])) {
         $templateParams["residence"] = $user["uni_residence"];
         $templateParams["corso_id"] = $user["corso_id"];
         $templateParams["user_image"] = $user["user_image"];
+        $templateParams["post_count"] = $dbh->getPostCountFromUser($templateParams["username"]);
+        $templateParams["follower_count"] = $dbh->getFollowerCount($templateParams["username"]);
+        $templateParams["followed_count"] = $dbh->getFollowedCount($templateParams["username"]);
     } else {
         $templateParams["errormsg"] = "User not found";
     }

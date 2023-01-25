@@ -74,14 +74,14 @@ class DatabaseManager {
     }
     
     /**
-     * given an author, returns all the posts of that author
+     * given an author, returns the number of posts made by that author
      */
-    public function getPostFromUser($author) {
-        $stmt = $this->db->prepare("SELECT * FROM post WHERE author = ?");
+    public function getPostCountFromUser($author) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) AS post_count FROM post WHERE author = ?");
         $stmt->bind_param("s", $author);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["post_count"];
     }
 
     /**
@@ -93,6 +93,25 @@ class DatabaseManager {
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
+     * Given a username returns the number of followers that user has
+     */
+    public function getFollowerCount($username) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) AS follower_count FROM user_followers_followed WHERE user_id = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["follower_count"];
+    }
+
+    public function getFollowedCount($username) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) As followed_count from user_followers_followed WHERE follower_id = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["followed_count"];
     }
 }  
 ?>

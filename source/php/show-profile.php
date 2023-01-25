@@ -7,6 +7,9 @@ if ($templateParams["user_exists"]) {
     $residence = $templateParams["residence"];
     $corso = $templateParams["corso_id"];
     $user_image = $templateParams["user_image"];
+    $post_count = $templateParams["post_count"];
+    $follower_count = $templateParams["follower_count"];
+    $followed_count = $templateParams["followed_count"];
     $main = <<<EOD
     <section>
         <div class="container">
@@ -29,9 +32,9 @@ if ($templateParams["user_exists"]) {
             </div>
             <div class="row">
                 <ul class="list-group list-group-horizontal">
-                    <li class="col-4 list-group-item align-items-center h4"><a href="#">Post</a> <span class="badge bg-primary rounded-pill">14</span></li>
-                    <li class="col-4 list-group-item align-items-center h4"><a href="#">Seguaci</a> <span class="badge bg-primary rounded-pill">14</span></li>
-                    <li class="col-4 list-group-item align-items-center h4"><a href="#">Seguiti</a> <span class="badge bg-primary rounded-pill">14</span></li>
+                    <li class="col-4 list-group-item align-items-center h4"><a href="#">Post</a> <span class="badge bg-primary rounded-pill">$post_count</span></li>
+                    <li class="col-4 list-group-item align-items-center h4"><a href="#">Seguaci</a> <span class="badge bg-primary rounded-pill">$follower_count</span></li>
+                    <li class="col-4 list-group-item align-items-center h4"><a href="#">Seguiti</a> <span class="badge bg-primary rounded-pill">$followed_count</span></li>
                 </ul>
             </div>
         </div>

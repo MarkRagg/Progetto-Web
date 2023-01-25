@@ -8,6 +8,7 @@
 <html lang="it">
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <title><?php echo $templateParams["title"]?></title>
     </head>
     <body class="">
     <header class="p-3 mb-3 border-bottom sticky-top z-index-master navbar-dark bg-dark">
@@ -37,8 +38,8 @@
               </div>
             </div>
           </header>
-          <div class="bd-toc mt-4 mb-5 my-md-0 ps-xl-3 mb-lg-5 text-muted">
-            <button class="text-end" onclick="location.href='../php/insertpost.php';">Aggiungi post</button>
+          <div class="">
+            <button class="btn btn-secondary float-right" onclick="location.href='../php/insertpost.php';">Aggiungi post</button>
           </div>
         <main>
             <?php

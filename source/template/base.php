@@ -25,7 +25,7 @@
                   <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                 </form> -->
                 <div>
-                  <a href="../php/profile.php" class="d-block text-decoration-none" id="dropdownUser1" aria-expanded="false">
+                  <a href="../php/profile.php?username=<?php echo $templateParams["paginaprofilouser"]?>" class="d-block text-decoration-none" id="dropdownUser1" aria-expanded="false">
                     <img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png" alt="" width="32" height="32" class="rounded-circle">
                   </a>
                 </div>

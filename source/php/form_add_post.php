@@ -6,5 +6,6 @@
             <input type="submit" name="submit" value="Posta">
             <a href="../php/showhomepage.php">Back</a>
         </form>
+        <p> <?php echo $error; ?> </p>
 </section>
 

@@ -15,27 +15,11 @@ function generateForm(loginerror = null) {
   return form;
 }
 
-function generateSuccesfullLogin(loginerror = null) {
-  let form = `
-  <section>
-    <h1>Login completed!</h1>
-  </section>`;
-  return form;
-}
-
-function visualizeSuccess() {
-  section = generateSuccesfullLogin();
-  main.innerHTML = section;
-}
-
 const main = document.querySelector("main");
 axios.get('api-login.php').then(response => {
     console.log("a");
-    if (response.data["login-result"]) {
-        // User Login succesfully
-        visualizeSuccess();
-    } else {
-        VisualizeLoginForm();  
+    if (!response.data["login-result"]) {
+      VisualizeLoginForm();          
     }
 });
 
@@ -61,7 +45,7 @@ function login(email, password) {
 
   axios.post('api-login.php', formData).then(response => {
       if (response.data["login-result"]) {
-        visualizeSuccess();
+        window.location.href = "../php/showhomepage.php";
       } else {
         document.querySelector("form p").innerText = response.data["login-error"];
       }

@@ -17,6 +17,22 @@ function showForm(){
 
 const main = document.querySelector("main");
 axios.get('insertpost.php').then(response => {
-    showForm();
-    
+    sendPost();
+    console.log(response.data);
 });
+
+function sendPost(){
+    const post = document.querySelector("#post").value;
+    axios.post('insertpost.php', {
+        post: post
+    }).then(response => {
+        if (response.data["post-result"]) {
+            //redirect to home page
+            location.href = "../php/showhomepage.php";
+            console.log("Post sent");
+        } else {
+            // Post not sent
+            showForm();
+        }
+    });
+}

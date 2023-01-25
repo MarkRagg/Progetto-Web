@@ -45,13 +45,14 @@
             ?>
         </main>
         <footer>
-            <nav class="fixed-bottom">
-               <!--  <ul class="nav nav-pills justify-content-center nav-fill">
-                    <li class="nav-item h4"><a class="nav-link active" href="#">Home</a></li>
-                    <li class="nav-item h4"><a class="nav-link" aria-current="page" href="#">Profilo</a></li>
-                    <li class="nav-item h4"><a class="nav-link" href="#">Notifiche</a></li>
-                </ul>-->
-                
+            <nav class="fixed-bottom z-index-master navbar-dark bg-dark text-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="text-center">© 2023 - Progetto Web</p>
+                        </div>
+                    </div>
+                </div>
             </nav> 
 
         </footer>

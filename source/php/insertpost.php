@@ -11,7 +11,7 @@ if(isset($_POST["submit"])){
         $dbh->addPost($testo, $_SESSION["user_id"]);
         header("Location: showhomepage.php");
     } else {
-        var_dump("Errore");
+        var_dump("Errore. o testo vuoto, o non sei loggato o il testo è troppo lungo");
     }
 }
 

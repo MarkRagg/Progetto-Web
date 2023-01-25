@@ -37,6 +37,7 @@
               </div>
             </div>
           </header>
+          <a href="insertpost.php">Aggiungi post</a>
         <main>
             <?php
             if (isset($templateParams["name"])) {

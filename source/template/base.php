@@ -37,7 +37,9 @@
               </div>
             </div>
           </header>
-          <a href="insertpost.php">Aggiungi post</a>
+          <div class="bd-toc mt-4 mb-5 my-md-0 ps-xl-3 mb-lg-5 text-muted">
+            <button class="text-end" onclick="location.href='../php/insertpost.php';">Aggiungi post</button>
+          </div>
         <main>
             <?php
             if (isset($templateParams["name"])) {

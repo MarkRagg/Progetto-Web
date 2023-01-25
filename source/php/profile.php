@@ -9,7 +9,7 @@ $templateParams["errormsg"] = "Missing username";
 if (isset($_GET["username"])) {
     $templateParams["user_exists"] = $dbh->checkValueInDb("user", "user_id", $_GET["username"]);
     if ($templateParams["user_exists"]) {
-        $user = $dbh->getUserInfo($_GET["username"])[0];
+        $user = $dbh->getUserInfo($_GET["username"]);
         $templateParams["username"] = $_GET["username"];
         $templateParams["u_name"] = $user["name"];
         $templateParams["surname"] = $user["surname"];

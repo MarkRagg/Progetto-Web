@@ -70,7 +70,7 @@ class DatabaseManager {
         $stmt->bind_param("s", $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $result->fetch_all(MYSQLI_ASSOC)[0];
     }
     
     /**
@@ -123,6 +123,28 @@ class DatabaseManager {
         $stmt->bind_param("sss", $id, $string, $author);
         $result = $stmt->execute();
         return $result;
+    }
+
+    /**
+     * Returns the followers of the user with the given username
+     */
+    public function getFollowers($username) {
+        $stmt = $this->db->prepare("SELECT follower_id FROM user_followers_followed WHERE user_id = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
+     * Returns the users followed by the user with the given username
+     */
+    public function getFollowing($username) {
+        $stmt = $this->db->prepare("SELECT user_id FROM user_followers_followed WHERE follower_id = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }  
 ?>

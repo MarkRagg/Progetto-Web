@@ -118,9 +118,10 @@ class DatabaseManager {
      * add a post to the db
     */   
     public function addPost($string, $author){
-        $stmt = $this->db->prepare("INSERT INTO post (post_id, author, string, 'data', esame_id) VALUES (?, ?, ?, 2020-01-01, null)");
+        $data = date("Y-m-d");
         $id = $this->getNewId("post_id", "post");
-        $stmt->bind_param("sss", $id, 'lory', 'ciao a tutti');
+        $stmt = $this->db->prepare("INSERT INTO post (post_id, author, string, data, esame_id) VALUES (?, ?, ?, ?, null);");
+        $stmt->bind_param("ssss", $id, $author, $string, $data);
         $result = $stmt->execute();
         return $result;
     }

@@ -3,8 +3,8 @@ require_once("db_config.php");
 
 $result["success"] = false;
 
-if (isset($_GET["username"])) {
-    $username = $_GET["username"];
+if (isset($_POST["profileUsername"])) {
+    $username = $_POST["profileUsername"];
     $nameCheck = $dbh->checkValueInDb("user", "user_id", $username);
     if ($nameCheck) {
         $result["success"] = true;

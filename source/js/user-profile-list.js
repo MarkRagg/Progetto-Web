@@ -28,6 +28,10 @@ function showUserList(users) {
     });
 }
                         
+/**
+ * Shows a list of posts in the main section of html
+ * @param {*} posts The list of posts to show
+ */
 function showPostList(posts) {
     document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
     posts.forEach(element => {
@@ -58,6 +62,17 @@ function showPostList(posts) {
     });
 }
 
+function showErrorMsg(errorMsg) {
+    document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
+    let errorNode = document.createElement("div");
+    errorNode.innerHTML = `
+        <div id="listElement" class="bg-danger text-white border border-danger-subtle rounded-3 container-md">
+            <h1 class="text-center">${errorMsg}</h1>
+        </div>
+    `;
+    main.appendChild(errorNode);
+}
+
 /**
  * Makes a request to api-user-list.php and uses the result to populate the page
  * @param {string} username The username of the user of the current profile page
@@ -69,11 +84,19 @@ function makeRequestAndEdit(username, requestedList) {
     if (requestedList != "posts") {
         formData.append("requestedList", requestedList);
         axios.post("api-user-list.php", formData).then(response => {
-            showUserList(response.data["userList"])
+            if (!response.data["success"]) {
+                showErrorMsg(response.data["errormsg"]);
+            } else {
+                showUserList(response.data["userList"])
+            }
         });
     } else {
         axios.post("api-show-user-posts.php", formData).then(response => {
-            showPostList(response.data["userPosts"]);
+            if (!response.data["success"]) {
+                showErrorMsg(response.data["errormsg"]);
+            } else {
+                showPostList(response.data["userPosts"]);
+            }
         });
     }
     // TODO show errormsg in case of error

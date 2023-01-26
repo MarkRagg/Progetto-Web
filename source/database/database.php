@@ -88,7 +88,7 @@ class DatabaseManager {
      * returns n posts
      */
     public function getPosts($n) {
-        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image FROM `post`,user_info WHERE user_info.user_id=post.author ORDER BY RAND() LIMIT ?");
+        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image, data FROM `post`,user_info WHERE user_info.user_id=post.author ORDER BY RAND() LIMIT ?");
         $stmt->bind_param("i", $n);
         $stmt->execute();
         $result = $stmt->get_result();

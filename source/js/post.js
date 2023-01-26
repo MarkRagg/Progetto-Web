@@ -63,11 +63,18 @@ function updateButton(response){
 
 
             formData.append('post_id', response[i]["post_id"]);
-            formData.append('author', response[i]["user_id"]);
+            formData.append('user', response[i]["user_id"]);
+            formData.append('type', 1);
 
             for (const value of formData.values()) {
                 console.log(value);
             }
+
+            axios.post('../php/like.php', formData).then(response => {
+                console.log(response);
+            });
+
+            //formData.delete();
         });
 
         //const list = [response[i]["post_id"], response[i][""]];

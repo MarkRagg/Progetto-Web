@@ -163,11 +163,13 @@ class DatabaseManager {
     /**
      * register a like to a post
      */
-    public function likePost($post_id, $user_id){
-        $stmt = $this->db->prepare("INSERT INTO post_like (post_id, user_id) VALUES (?, ?)");
-        $id = $this->getNewId("like_id", "post_like");
-        $stmt->bind_param("ss", $post_id, $user_id);
+    public function likePost($post_id, $user_id, $reaction_type){
+        $stmt = $this->db->prepare("INSERT INTO `post_user_reaction`(`pur_id`, `user_id`, `post_id`, `reaction_id`) 
+                                    VALUES (?, ?, ?, ?)");
+        $id = $this->getNewId("pur_id", "post_user_reaction");
+        $stmt->bind_param("ssss", $id, $user_id, $post_id, $reaction_type);
         $result = $stmt->execute();
         return $result;
+    }
 }  
 ?>

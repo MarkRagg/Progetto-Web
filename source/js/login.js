@@ -1,7 +1,7 @@
 function generateForm(loginerror = null) {
   let form = `
   <div class="container text-center p-5">
-    <h1 class="text-primary"><?php echo $templateParams["title"] ?></h1>
+    <h1 class="text-primary">Login</h1>
   </div>
   <section>
     <div class="d-flex justify-content-center align-middle">
@@ -21,7 +21,7 @@ function generateForm(loginerror = null) {
           <div class="d-flex justify-content-end">
             <button type="submit" data-toggle="button" class="btn btn-outline-primary">Next</button>
           </div>
-          <p class="text-danger m-0"><p>
+          <p class="text-danger m-0" id="error-text"></p>
           </form>
        </div> 
       </div>
@@ -63,7 +63,7 @@ function login(email, password) {
       if (response.data["login-result"]) {
         window.location.href = "../php/showhomepage.php";
       } else {
-        document.querySelector("form p").innerText = response.data["login-error"];
+        document.getElementById("error-text").innerText = response.data["login-error"];
       }
   });
 }

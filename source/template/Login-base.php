@@ -5,9 +5,6 @@
   </head>
   <body>
     <header>
-      <div class="container text-center">
-      <h1 class="text-primary"><?php echo $templateParams["title"] ?></h1>
-      </div>
     </header>
     <main>
       <?php

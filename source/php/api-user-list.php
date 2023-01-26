@@ -3,7 +3,7 @@ require_once("db_config.php");
 
 $result["success"] = false;
 
-if(isset($_POST["profileUsername"]) && isset($_POST["requestedList"])) {
+if (isset($_POST["profileUsername"]) && isset($_POST["requestedList"])) {
     $profileUsername = $_POST["profileUsername"];
     $requestedList = $_POST["requestedList"];
     switch($requestedList) {

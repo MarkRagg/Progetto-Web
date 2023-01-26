@@ -5,7 +5,7 @@ if ($templateParams["user_exists"]) {
     $surname = $templateParams["surname"];
     $user_image = $templateParams["user_image"];
     $date_of_birth = $templateParams["date_of_birth"];
-    $residence = $templateParams["residence"];
+    $uni_residence = $templateParams["residence"];
     $corso = $templateParams["corso_id"];
     $user_image = $templateParams["user_image"];
     $post_count = $templateParams["post_count"];

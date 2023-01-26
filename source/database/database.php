@@ -147,5 +147,17 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    /**
+     * Returns all posts made by the user with the given username
+     * The are ordered from the most recent to the least recent
+     */
+    public function getAllUserPosts($username) {
+        $stmt = $this->db->prepare("SELECT * FROM post WHERE author = ? ORDER BY data DESC");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }  
 ?>

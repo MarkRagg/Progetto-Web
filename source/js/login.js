@@ -1,15 +1,31 @@
 function generateForm(loginerror = null) {
   let form = `
+  <div class="container text-center p-5">
+    <h1 class="text-primary"><?php echo $templateParams["title"] ?></h1>
+  </div>
   <section>
-    <button type="button" disabled>Log in</button><button type="button" onclick="location.href='../php/index.php';">Sign in</button>
-    <form action="../php/Login.php" method="POST">
-    <ul>
-      <li><label for="email">Email</label><input type="email" id ="email" name="email"/></li>
-      <li><label for="password">Password</label><input type="password" id="password" name="password"/></li>
-    </ul>
-    <button type="submit">Next</button>
-    <p class="text-danger"><p>
-    </form>
+    <div class="d-flex justify-content-center align-middle">
+      <div class="flex-column border">
+        <div class="p-5">
+          <div class="pb-2 text-center">
+            <button type="button" class="btn btn-primary mx-2" data-toggle="button" aria-pressed="true" disabled>Log in</button><button type="button" class="btn btn-primary mx-2" data-toggle="button" aria-pressed="false" onclick="location.href='../php/index.php';">Sign in</button>
+          </div>
+          <form action="../php/Login.php" method="POST">
+          <ul class="list-unstyled">
+            <li class="pl-1"><label for="email">Email</label></li>
+            <li class="pb-1"><input type="email" id ="email" name="email"/></li>
+            <li class="ptl-1"><label for="password">Password</label></li>
+            <li><input type="password" id="password" name="password"/></li>
+          </ul>
+          <hr/>
+          <div class="d-flex justify-content-end">
+            <button type="submit" data-toggle="button" class="btn btn-outline-primary">Next</button>
+          </div>
+          <p class="text-danger m-0"><p>
+          </form>
+       </div> 
+      </div>
+    </div>
   </section>
   `;
   return form;

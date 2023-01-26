@@ -5,6 +5,7 @@ $templateParams["title"] = "Profile";
 $templateParams["name"] = "show-profile.php";
 $templateParams["user_exists"] = false;
 $templateParams["errormsg"] = "Missing username";
+$templateParams["paginaprofilouser"]=$_SESSION["user_id"];
 
 if (isset($_GET["username"])) {
     $templateParams["user_exists"] = $dbh->checkValueInDb("user", "user_id", $_GET["username"]);

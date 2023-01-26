@@ -39,8 +39,6 @@ if ($templateParams["user_exists"]) {
                 </ul>
             </div>
         </div>
-        <script src="../js/user-list.js"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js">
     </section>
     EOD;
 } else {

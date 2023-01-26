@@ -88,7 +88,7 @@ class DatabaseManager {
      * returns n posts
      */
     public function getPosts($n) {
-        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image, data FROM `post`,user_info WHERE user_info.user_id=post.author ORDER BY RAND() LIMIT ?");
+        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image,`post_id`, data FROM `post`,user_info WHERE user_info.user_id=post.author ORDER BY RAND() LIMIT ?");
         $stmt->bind_param("i", $n);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -159,5 +159,15 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    /**
+     * register a like to a post
+     */
+    public function likePost($post_id, $user_id){
+        $stmt = $this->db->prepare("INSERT INTO post_like (post_id, user_id) VALUES (?, ?)");
+        $id = $this->getNewId("like_id", "post_like");
+        $stmt->bind_param("ss", $post_id, $user_id);
+        $result = $stmt->execute();
+        return $result;
 }  
 ?>

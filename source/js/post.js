@@ -49,39 +49,35 @@ function showPost(post_data){
 function updateButton(response){
     const btn = document.querySelectorAll('#bottone');
 
-    //const map = new Map();
-
-    //console.log(btn);
     const formData = new FormData();
 
     for(let i = 0; i < btn.length; i++){
         btn[i].addEventListener('click', function onClick() {
             btn[i].style.backgroundColor = 'salmon';
             btn[i].style.color = 'white';
+            btn[i].classList.add('liked');
             btn[i].innerHTML = 'Liked';
 
+            if (!btn[i].classList.contains('liked')) {
+                formData.append('post_id', response[i]["post_id"]);
+                formData.append('user', response[i]["user_id"]);
+                formData.append('type', 1);
 
+                for (const value of formData.values()) {
+                    console.log(value);
+                }
 
-            formData.append('post_id', response[i]["post_id"]);
-            formData.append('user', response[i]["user_id"]);
-            formData.append('type', 1);
-
-            for (const value of formData.values()) {
-                console.log(value);
+                axios.post('../php/like.php', formData).then(response => {
+                    console.log(response);
+                });
             }
 
-            axios.post('../php/like.php', formData).then(response => {
-                console.log(response);
-            });
+            formData.delete('post_id');
+            formData.delete('user');
+            formData.delete('type');
 
-            //formData.delete();
         });
-
-        //const list = [response[i]["post_id"], response[i][""]];
-
-        //map.set(btn[i], list);
     }   
-    //console.log(map); 
 }
 
 

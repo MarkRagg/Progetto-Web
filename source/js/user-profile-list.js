@@ -5,7 +5,7 @@
 function showUserList(users) {
     document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
     users.forEach(element => {
-        let newUser = document.createElement("div");
+        const newUser = document.createElement("div");
         newUser.id = "listElement";
         newUser.innerHTML = `
         <div class="container mt-4 mb-5">
@@ -36,7 +36,7 @@ function showUserList(users) {
 function showPostList(posts) {
     document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
     posts.forEach(element => {
-        let newPost = document.createElement("div");
+        const newPost = document.createElement("div");
         newPost.id = "listElement";
         newPost.innerHTML = `
         <div class="container mt-5 mb-5">
@@ -71,9 +71,10 @@ function showPostList(posts) {
 
 function showErrorMsg(errorMsg) {
     document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
-    let errorNode = document.createElement("div");
+    const errorNode = document.createElement("div");
+    errorNode.id = "listElement";
     errorNode.innerHTML = `
-        <div id="listElement" class="bg-danger text-white border border-danger-subtle rounded-3 container-md">
+        <div class="bg-danger text-white border border-danger-subtle rounded-3 container-md">
             <h1 class="text-center">${errorMsg}</h1>
         </div>
     `;

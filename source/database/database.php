@@ -230,5 +230,27 @@ class DatabaseManager {
         $result = $stmt->execute();
         return $result;
     }
+
+    /**
+     * Returns all classes belonging to the course with the given id
+     */
+    public function getClassesFromCourse($course_id) {
+        $stmt = $this->db->prepare("SELECT * FROM esami WHERE corso_id = ?");
+        $stmt->bind_param("i", $course_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
+     * Returns all users subscribed to the course with the given id
+     */
+    public function getSubsFromCourse($course_id) {
+        $stmt = $this->db->prepare("SELECT user_id, name, surname, date_of_birth, birthplace, uni_residence, user_image FROM user_info WHERE corso_id = ?;");
+        $stmt->bind_param("i", $course_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }  
 ?>

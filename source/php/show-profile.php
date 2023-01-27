@@ -18,10 +18,10 @@ if ($templateParams["user_exists"]) {
         </div>
         <div class="container text-center">
             <div class="row">
-                <h1 class="col">$name $surname</h1>
+                <h1 class="col text-light">$name $surname</h1>
             </div>
             <div class="row">
-                <h2 class="col text-muted">$username</h2>
+                <h2 class="col text-light">$username</h2>
             </div>
         </div>
         <div class="container text-center">
@@ -33,9 +33,9 @@ if ($templateParams["user_exists"]) {
             </div>
             <div class="row">
                 <ul class="list-group list-group-horizontal">
-                    <li class="col-4 list-group-item align-items-center h4"><a id="posts" href="#">Post</a> <span class="badge bg-primary rounded-pill">$post_count</span></li>
-                    <li class="col-4 list-group-item align-items-center h4"><a id="followers" href="#">Seguaci</a> <span class="badge bg-primary rounded-pill">$follower_count</span></li>
-                    <li class="col-4 list-group-item align-items-center h4"><a id="following" href="#">Seguiti</a> <span class="badge bg-primary rounded-pill">$followed_count</span></li>
+                    <li class="col-4 list-group-item align-items-center h4"><a class="link-dark" id="posts" href="#">Post</a> <span class="badge bg-dark rounded-pill">$post_count</span></li>
+                    <li class="col-4 list-group-item align-items-center h4"><a class="link-dark" id="followers" href="#">Seguaci</a> <span class="badge bg-dark rounded-pill">$follower_count</span></li>
+                    <li class="col-4 list-group-item align-items-center h4"><a class="link-dark" id="following" href="#">Seguiti</a> <span class="badge bg-dark rounded-pill">$followed_count</span></li>
                 </ul>
             </div>
         </div>

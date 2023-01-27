@@ -102,20 +102,48 @@ function makeRequestAndEdit(username, requestedList) {
     // TODO show errormsg in case of error
 }
 
+// For every element removes all classes and changes the badge color to blue 
+function deactivateAll(listElements) {
+    listElements.forEach(x => {
+        x.parentElement.classList.replace("bg-dark", "bg-light");
+        x.classList.replace("link-light", "link-dark");
+        x.nextElementSibling.classList.replace("bg-light", "bg-dark");
+        x.nextElementSibling.classList.replace("text-dark", "text-light");
+    });
+}
+
+function activateElement(toActivate) {
+    toActivate.parentElement.classList.remove("bg-light");
+    toActivate.parentElement.classList.add("bg-dark");
+    toActivate.classList.replace("link-dark", "link-light");
+    toActivate.nextElementSibling.classList.replace("bg-dark", "bg-light");
+    toActivate.nextElementSibling.classList.remove("text-light");
+    toActivate.nextElementSibling.classList.add("text-dark");
+}
+
+function updateLinks(listElements, currentLink) {
+    deactivateAll(listElements);
+    activateElement(currentLink);
+}
+
 const main = document.querySelector("main");
 const followersLink = document.querySelector("a#followers");
 const followingLink = document.querySelector("a#following");
 const postsLink = document.querySelector("a#posts");
 const profileUsername = document.querySelector("h2").innerText;
+const linkList = [postsLink, followersLink, followingLink];
 followersLink.addEventListener("click", function(event) {
     event.preventDefault();
     makeRequestAndEdit(profileUsername, "followers");
+    updateLinks(linkList, followersLink);
 });
 followingLink.addEventListener("click", function(event) {
     event.preventDefault();
     makeRequestAndEdit(profileUsername, "following");
+    updateLinks(linkList, followingLink);
 });
 postsLink.addEventListener("click", function(event) {
     event.preventDefault();
     makeRequestAndEdit(profileUsername, "posts");
+    updateLinks(linkList, postsLink);
 });

@@ -15,7 +15,7 @@ if (isset($_POST["post_id"]) && isset($_SESSION["user_id"]) && isset($_POST["typ
         $dbh->likePost($postId, $user, $type);
     } else if ($type == -1)
     {
-        $dbh->removeLike($postId, 1);
+        $dbh->removeLike($postId, 1, $user);
         $res = "rimosso like";
     }
 

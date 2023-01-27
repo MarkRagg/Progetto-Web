@@ -224,9 +224,9 @@ class DatabaseManager {
         return $result->fetch_array(MYSQLI_ASSOC)["classCount"];
     }
 
-    public function removeLike($post_id, $reaction_type){
-        $stmt = $this->db->prepare("DELETE FROM post_user_reaction WHERE post_id = ? and reaction_id = ?");
-        $stmt->bind_param("ss", $post_id, $reaction_type);
+    public function removeLike($post_id, $reaction_type, $user_id){
+        $stmt = $this->db->prepare("DELETE FROM post_user_reaction WHERE post_id = ? and reaction_id = ? and user_id = ?");
+        $stmt->bind_param("sss", $post_id, $reaction_type, $user_id);
         $result = $stmt->execute();
         return $result;
     }

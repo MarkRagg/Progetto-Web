@@ -171,5 +171,13 @@ class DatabaseManager {
         $result = $stmt->execute();
         return $result;
     }
+
+    public function getPostLikes($post_id){
+        $stmt = $this->db->prepare("SELECT COUNT(*) AS likes FROM post_user_reaction WHERE post_id = ? AND reaction_id = 1");
+        $stmt->bind_param("s", $post_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["likes"];
+    }
 }  
 ?>

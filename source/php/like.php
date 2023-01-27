@@ -6,9 +6,9 @@ $res =" ok ";
 
 
 
-if (isset($_POST["post_id"]) && isset($_POST["user"]) && isset($_POST["type"])) {
+if (isset($_POST["post_id"]) && isset($_SESSION["user_id"]) && isset($_POST["type"])) {
     $postId = $_POST["post_id"];
-    $user = $_POST["user"];
+    $user = $_SESSION["user_id"];
     $type = $_POST["type"];
 
     $dbh->likePost($postId, $user, $type);

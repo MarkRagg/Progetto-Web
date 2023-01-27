@@ -26,7 +26,7 @@ function generatePost(post_data){
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex flex-row muted-color">
                             <button id="bottone">Like</button>
-                            <p>1</p>
+                            <p id="numeroLike">${post_data[i]["num_like"]}</p>
                             </div>
                         </div>
                     </div>
@@ -49,6 +49,7 @@ function showPost(post_data){
 
 function updateButton(response){
     const btn = document.querySelectorAll('#bottone');
+    const nlikes = document.querySelectorAll('#numeroLike');
 
     const formData = new FormData();
 
@@ -59,7 +60,6 @@ function updateButton(response){
             btn[i].classList.add('liked');
 
             formData.append('post_id', response[i]["post_id"]);
-            formData.append('user', response[i]["user_id"]);
             formData.append('type', 1);
 
             for (const value of formData.values()) {
@@ -71,6 +71,7 @@ function updateButton(response){
             });
 
             btn[i].innerHTML = 'Liked';
+            nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + 1;
             formData.delete('post_id');
             formData.delete('user');
             formData.delete('type');

@@ -59,6 +59,7 @@ function updateButton(response){
             btn[i].id = "button liked";
             btn[i].style.backgroundColor = 'salmon';
             btn[i].style.color = 'white';
+            btn[i].innerHTML = 'Liked';
         }
         btn[i].addEventListener('click', function onClick() {
             if(btn[i].id == "button liked"){

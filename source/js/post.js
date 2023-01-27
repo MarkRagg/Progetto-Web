@@ -26,7 +26,7 @@ function generatePost(post_data){
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex flex-row muted-color">
                             <button id="bottone">Like</button>
-                            <p id="numeroLike">${post_data[i]["num_like"]}</p>
+                            <p id="numeroLike" >${post_data[i]["num_like"]}</p>
                             </div>
                         </div>
                     </div>
@@ -60,6 +60,7 @@ function updateButton(response){
                 btn[i].style.color = 'black';
                 btn[i].classList.remove('liked');
                 nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
+                btn[i].innerHTML = 'Like';
                 formData.append('post_id', response[i]["post_id"]);
                 formData.append('type', -1);
                 axios.post('../php/like.php', formData).then(response => {

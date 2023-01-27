@@ -56,14 +56,15 @@ function updateButton(response){
     for(let i = 0; i < btn.length; i++){
         if(response[i]["user_has_liked"]==true){
             btn[i].classList.add('liked');
+            btn[i].id = "button liked";
             btn[i].style.backgroundColor = 'salmon';
             btn[i].style.color = 'white';
         }
         btn[i].addEventListener('click', function onClick() {
-            if(btn[i].classList.contains('liked')){
+            if(btn[i].id == "button liked"){
                 btn[i].style.backgroundColor = 'white';
                 btn[i].style.color = 'black';
-                btn[i].classList.remove('liked');
+                btn[i].id = "button";
                 nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
                 btn[i].innerHTML = 'Like';
                 formData.append('post_id', response[i]["post_id"]);
@@ -74,7 +75,7 @@ function updateButton(response){
             } else {
                 btn[i].style.backgroundColor = 'salmon';
                 btn[i].style.color = 'white';
-                btn[i].classList.add('liked');
+                btn[i].id = "button liked";
 
                 formData.append('post_id', response[i]["post_id"]);
                 formData.append('type', 1);
@@ -105,26 +106,3 @@ axios.get("api-showpost.php").then(response => {
     updateButton(response.data);
     
 });
-
-/*cosa devo fare?
-
-clicco sul bottone del like
-l actionlistener fa qualcosa
-dentro quel qualcosa metto dentro il formdata il post_id e l author
-poi devo mandare il formdata a php
-php piglia le robe:
-prende il postid e l'utente che ha messo il like
-e lo mette dentro la tabella dei like
-(poi devo aggiornare il numero di like)
-ovviamente devo ritornare qualcosa
-ma non so cosa
-
-dove metto il axiso.post?
-cosa ritorno da php?
-
-
-
-
-se lo riclicco devo togliere il like ma ci penso dopo
-
-*/

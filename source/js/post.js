@@ -26,6 +26,7 @@ function generatePost(post_data){
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex flex-row muted-color">
                             <button id="bottone">Like</button>
+                            <p>1</p>
                             </div>
                         </div>
                     </div>
@@ -56,22 +57,20 @@ function updateButton(response){
             btn[i].style.backgroundColor = 'salmon';
             btn[i].style.color = 'white';
             btn[i].classList.add('liked');
-            btn[i].innerHTML = 'Liked';
 
-            if (!btn[i].classList.contains('liked')) {
-                formData.append('post_id', response[i]["post_id"]);
-                formData.append('user', response[i]["user_id"]);
-                formData.append('type', 1);
+            formData.append('post_id', response[i]["post_id"]);
+            formData.append('user', response[i]["user_id"]);
+            formData.append('type', 1);
 
-                for (const value of formData.values()) {
-                    console.log(value);
-                }
-
-                axios.post('../php/like.php', formData).then(response => {
-                    console.log(response);
-                });
+            for (const value of formData.values()) {
+                console.log(value);
             }
 
+            axios.post('../php/like.php', formData).then(response => {
+                console.log(response);
+            });
+
+            btn[i].innerHTML = 'Liked';
             formData.delete('post_id');
             formData.delete('user');
             formData.delete('type');

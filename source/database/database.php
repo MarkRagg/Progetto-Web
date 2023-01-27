@@ -186,5 +186,17 @@ class DatabaseManager {
         $result = $stmt->execute();
         return $result;
     }
+
+    /**
+     * returns if the current user has reacted the post
+     */
+    public function hasReacted($post_id, $user_id, $reaction_type){
+        $stmt = $this->db->prepare("SELECT * FROM post_user_reaction WHERE post_id = ? AND user_id = ? and reaction_id = ?");
+        $stmt->bind_param("sss", $post_id, $user_id, $reaction_type);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res = $result->fetch_all(MYSQLI_ASSOC)[0];
+        return $res!=null;
+    }
 }  
 ?>

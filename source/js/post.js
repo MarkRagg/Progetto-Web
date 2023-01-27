@@ -54,6 +54,11 @@ function updateButton(response){
     const formData = new FormData();
 
     for(let i = 0; i < btn.length; i++){
+        if(response[i]["user_has_liked"]==true){
+            btn[i].classList.add('liked');
+            btn[i].style.backgroundColor = 'salmon';
+            btn[i].style.color = 'white';
+        }
         btn[i].addEventListener('click', function onClick() {
             if(btn[i].classList.contains('liked')){
                 btn[i].style.backgroundColor = 'white';
@@ -94,6 +99,7 @@ function updateButton(response){
 
 const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {
+    console.log(response.data);
     showPost(response.data);
 
     updateButton(response.data);

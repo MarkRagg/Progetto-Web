@@ -1,25 +1,37 @@
 function generateForm(loginerror = null) {
   let form = `
+  <div class="container text-center p-5">
+    <h1 class="text-primary">Sign-in</h1>
+  </div>
   <section>
-    <div class="container text-center border border-primary">
-    <button type="button" onclick="location.href='../php/Login.php';">Log in</button><button type="button" disabled>Sign in</button>
-    <form action="../php/Sign-in.php" method="POST">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item"><label for="nickname">Nickname</label><input type="text" id="nickname" name="nickname"/></li>
-      <li class="list-group-item"><label for="email">Email</label><input type="email" id ="email" name="email"/></li>
-      <li class="list-group-item"><label for="password">Password</label><input type="password" id="password" name="password"/></li>
-      <li class="list-group-item"><label for="name">Name</label><input type="text" id="name" name="name"/></li>
-      <li class="list-group-item"><label for="surname">Surname</label><input type="text" id="surname" name="surname"/></li>
-      <li class="list-group-item"><label for="date">Date</label><input type="date" id="date" name="date"/></li>
-      <li class="list-group-item"><label for="residence">Residence</label>
-        <select id="residence" name="residence">
-          <option value="Example">Example</option>
-          </select>
-        </li>
-    </ul>
-    <button type="submit">Register</button>
-    <p class="text-danger"></p>
-    </form>
+    <div class="d-flex justify-content-center align-middle">
+      <div class="flex-column border">
+        <div class="p-5">
+          <div class="pb-2 text-center">
+            <button class="btn btn-primary mx-2" data-toggle="button" aria-pressed="false" type="button" onclick="location.href='../php/Login.php';">Log in</button><button type="button" class="btn btn-primary mx-2" data-toggle="button" aria-pressed="true" disabled>Sign in</button>
+          </div>
+            <form action="../php/Sign-in.php" method="POST">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><label for="nickname"">Nickname</label><input type="text" class="d-flex justify-content-end" id="nickname" name="nickname"/></li>
+            <li class="list-group-item"><label for="email">Email</label><input type="email" class="d-flex justify-content-end" id ="email" name="email"/></li>
+            <li class="list-group-item"><label for="password">Password</label><input type="password" class="d-flex justify-content-end" id="password" name="password"/></li>
+            <li class="list-group-item"><label for="name">Name</label><input type="text" class="d-flex justify-content-end" id="name" name="name"/></li>
+            <li class="list-group-item"><label for="surname">Surname</label><input type="text" class="d-flex justify-content-end" id="surname" name="surname"/></li>
+            <li class="list-group-item"><label for="date">Date</label><input type="date" class="d-flex justify-content-end" id="date" name="date"/></li>
+            <li class="list-group-item"><label for="residence">Residence</label>
+              <select id="residence" class="d-flex justify-content-end" name="residence">
+                <option value="Example">Example</option>
+                </select>
+              </li>
+          </ul>
+          <hr/>
+          <div class="d-flex justify-content-end">
+            <button type="submit" data-toggle="button" class="btn btn-outline-primary">Register</button>
+          </div>
+          <p class="text-danger"></p>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
   `;

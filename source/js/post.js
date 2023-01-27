@@ -30,12 +30,14 @@ function generatePost(post_data){
                             <ul class="">
                                 <li class=" list-group-item align-items-center h5">
                                     
-                                    <button id="bottone" class="btn btn-outline-primary ">Like</button>
-                                    <span class="" id="numeroLike" >${post_data[i]["num_like"]}</span>
+                                    <button id="bottone" class="btn btn-outline-danger ">Like
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >
+                                    ${post_data[i]["num_like"]}</span>
+                                    
+                                    </button>
                                 </li>
                             </ul>
                         </div>
-                    
                 </div>
             </div>
         </div>
@@ -61,16 +63,16 @@ function updateButton(response){
 
     for(let i = 0; i < btn.length; i++){
         if(response[i]["user_has_liked"]==true){
-            btn[i].classList.replace("btn-outline-primary","btn-primary");
+            btn[i].classList.replace("btn-outline-danger","btn-danger");
             btn[i].id = "button liked";
-            btn[i].innerHTML = 'Liked';
+            //btn[i].innerHTML = 'Liked';
         }
         btn[i].addEventListener('click', function onClick() {
             if(btn[i].id == "button liked"){
-                btn[i].classList.replace('btn-primary', "btn-outline-primary");
+                btn[i].classList.replace('btn-danger', "btn-outline-danger");
                 btn[i].id = "button";
                 nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
-                btn[i].innerHTML = 'Like';
+                //btn[i].innerHTML = 'Like';
                 formData.append('post_id', response[i]["post_id"]);
                 formData.append('type', -1);
                 axios.post('../php/like.php', formData).then(response => {
@@ -79,7 +81,7 @@ function updateButton(response){
                 formData.delete('post_id');
                 formData.delete('type');
             } else {
-                btn[i].classList.replace("btn-outline-primary",'btn-primary' );
+                btn[i].classList.replace("btn-outline-danger",'btn-danger' );
                 btn[i].id = "button liked";
 
                 formData.append('post_id', response[i]["post_id"]);
@@ -93,7 +95,7 @@ function updateButton(response){
                     console.log(response);
                 });
 
-                btn[i].innerHTML = 'Liked';
+                //btn[i].innerHTML = 'Liked';
                 nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + 1;
                 formData.delete('post_id');
                 formData.delete('user');

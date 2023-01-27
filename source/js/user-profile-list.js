@@ -6,8 +6,9 @@ function showUserList(users) {
     document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
     users.forEach(element => {
         let newUser = document.createElement("div");
+        newUser.id = "listElement";
         newUser.innerHTML = `
-        <div class="container mt-4 mb-5" id="listElement">
+        <div class="container mt-4 mb-5">
             <div class="d-flex justify-content-center row">
                 <div class="col-md-8">
                     <div class="feed p-2">
@@ -36,8 +37,9 @@ function showPostList(posts) {
     document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
     posts.forEach(element => {
         let newPost = document.createElement("div");
+        newPost.id = "listElement";
         newPost.innerHTML = `
-        <div class="container mt-5 mb-5" id="listElement">
+        <div class="container mt-5 mb-5">
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="col-md-6">
                     <div class="card">
@@ -112,6 +114,7 @@ function deactivateAll(listElements) {
     listElements.forEach(x => {
         x.parentElement.classList.replace("bg-dark", "bg-light");
         x.classList.replace("link-light", "link-dark");
+        x.classList.remove("disabled");
         x.nextElementSibling.classList.replace("bg-light", "bg-dark");
         x.nextElementSibling.classList.replace("text-dark", "text-light");
     });
@@ -121,6 +124,7 @@ function activateElement(toActivate) {
     toActivate.parentElement.classList.remove("bg-light");
     toActivate.parentElement.classList.add("bg-dark");
     toActivate.classList.replace("link-dark", "link-light");
+    toActivate.classList.add("disabled");
     toActivate.nextElementSibling.classList.replace("bg-dark", "bg-light");
     toActivate.nextElementSibling.classList.remove("text-light");
     toActivate.nextElementSibling.classList.add("text-dark");

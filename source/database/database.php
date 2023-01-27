@@ -180,6 +180,50 @@ class DatabaseManager {
         return $result->fetch_all(MYSQLI_ASSOC)[0]["likes"];
     }
 
+    /**
+     * Returns all info about a course given it's id
+     */
+    public function getCourseInfo($course_id) {
+        $stmt = $this->db->prepare("SELECT * FROM corsi WHERE corso_id = ?");
+        $stmt->bind_param("s", $course_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_array(MYSQLI_ASSOC);
+    }
+
+    /**
+     * Returns all info about a university given it's id
+     */
+    public function getUniInfo($uni_id) {
+        $stmt = $this->db->prepare("SELECT * FROM universita WHERE uni_id = ?");
+        $stmt->bind_param("i", $uni_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_array(MYSQLI_ASSOC);
+    }
+
+    /**
+     * Returns the number of users subscribed to the course with the given id
+     */
+    public function getSubCount($course_id) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) as subCount FROM user_info WHERE corso_id = ?");
+        $stmt->bind_param("i", $course_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_array(MYSQLI_ASSOC)["subCount"];
+    }
+
+    /**
+     * Returns the number of classes in the course with the given id
+     */
+    public function getClassCount($course_id) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) AS classCount FROM esami WHERE corso_id = ?");
+        $stmt->bind_param("i", $course_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_array(MYSQLI_ASSOC)["classCount"];
+    }
+
     public function removeLike($post_id, $reaction_type){
         $stmt = $this->db->prepare("DELETE FROM post_user_reaction WHERE post_id = ? and reaction_id = ?");
         $stmt->bind_param("ss", $post_id, $reaction_type);

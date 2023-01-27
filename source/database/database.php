@@ -264,5 +264,13 @@ class DatabaseManager {
         $res = $result->fetch_all(MYSQLI_ASSOC)[0];
         return $res!=null;
     }
+
+    public function getNotificationsByUser($user_id) {
+        $stmt = $this->db->prepare("SELECT user_1_id, user_2_id, post_id, tipologia FROM notifiche WHERE user_2_id = ?");
+        $stmt->bind_param("s", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $result;
+    }
 }  
 ?>

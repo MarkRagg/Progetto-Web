@@ -224,9 +224,9 @@ class DatabaseManager {
         return $result->fetch_array(MYSQLI_ASSOC)["classCount"];
     }
 
-    public function removeLike($post_id, $reaction_type){
-        $stmt = $this->db->prepare("DELETE FROM post_user_reaction WHERE post_id = ? and reaction_id = ?");
-        $stmt->bind_param("ss", $post_id, $reaction_type);
+    public function removeLike($post_id, $reaction_type, $user_id){
+        $stmt = $this->db->prepare("DELETE FROM post_user_reaction WHERE post_id = ? and reaction_id = ? and user_id = ?");
+        $stmt->bind_param("sss", $post_id, $reaction_type, $user_id);
         $result = $stmt->execute();
         return $result;
     }
@@ -251,6 +251,18 @@ class DatabaseManager {
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /*
+     * returns if the current user has reacted the post
+     */
+    public function hasReacted($post_id, $user_id, $reaction_type){
+        $stmt = $this->db->prepare("SELECT * FROM post_user_reaction WHERE post_id = ? AND user_id = ? and reaction_id = ?");
+        $stmt->bind_param("sss", $post_id, $user_id, $reaction_type);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res = $result->fetch_all(MYSQLI_ASSOC)[0];
+        return $res!=null;
     }
 }  
 ?>

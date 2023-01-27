@@ -179,5 +179,12 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["likes"];
     }
+
+    public function removeLike($post_id, $reaction_type){
+        $stmt = $this->db->prepare("DELETE FROM post_user_reaction WHERE post_id = ? and reaction_id = ?");
+        $stmt->bind_param("ss", $post_id, $reaction_type);
+        $result = $stmt->execute();
+        return $result;
+    }
 }  
 ?>

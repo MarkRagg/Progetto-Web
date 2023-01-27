@@ -55,32 +55,41 @@ function updateButton(response){
 
     for(let i = 0; i < btn.length; i++){
         btn[i].addEventListener('click', function onClick() {
-            btn[i].style.backgroundColor = 'salmon';
-            btn[i].style.color = 'white';
-            btn[i].classList.add('liked');
+            if(btn[i].classList.contains('liked')){
+                btn[i].style.backgroundColor = 'white';
+                btn[i].style.color = 'black';
+                btn[i].classList.remove('liked');
+                nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
+                formData.append('post_id', response[i]["post_id"]);
+                formData.append('type', -1);
+                axios.post('../php/like.php', formData).then(response => {
+                    console.log(response);
+                });
+            } else {
+                btn[i].style.backgroundColor = 'salmon';
+                btn[i].style.color = 'white';
+                btn[i].classList.add('liked');
 
-            formData.append('post_id', response[i]["post_id"]);
-            formData.append('type', 1);
+                formData.append('post_id', response[i]["post_id"]);
+                formData.append('type', 1);
 
-            for (const value of formData.values()) {
-                console.log(value);
+                for (const value of formData.values()) {
+                    console.log(value);
+                }
+
+                axios.post('../php/like.php', formData).then(response => {
+                    console.log(response);
+                });
+
+                btn[i].innerHTML = 'Liked';
+                nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + 1;
+                formData.delete('post_id');
+                formData.delete('user');
+                formData.delete('type');
             }
-
-            axios.post('../php/like.php', formData).then(response => {
-                console.log(response);
-            });
-
-            btn[i].innerHTML = 'Liked';
-            nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + 1;
-            formData.delete('post_id');
-            formData.delete('user');
-            formData.delete('type');
-
         });
     }   
 }
-
-
 
 const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {

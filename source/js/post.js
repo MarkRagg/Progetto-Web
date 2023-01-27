@@ -17,19 +17,25 @@ function generatePost(post_data){
                             <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data[i]["author"]}">${post_data[i]["author"]}</a> 
                                 <small class="text-primary">LINK AL CORSO/ESAME OPPURE NIENTE</small> 
                             </div>
+                            
                         </div>
                         <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">${post_data[i]["data"]}</small> <i class="fa fa-ellipsis-h"></i> </div>
                     </div>
-                    <div class="p-2">
+                    <hr/>
+                    <div class="px-4">
                         <p class="text-justify">${post_data[i]["string"]}</p>
-                        <hr>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex flex-row muted-color">
-                            <button id="bottone">Like</button>
-                            <p id="numeroLike" >${post_data[i]["num_like"]}</p>
-                            </div>
-                        </div>
                     </div>
+                        <hr>
+                        <div class="d-flex align-items-center">
+                            <ul class="">
+                                <li class=" list-group-item align-items-center h5">
+                                    
+                                    <button id="bottone" class="btn btn-outline-primary ">Like</button>
+                                    <span class="" id="numeroLike" >${post_data[i]["num_like"]}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    
                 </div>
             </div>
         </div>
@@ -55,16 +61,13 @@ function updateButton(response){
 
     for(let i = 0; i < btn.length; i++){
         if(response[i]["user_has_liked"]==true){
-            btn[i].classList.add('liked');
+            btn[i].classList.replace("btn-outline-primary","btn-primary");
             btn[i].id = "button liked";
-            btn[i].style.backgroundColor = 'salmon';
-            btn[i].style.color = 'white';
             btn[i].innerHTML = 'Liked';
         }
         btn[i].addEventListener('click', function onClick() {
             if(btn[i].id == "button liked"){
-                btn[i].style.backgroundColor = 'white';
-                btn[i].style.color = 'black';
+                btn[i].classList.replace('btn-primary', "btn-outline-primary");
                 btn[i].id = "button";
                 nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
                 btn[i].innerHTML = 'Like';
@@ -73,9 +76,10 @@ function updateButton(response){
                 axios.post('../php/like.php', formData).then(response => {
                     console.log(response);
                 });
+                formData.delete('post_id');
+                formData.delete('type');
             } else {
-                btn[i].style.backgroundColor = 'salmon';
-                btn[i].style.color = 'white';
+                btn[i].classList.replace("btn-outline-primary",'btn-primary' );
                 btn[i].id = "button liked";
 
                 formData.append('post_id', response[i]["post_id"]);

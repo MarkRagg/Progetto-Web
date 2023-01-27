@@ -2,26 +2,27 @@ function showClassList(classList) {
     document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
     classList.forEach(element => {
         const newClass = document.createElement("div");
-        newClass.id = "listElment";
+        newClass.id = "listElement";
         newClass.innerHTML = `
-        <div class="container mt-4 mb-5">
-            <div class="d-flex justify-content-center row">
-                <div class="col-md-8">
-                    <div class="feed p-2">
-                        <div class="bg-white border mt-2">
-                            <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                                <div class="d-flex flex-column flex-wrap ml-2"><a class="nav-link" href="#" > ${element["name"]} </a></div>
-                                <div class="feed-icon px-2"><em class="fa fa-ellipsis-v text-black-50"></em></div>
-                            </div>
-                            <div class="d-flex flex-row">
-                            <p>Sezione: element["section"]</p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="container bg-light border rounded-3 text-center">
+            <div class="row border">
+                <div class="col">
+                    <h1>${element["nome"]}</h1>
                 </div>
+            </div>
+            <div class="row border">
+            <table class="table table-info text-center">
+                <thead>
+                    <tr><th scope="column">Id</th><th scope="column">Sezione</th></tr>
+                </thead>
+                <tbody>
+                    <td>${element["corso_id"]}</td><td>${element["sezione"]}</td>
+                </tbody>
+            </table>
             </div>
         </div>
         `;
+        main.appendChild(newClass);
     });
 }
 
@@ -50,8 +51,7 @@ function makeRequestAndEdit(courseId, requestedList) {
         if (!response.data["success"]) {
             showErrorMsg(response.data["errormsg"]);
         } else if (requestedList == "classes") {
-            // showClassList(response.data["classes"]);
-            console.log(response.data);
+            showClassList(response.data["classes"]);
         } else {
             // showSubscribers(response.data["subscribers"]);
             console.log(response.data);

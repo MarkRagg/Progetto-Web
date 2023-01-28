@@ -34,7 +34,7 @@
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
                         <li><a class="dropdown-item"
-                                href="../php/profile.php?username=<?php echo $templateParams["paginaprofilouser"]?>">Profile</a>
+                                href="../php/profile.php?username=<?php echo $_SESSION["user_id"];?>">Profile</a>
                         </li>
                         <li><a class="dropdown-item" href="../php/insertpost.php">Inserisci post</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>

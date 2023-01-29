@@ -65,14 +65,14 @@ function updateButton(response){
         if(response[i]["user_has_liked"]==true){
             btn[i].classList.replace("btn-outline-danger","btn-danger");
             btn[i].id = "button liked";
-            //btn[i].innerHTML = 'Liked';
+            btn[i].innerHTML = "Liked" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >`+nlikes[i].innerHTML+`</span>`;
         }
         btn[i].addEventListener('click', function onClick() {
             if(btn[i].id == "button liked"){
                 btn[i].classList.replace('btn-danger', "btn-outline-danger");
                 btn[i].id = "button";
                 nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
-                //btn[i].innerHTML = 'Like';
+                btn[i].innerHTML = "Like" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >`+nlikes[i].innerHTML+`</span>`;
                 formData.append('post_id', response[i]["post_id"]);
                 formData.append('type', -1);
                 axios.post('../php/like.php', formData).then(response => {
@@ -94,9 +94,9 @@ function updateButton(response){
                 axios.post('../php/like.php', formData).then(response => {
                     console.log(response);
                 });
-
-                //btn[i].innerHTML = 'Liked';
                 nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + 1;
+                btn[i].innerHTML = "Liked" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >`+nlikes[i].innerHTML+`</span>`;
+                
                 formData.delete('post_id');
                 formData.delete('user');
                 formData.delete('type');

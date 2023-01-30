@@ -9,6 +9,8 @@ if(isset($_SESSION["user_id"])) {
   if(count($result["notification-list"]) > 0) {
     $result["new-notification"] = true;
   }
+} else {
+  $result["errormsg"] = "You're not logged";
 }
 
 header("Content-Type: application/json");

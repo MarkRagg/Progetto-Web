@@ -1,10 +1,7 @@
 //${post_data[i]["user_image"]}
 
 function generatePost(post_data){
-    let section = 
-    `
-    <section>
-    `
+    let section = "";
     for (let i = 0; i < post_data.length; i++){
         section += `
 
@@ -27,16 +24,16 @@ function generatePost(post_data){
                     </div>
                         <hr>
                         <div class="d-flex align-items-center">
-                            <ul class="">
-                                <li class=" list-group-item align-items-center h5">
-                                    
-                                    <button id="bottone" class="btn btn-outline-danger ">Like
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >
-                                    ${post_data[i]["num_like"]}</span>
-                                    
-                                    </button>
-                                </li>
-                            </ul>
+                            <button id="bottoneLike" class="btn btn-outline-danger position-relative me-5">Like
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >
+                                    ${post_data[i]["num_like"]}
+                                </span>
+                            </button>
+                            <button id="bottoneCommenti" class="btn btn-outline-danger position-relative">Commenti
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroCommenti" >
+                                    Ncommenti
+                                </span>
+                            </button>
                         </div>
                 </div>
             </div>
@@ -45,7 +42,6 @@ function generatePost(post_data){
 
         `
     }
-    section += `</section>`;
     const variabile = document.createElement("section");
     variabile.innerHTML = section;
     return variabile;
@@ -56,7 +52,7 @@ function showPost(post_data){
 }
 
 function updateButton(response){
-    const btn = document.querySelectorAll('#bottone');
+    const btn = document.querySelectorAll('#bottoneLike');
     const nlikes = document.querySelectorAll('#numeroLike');
 
     const formData = new FormData();
@@ -70,7 +66,7 @@ function updateButton(response){
         btn[i].addEventListener('click', function onClick() {
             if(btn[i].id == "button liked"){
                 btn[i].classList.replace('btn-danger', "btn-outline-danger");
-                btn[i].id = "button";
+                btn[i].id = "bottoneLike";
                 nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
                 btn[i].innerHTML = "Like" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >`+nlikes[i].innerHTML+`</span>`;
                 formData.append('post_id', response[i]["post_id"]);

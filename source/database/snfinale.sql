@@ -61,16 +61,18 @@ CREATE  TABLE socialnetwork.user_info (
 	birthplace           VARCHAR(100)  NOT NULL     ,
 	uni_residence        VARCHAR(100)  NOT NULL     ,
 	corso_id             INT       ,
-	user_image           VARCHAR(100)       
+	user_image      VARCHAR(100)       
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.comment ( 
 	comment_id           INT  NOT NULL     PRIMARY KEY,
 	author               VARCHAR(20)  NOT NULL     ,
-	post_id              INT  NOT NULL     
+	post_id              INT  NOT NULL     ,
+	post_comment         VARCHAR(50)  NOT NULL     ,
+	data_commento        DATE  NOT NULL     
  ) engine=InnoDB;
 
-CREATE  TABLE socialnetwork.notifche ( 
+CREATE  TABLE socialnetwork.notifiche ( 
 	notifica_id          INT  NOT NULL     PRIMARY KEY,
 	user_1_id            VARCHAR(20)  NOT NULL     ,
 	user_2_id            VARCHAR(20)  NOT NULL     ,
@@ -86,11 +88,11 @@ ALTER TABLE socialnetwork.corsi ADD CONSTRAINT fk_corsi_universita FOREIGN KEY (
 
 ALTER TABLE socialnetwork.esami ADD CONSTRAINT fk_esami_corsi FOREIGN KEY ( corso_id ) REFERENCES socialnetwork.corsi( corso_id ) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE socialnetwork.notifche ADD CONSTRAINT fk_notifche_user1 FOREIGN KEY ( user_1_id ) REFERENCES socialnetwork.`user`( user_id ) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE socialnetwork.notifiche ADD CONSTRAINT fk_notifche_user1 FOREIGN KEY ( user_1_id ) REFERENCES socialnetwork.`user`( user_id ) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE socialnetwork.notifche ADD CONSTRAINT fk_notifche_user FOREIGN KEY ( user_2_id ) REFERENCES socialnetwork.`user`( user_id ) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE socialnetwork.notifiche ADD CONSTRAINT fk_notifche_user FOREIGN KEY ( user_2_id ) REFERENCES socialnetwork.`user`( user_id ) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE socialnetwork.notifche ADD CONSTRAINT fk_notifche_post FOREIGN KEY ( post_id ) REFERENCES socialnetwork.post( post_id ) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE socialnetwork.notifiche ADD CONSTRAINT fk_notifche_post FOREIGN KEY ( post_id ) REFERENCES socialnetwork.post( post_id ) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE socialnetwork.post ADD CONSTRAINT fk_post_user FOREIGN KEY ( author ) REFERENCES socialnetwork.`user`( user_id ) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -154,7 +156,7 @@ ALTER TABLE socialnetwork.comment COMMENT 'tabella dei commenti';
 
 ALTER TABLE socialnetwork.comment MODIFY comment_id INT  NOT NULL   COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
 
-ALTER TABLE socialnetwork.notifche MODIFY user_1_id VARCHAR(20)  NOT NULL   COMMENT 'user che fa l''azione';
+ALTER TABLE socialnetwork.notifiche MODIFY user_1_id VARCHAR(20)  NOT NULL   COMMENT 'user che fa l''azione';
 
-ALTER TABLE socialnetwork.notifche MODIFY tipologia INT  NOT NULL   COMMENT 'follow(1), reaction(2), commento(3)';
+ALTER TABLE socialnetwork.notifiche MODIFY tipologia INT  NOT NULL   COMMENT 'follow(1), reaction(2), commento(3)';
 

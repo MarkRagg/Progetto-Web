@@ -110,21 +110,16 @@ function updateButton(response){
                 formData.delete('post_id');
                 formData.delete('type');
             } else {
-                addLike(btn, i);
-
+                addLike(btn, i, nlikes);
                 formData.append('post_id', response[i]["post_id"]);
                 formData.append('type', 1);
-
                 for (const value of formData.values()) {
                     console.log(value);
                 }
-
                 axios.post('../php/like.php', formData).then(response => {
                     console.log(response);
                 });
-                nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + 1;
-                btn[i].innerHTML = "Liked" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >`+nlikes[i].innerHTML+`</span>`;
-                
+
                 formData.delete('post_id');
                 formData.delete('user');
                 formData.delete('type');
@@ -133,23 +128,25 @@ function updateButton(response){
     }   
 }
 
-function addLike(btn, i) {
+function addLike(btn, i, nlikes) {
   btn[i].classList.replace("btn-outline-danger", 'btn-danger');
   btn[i].classList.replace("bottone", "btnlkd");
+  nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + 1;
+  btn[i].innerHTML = "Liked" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >`+nlikes[i].innerHTML+`</span>`;
 }
 
 function removeLike(btn, i, nlikes) {
   btn[i].classList.replace('btn-danger', "btn-outline-danger");
   btn[i].classList.replace("btnlkd", "bottone");
   nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
-  btn[i].innerHTML = "Like" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >` + nlikes[i].innerHTML + `</span>`;
+  btn[i].innerHTML = "Like" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
 }
 
 function showAlreadyLiked(response, i, btn, nlikes) {
   if (response[i]["user_has_liked"] == true) {
     btn[i].classList.replace("btn-outline-danger", "btn-danger");
     btn[i].classList.replace("bottone", "btnlkd");
-    btn[i].innerHTML = "Liked" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >` + nlikes[i].innerHTML + `</span>`;
+    btn[i].innerHTML = "Liked" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
   }
 }
 

@@ -9,7 +9,7 @@ function showNotifications(notifications) {
       <div class="row d-flex align-items-center">`
        + html_string +   
       `</div>
-      <button type="submit" data-toggle="button" class="btn btn-outline-danger">Delete</button>
+      <button type="submit" data-toggle="button" class="btn btn-outline-danger m-1">Delete</button>
     </div> 
     `;
 

@@ -15,7 +15,6 @@ if(isset($_SESSION["user_id"])) {
 }
 
 if(isset($_POST["user_followed"]) && isset($_POST["user_follower"])) {
-
   $dbh->addFollower($_POST["user_followed"], $_POST["user_follower"]);
 }
 

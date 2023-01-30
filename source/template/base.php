@@ -47,10 +47,6 @@
             </div>
         </div>
     </header>
-    <div class="">
-        <button class="btn btn-secondary float-right" onclick="location.href='../php/insertpost.php';">Aggiungi
-            post</button>
-    </div>
     <main>
         <?php
             if (isset($templateParams["name"])) {

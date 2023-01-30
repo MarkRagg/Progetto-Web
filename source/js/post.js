@@ -1,7 +1,7 @@
 //${post_data[i]["user_image"]}
 
 function generatePost(post_data){
-    let section = `<div class="container mt-5 mb-5">
+    let section = `<div class="container mt-2 mb-5">
     <div class="row">
       <div class="col-12 col-lg-3">
         <div class="left-column">
@@ -34,6 +34,8 @@ function generatePost(post_data){
           <div class="card">
             <div class="card-header bg-transparent">
               <h3>Homepage</h3>
+              <button class="btn btn-secondary float-right" onclick="location.href='../php/insertpost.php';">Aggiungi
+                post</button>
             </div>`;
     for (let i = 0; i < post_data.length; i++){
         section += `

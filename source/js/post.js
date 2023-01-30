@@ -16,13 +16,13 @@ function generatePost(post_data){
           </div>
           <div class="card shadow-sm card-left2 mb-4">
             <div class="card-body">
-              <h5 class="mb-3 card-title">TUE INFO <small><a href="#" class="ml-1">CAMBIA</a></small></h5>
-              <p class="card-text"> <em class="fas fa-calendar-week mr-2"></em> STUDIA A <a href="#"
-                  class="text-decoration-none">UNIVERSITA</a></p>
-              <p class="card-text"> <em class="fas fa-user-friends mr-2"></em> COSA STUDIA? <a href="#"
-                  class="text-decoration-none">CORSO</a></p>
-              <p class="card-text"> <em class="fas fa-user-friends mr-2"></em> RESIDENZA <a href="#"
-                  class="text-decoration-none">CITTA</a></p>
+              <h5 class="mb-3 card-title">Tue informazioni: <small><a href="#" class="ml-1">CAMBIA</a></small></h5>
+              <p class="card-text"> <em class="fas fa-calendar-week mr-2"></em> Studi a: <a href="#"
+                  class="text-decoration-none">universita di bolo</a></p>
+              <p class="card-text"> <em class="fas fa-user-friends mr-2"></em> Che cosa studi? <a href="#"
+                  class="text-decoration-none">Corso</a></p>
+              <p class="card-text"> <em class="fas fa-user-friends mr-2"></em> Residenza: <a href="#"
+                  class="text-decoration-none">Citta</a></p>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@ function generatePost(post_data){
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="ciao"
                     src="https://www.w3schools.com/html/workplace.jpg" width="50" class="rounded-circle" alt="">
-                  <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data[i]["author"]}">${post_data[i]["author"]}</a>
+                  <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data[i]["author"]}">@${post_data[i]["author"]}</a>
                     <small class="text-primary">LINK AL CORSO/ESAME OPPURE NIENTE</small>
                   </div>
 
@@ -50,17 +50,17 @@ function generatePost(post_data){
                 <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">${post_data[i]["data"]}</small> <em
                     class="fa fa-ellipsis-h"></em> </div>
               </div>
-              <div class="px-4">
+              <div class="px-4 mt-3 mb-3">
                 <p class="text-justify">${post_data[i]["string"]}.</p>
               </div>
-              <div class="d-flex align-items-center mt-5">
-                <button id="bottoneLike" class="btn btn-outline-danger position-relative me-5 ms-5">Like
+              <div class="d-flex align-items-center mt-4">
+                <button id="bottoneLike" class="btn btn-outline-danger position-relative me-5 ms-5 btn-sm">Like
                   <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroLike">
                     ${post_data[i]["num_like"]}
                   </span>
                 </button>
-                <button id="bottoneCommenti" class="btn btn-outline-danger position-relative">Commenti
+                <button id="bottoneCommenti" class="btn btn-outline-danger position-relative btn-sm">Commenti
                   <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroCommenti">
                     Ncommenti

@@ -9,6 +9,7 @@ function showNotifications(notifications) {
       <div class="row d-flex align-items-center">`
        + html_string +   
       `</div>
+      <button type="submit" data-toggle="button" class="btn btn-outline-danger">Delete</button>
     </div> 
     `;
 
@@ -24,9 +25,16 @@ function showNotifications(notifications) {
  * @returns 
  */
 function getHtmlFromTipology(tipology, element) {
+if(element["post_id"] != null) {
+  post_id = element["post_id"];
+}
+
   switch(tipology) {
     case 1:
-      html_string = `<p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has followed you!</p>`;
+      html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
+        <p class="m-0"><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has followed you!</p>
+        <button type="button" data-toggle="button" class="btn btn-outline-primary" onclick="${follow(element["user_1_id"], element["user_2_id"])};">Follow</button>
+      </div>`;
       console.log(tipology);
       break;
     case 2:
@@ -42,11 +50,28 @@ function getHtmlFromTipology(tipology, element) {
   return html_string;
 }
 
+function follow(user_followed, user_follower){
+  const formData = new FormData();
+  formData.append("user-followed", user_followed);
+  formData.append("user-follower", user_follower);
+  axios.post("api-notification.php", formData).then(response => {
+    if(!response.data["new-notification"]) {
+      if (!response.data["new-notification"]) {
+        // TODO error message
+      } else {
+        showNotifications(response.data["notification-list"]);
+        //post info to php
+      }
+    }
+  });
+}
+
 const main = document.querySelector("main");
   axios.get("api-notification.php").then(response => {
     if (!response.data["new-notification"]) {
       // TODO error message
     } else {
       showNotifications(response.data["notification-list"]);
+      //post info to php
     }
   });

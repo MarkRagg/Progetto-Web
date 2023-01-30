@@ -31,8 +31,8 @@ function generatePost(post_data){
 
       <div class="col-12 col-lg-6">
         <div class="middle-column">
-          <div class="card">
-            <div class="card-header bg-transparent">
+          <div class="card border-primary">
+            <div class="card-header bg-primary">
               <h3>Homepage</h3>
               <button class="btn btn-secondary float-right" onclick="location.href='../php/insertpost.php';">Aggiungi
                 post</button>
@@ -42,7 +42,7 @@ function generatePost(post_data){
     
             <div class="card-body">
               <div class="d-flex justify-content-between p-2 px-3">
-                <div class="d-flex flex-row align-items-center"> <img id="ciao"
+                <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
                     src="https://www.w3schools.com/html/workplace.jpg" width="50" class="rounded-circle" alt="">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data[i]["author"]}">@${post_data[i]["author"]}</a>
                     <small class="text-primary">LINK AL CORSO/ESAME OPPURE NIENTE</small>
@@ -52,25 +52,23 @@ function generatePost(post_data){
                 <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">${post_data[i]["data"]}</small> <em
                     class="fa fa-ellipsis-h"></em> </div>
               </div>
-              <div class="px-4 mt-3 mb-3">
+              <div class="px-4 mt-3 mb-3">`
+        if(post_data[i]["image"] != null){
+            section += `<img src="${post_data[i]["image"]}" alt="" class="img-fluid">`;
+        }
+        section +=  `
                 <p class="text-justify">${post_data[i]["string"]}.</p>
               </div>
               <div class="d-flex align-items-center mt-4">
-                <button id="bottoneLike" class="btn btn-outline-danger position-relative me-5 ms-5 btn-sm">Like
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroLike">
+                <button id="bottoneLikePost${i}" class="bottone btn btn-outline-danger position-relative me-5 ms-5 btn-sm">Like
+                  <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroLikePost${i}">
                     ${post_data[i]["num_like"]}
-                  </span>
-                </button>
-                <button id="bottoneCommenti" class="btn btn-outline-danger position-relative btn-sm">Commenti
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroCommenti">
-                    Ncommenti
                   </span>
                 </button>
               </div>
             </div>
-            <hr>
+            <hr/>
           
         `
     }
@@ -91,23 +89,18 @@ function showPost(post_data){
 }
 
 function updateButton(response){
-    const btn = document.querySelectorAll('#bottoneLike');
-    const nlikes = document.querySelectorAll('#numeroLike');
+    const btn = document.querySelectorAll('.bottone');
+    const nlikes = document.querySelectorAll('.numeroLike');
+
+    console.log(btn);
 
     const formData = new FormData();
 
     for(let i = 0; i < btn.length; i++){
-        if(response[i]["user_has_liked"]==true){
-            btn[i].classList.replace("btn-outline-danger","btn-danger");
-            btn[i].id = "button liked";
-            btn[i].innerHTML = "Liked" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >`+nlikes[i].innerHTML+`</span>`;
-        }
+        showAlreadyLiked(response, i, btn, nlikes);
         btn[i].addEventListener('click', function onClick() {
-            if(btn[i].id == "button liked"){
-                btn[i].classList.replace('btn-danger', "btn-outline-danger");
-                btn[i].id = "bottoneLike";
-                nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
-                btn[i].innerHTML = "Like" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >`+nlikes[i].innerHTML+`</span>`;
+            if(btn[i].classList.contains("btnlkd")){
+                removeLike(btn, i, nlikes);
                 formData.append('post_id', response[i]["post_id"]);
                 formData.append('type', -1);
                 console.log(formData);
@@ -117,8 +110,7 @@ function updateButton(response){
                 formData.delete('post_id');
                 formData.delete('type');
             } else {
-                btn[i].classList.replace("btn-outline-danger",'btn-danger' );
-                btn[i].id = "button liked";
+                addLike(btn, i);
 
                 formData.append('post_id', response[i]["post_id"]);
                 formData.append('type', 1);
@@ -139,6 +131,26 @@ function updateButton(response){
             }
         });
     }   
+}
+
+function addLike(btn, i) {
+  btn[i].classList.replace("btn-outline-danger", 'btn-danger');
+  btn[i].classList.replace("bottone", "btnlkd");
+}
+
+function removeLike(btn, i, nlikes) {
+  btn[i].classList.replace('btn-danger', "btn-outline-danger");
+  btn[i].classList.replace("btnlkd", "bottone");
+  nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
+  btn[i].innerHTML = "Like" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >` + nlikes[i].innerHTML + `</span>`;
+}
+
+function showAlreadyLiked(response, i, btn, nlikes) {
+  if (response[i]["user_has_liked"] == true) {
+    btn[i].classList.replace("btn-outline-danger", "btn-danger");
+    btn[i].classList.replace("bottone", "btnlkd");
+    btn[i].innerHTML = "Liked" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike" >` + nlikes[i].innerHTML + `</span>`;
+  }
 }
 
 const main = document.querySelector("main");

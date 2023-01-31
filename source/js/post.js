@@ -69,10 +69,10 @@ function generatePost(post_data) {
                     ${post_data[i]["num_like"]}
                   </span>
                 </button>
+                <a href="../php/post-page.php?post_id=${post_data[i]["post_id"]}">Commenta</a>
               </div>
             </div>
             <hr/>
-          
         `
   }
 

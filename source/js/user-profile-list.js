@@ -3,10 +3,10 @@
  * @param {*} users The list of users to show
  */
 function showUserList(users) {
-    document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
+    document.querySelectorAll("div.listElement")?.forEach(x => x.remove());
     users.forEach(element => {
         const newUser = document.createElement("div");
-        newUser.id = "listElement";
+        newUser.classList = "listElement";
         newUser.innerHTML = `
         <div class="container mt-4 mb-5">
             <div class="d-flex justify-content-center row">
@@ -34,10 +34,10 @@ function showUserList(users) {
  * @param {*} posts The list of posts to show
  */
 function showPostList(posts) {
-    document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
+    document.querySelectorAll("div.listElement")?.forEach(x => x.remove());
     posts.forEach(element => {
         const newPost = document.createElement("div");
-        newPost.id = "listElement";
+        newPost.classList = "listElement";
         newPost.innerHTML = `
         <div class="container mt-5 mb-5">
             <div class="row d-flex align-items-center justify-content-center">
@@ -70,9 +70,9 @@ function showPostList(posts) {
 }
 
 function showErrorMsg(errorMsg) {
-    document.querySelectorAll("div#listElement")?.forEach(x => x.remove());
+    document.querySelectorAll("div.listElement")?.forEach(x => x.remove());
     const errorNode = document.createElement("div");
-    errorNode.id = "listElement";
+    errorNode.classList = "listElement";
     errorNode.innerHTML = `
         <div class="bg-danger text-white border border-danger-subtle rounded-3 container-md">
             <h1 class="text-center">${errorMsg}</h1>

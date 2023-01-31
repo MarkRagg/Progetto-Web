@@ -107,7 +107,6 @@ function makeRequestAndEdit(username, requestedList) {
             }
         });
     }
-    // TODO show errormsg in case of error
 }
 
 // For every element removes all classes and changes the badge color to blue 

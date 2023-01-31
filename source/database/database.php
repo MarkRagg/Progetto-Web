@@ -46,6 +46,7 @@ class DatabaseManager {
     
     public function checkValueInDb($table, $field, $id) {
         $stmt = $this->db->prepare("SELECT * FROM $table A WHERE A.$field = ?");
+        $id = strval($id);
         $stmt->bind_param("s", $id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -281,7 +282,7 @@ class DatabaseManager {
         return $result;
     }
 
-    public function isUserSubbed($user_id, $course_id) {
+    public function isUserSubbedToCourse($user_id, $course_id) {
         $courseSubs = $this->getSubsFromCourse($course_id);
         foreach ($courseSubs as $sub) {
             if ($sub["user_id"] === $user_id) {
@@ -289,6 +290,26 @@ class DatabaseManager {
             }
         }
         return false;
+    }
+
+    public function isUserSubbed($user_id) {
+        $stmt = $this->db->prepare("SELECT corso_id FROM user_info WHERE user_id=?");
+        $stmt->bind_param("s", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return ($result->fetch_array(MYSQLI_ASSOC)["corso_id"] !== NULL);
+    }
+
+    public function subUserToCourse($user_id, $course_id) {
+        $stmt = $this->db->prepare("UPDATE user_info SET corso_id=? WHERE user_id=?");
+        $stmt->bind_param("is", $course_id, $user_id);
+        return $stmt->execute();
+    }
+
+    public function unsubUserFromCourse($user_id, $course_id) {
+        $stmt = $this->db->prepare("UPDATE user_info SET corso_id=NULL WHERE user_id=? AND corso_id=?");
+        $stmt->bind_param("ss", $user_id, $course_id);
+        return $stmt->execute();
     }
 }  
 ?>

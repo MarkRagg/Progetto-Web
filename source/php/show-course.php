@@ -11,11 +11,11 @@ if ($templateParams["course_exists"]) {
     $subBtnText = "Iscriviti";
     $subBtnClass = "primary";
     if (isset($_SESSION["user_id"])) {
-        $isSubbed = $dbh->isUserSubbed($_SESSION["user_id"], $course_id);
+        $isSubbed = $dbh->isUserSubbedToCourse($_SESSION["user_id"], $course_id);
     }
     if ($isSubbed) {
         $subBtnText = "Annulla Iscrizione";
-        $subBtnClass = "Light";
+        $subBtnClass = "danger";
     }
     $main = <<<EOD
     <section>

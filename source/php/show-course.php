@@ -7,6 +7,16 @@ if ($templateParams["course_exists"]) {
     $uni_name = $templateParams["uni_name"];
     $class_count = $templateParams["class_count"];
     $subscribed_count = $templateParams["sub_count"];
+    $isSubbed = false;
+    $subBtnText = "Iscriviti";
+    $subBtnClass = "primary";
+    if (isset($_SESSION["user_id"])) {
+        $isSubbed = $dbh->isUserSubbed($_SESSION["user_id"], $course_id);
+    }
+    if ($isSubbed) {
+        $subBtnText = "Annulla Iscrizione";
+        $subBtnClass = "Light";
+    }
     $main = <<<EOD
     <section>
         <div class="container text-center">
@@ -18,6 +28,9 @@ if ($templateParams["course_exists"]) {
             </div>
         </div>
         <div class="container text-center">
+            <div class="row justify-content-center">
+                <button type="button" id="subBtn" class="col-6 btn btn-$subBtnClass">$subBtnText</button>   
+            </div>
             <div class="row">
                 <ul class="list-group list-group-horizontal">
                     <li class="list-group-item col-6 h3">Anno scolastico: $year</li>

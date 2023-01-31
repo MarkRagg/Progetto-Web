@@ -280,5 +280,15 @@ class DatabaseManager {
         $result = $stmt->execute();
         return $result;
     }
+
+    public function isUserSubbed($user_id, $course_id) {
+        $courseSubs = $this->getSubsFromCourse($course_id);
+        foreach ($courseSubs as $sub) {
+            if ($sub["user_id"] === $user_id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }  
 ?>

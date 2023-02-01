@@ -69,7 +69,7 @@ function generatePost(post_data) {
                     ${post_data[i]["num_like"]}
                   </span>
                 </button>
-                <a href="../php/post-page.php?post_id=${post_data[i]["post_id"]}">Commenta</a>
+                <a href="../php/post-comment.php?post_id=${post_data[i]["post_id"]}" class="comlink" >Commenta</a>
               </div>
             </div>
             <hr/>
@@ -161,7 +161,7 @@ axios.get("api-showpost.php").then(response => {
   sendPost();
 });
 
-function sendPost(){
+function sendPost() {
   const btnpost = document.querySelector(".bttnpost");
   btnpost.addEventListener('click', function onClick() {
     const qpost = document.querySelector(".quickpost").value;
@@ -170,7 +170,7 @@ function sendPost(){
       const formData = new FormData();
       formData.append('post', qpost);
       axios.post('../php/quickpost.php', formData).then(response => {
-        if(!response.data["error"]){
+        if (!response.data["error"]) {
           location.reload();
           console.log(response.data["info"]);
         } else {

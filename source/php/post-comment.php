@@ -2,8 +2,8 @@
 
 require_once 'db_config.php';
 
-$templateParams["title"] = "Single Post Page With Commentsss";
-$templateParams["name"] = "show-post.php";
+$templateParams["title"] = "Single Post Page With Comments";
+$templateParams["name"] = "post-comment.php";
 
 $templateParams["post_exists"] = false;
 $templateParams["errormsg"] = "Missing post id";
@@ -30,6 +30,6 @@ if (isset($_GET["post_id"])){
     }
 }
 
-require '../template/base.php'
+require_once '../template/base.php'
 
 ?>

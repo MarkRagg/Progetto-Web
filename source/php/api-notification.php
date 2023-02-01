@@ -14,8 +14,8 @@ if(isset($_SESSION["user_id"])) {
   $result["errormsg"] = "You're not logged";
 }
 
-if(isset($_POST["user_followed"]) && isset($_POST["user_follower"])) {
-  $dbh->addFollower($_POST["user_followed"], $_POST["user_follower"]);
+if(isset($_POST["user-followed"]) && isset($_POST["user-follower"])) {
+  $result["query_result"] = $dbh->addFollower($_POST["user-followed"], $_POST["user-follower"]);
 }
 
 header("Content-Type: application/json");

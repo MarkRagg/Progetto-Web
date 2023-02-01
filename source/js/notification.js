@@ -12,7 +12,7 @@ function showNotifications(notifications) {
       <button type="submit" data-toggle="button" class="btn btn-outline-danger m-1">Delete</button>
     </div> 
     `;
-
+    updateBtn(element["user_2_id"], element["user_1_id"]);
     main.appendChild(new_notification);
   });
 
@@ -33,7 +33,7 @@ if(element["post_id"] != null) {
     case 1:
       html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
         <p class="m-0"><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has followed you!</p>
-        <button type="button" data-toggle="button" class="btn btn-outline-primary" onclick="${follow(element["user_1_id"], element["user_2_id"])};">Follow</button>
+        <button type="button" data-toggle="button" class="bottone follow_btn btn btn-outline-primary">Follow</button>
       </div>`;
       console.log(tipology);
       break;
@@ -54,6 +54,7 @@ function follow(user_followed, user_follower){
   const formData = new FormData();
   formData.append("user-followed", user_followed);
   formData.append("user-follower", user_follower);
+  console.log("Entra");
   axios.post("api-notification.php", formData).then(response => {
     if(!response.data["new-notification"]) {
       if (!response.data["new-notification"]) {
@@ -64,6 +65,25 @@ function follow(user_followed, user_follower){
       }
     }
   });
+}
+
+function updateBtn(user_followed, user_follower) {
+  const btn = document.querySelectorAll('.bottone');
+
+  btn.forEach(elem => {
+    //elem.classList.contains("follow_btn") ? elem.addEventListener('click',follow(user_followed, user_follower)) : elem.addEventListener('click',unfollow());
+    if(elem.classList.contains("follow_btn")) {
+      elem.addEventListener('click', function abstractFunct() {
+        follow(user_followed, user_follower);
+      });
+    } else {
+      elem.addEventListener('click',unfollow());
+    }
+  });
+}
+
+function unfollow() {
+
 }
 
 const main = document.querySelector("main");

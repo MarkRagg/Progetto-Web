@@ -275,8 +275,7 @@ class DatabaseManager {
     }
 
     public function addFollower($user_followed, $user_follower) {
-        $id_count = $this->getFollowerCount($user_followed);
-        $stmt = $this->db->prepare("INSERT INTO user_followers_followed (user_follower_count, follower_id, user_id) VALUES ($id_count, ?, ?)");
+        $stmt = $this->db->prepare("INSERT INTO user_followers_followed (follower_id, user_id) VALUES (?, ?)");
         $stmt->bind_param("ss", $user_followed, $user_follower);
         $result = $stmt->execute();
         return $result;

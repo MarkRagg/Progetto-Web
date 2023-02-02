@@ -1,12 +1,12 @@
 CREATE SCHEMA socialnetwork;
 
 CREATE  TABLE socialnetwork.reaction ( 
-	reaction_id          INT  NOT NULL     PRIMARY KEY,
+	reaction_id          INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	reaction_info        VARCHAR(100)  NOT NULL     
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.universita ( 
-	uni_id               INT  NOT NULL     PRIMARY KEY,
+	uni_id               INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	nome                 VARCHAR(50)  NOT NULL     ,
 	sede                 VARCHAR(50)  NOT NULL     
  ) engine=InnoDB;
@@ -18,43 +18,43 @@ CREATE  TABLE socialnetwork.`user` (
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.user_followers_followed ( 
-	user_follower_count  INT  NOT NULL     PRIMARY KEY,
+	user_follower_count  INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	follower_id          VARCHAR(20)  NOT NULL     ,
 	user_id              VARCHAR(20)  NOT NULL     
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.corsi ( 
-	corso_id             INT  NOT NULL     PRIMARY KEY,
+	corso_id             INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	nome                 VARCHAR(50)  NOT NULL     ,
 	anno                 INT  NOT NULL     ,
 	uni_id               INT  NOT NULL     
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.esami ( 
-	esame_id             INT  NOT NULL     PRIMARY KEY,
+	esame_id             INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	corso_id             INT  NOT NULL     ,
 	nome                 VARCHAR(50)  NOT NULL     ,
 	sezione              VARCHAR(20)  NOT NULL     
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.post ( 
-	post_id              INT  NOT NULL     PRIMARY KEY,
+	post_id              INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	author               VARCHAR(20)  NOT NULL     ,
 	string               VARCHAR(200)  NOT NULL     ,
 	data                 DATE  NOT NULL     ,
-	esame_id             INT   ,
-	immagine			 VARCHAR(100)    
+	esame_id             INT       ,
+	immagine             VARCHAR(100)       
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.post_user_reaction ( 
-	pur_id               INT  NOT NULL     PRIMARY KEY,
+	pur_id               INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	user_id              VARCHAR(20)  NOT NULL     ,
 	post_id              INT  NOT NULL     ,
 	reaction_id          INT  NOT NULL     
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.user_info ( 
-	user_info_count      INT  NOT NULL     PRIMARY KEY,
+	user_info_count      INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	user_id              VARCHAR(20)  NOT NULL     ,
 	name                 VARCHAR(100)  NOT NULL     ,
 	surname              VARCHAR(100)  NOT NULL     ,
@@ -62,11 +62,12 @@ CREATE  TABLE socialnetwork.user_info (
 	birthplace           VARCHAR(100)  NOT NULL     ,
 	uni_residence        VARCHAR(100)  NOT NULL     ,
 	corso_id             INT       ,
-	user_image      VARCHAR(100)       
+	user_image           VARCHAR(100)       ,
+	descrizione          VARCHAR(100)       
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.comment ( 
-	comment_id           INT  NOT NULL     PRIMARY KEY,
+	comment_id           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	author               VARCHAR(20)  NOT NULL     ,
 	post_id              INT  NOT NULL     ,
 	post_comment         VARCHAR(50)  NOT NULL     ,
@@ -74,7 +75,7 @@ CREATE  TABLE socialnetwork.comment (
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.notifiche ( 
-	notifica_id          INT  NOT NULL     PRIMARY KEY,
+	notifica_id          INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	user_1_id            VARCHAR(20)  NOT NULL     ,
 	user_2_id            VARCHAR(20)  NOT NULL     ,
 	post_id              INT       ,
@@ -113,7 +114,7 @@ ALTER TABLE socialnetwork.user_info ADD CONSTRAINT fk_user_info_corso FOREIGN KE
 
 ALTER TABLE socialnetwork.reaction COMMENT 'tabella delle reazioni';
 
-ALTER TABLE socialnetwork.reaction MODIFY reaction_id INT  NOT NULL   COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
+ALTER TABLE socialnetwork.reaction MODIFY reaction_id INT  NOT NULL  AUTO_INCREMENT COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
 
 ALTER TABLE socialnetwork.reaction MODIFY reaction_info VARCHAR(100)  NOT NULL   COMMENT 'la reazione stessa, che può essere una immagine, una emoji ecc ecc';
 
@@ -123,7 +124,7 @@ ALTER TABLE socialnetwork.`user` MODIFY user_id VARCHAR(20)  NOT NULL   COMMENT 
 
 ALTER TABLE socialnetwork.user_followers_followed COMMENT 'tabella per seguiti e seguaci';
 
-ALTER TABLE socialnetwork.user_followers_followed MODIFY user_follower_count INT  NOT NULL   COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
+ALTER TABLE socialnetwork.user_followers_followed MODIFY user_follower_count INT  NOT NULL  AUTO_INCREMENT COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
 
 ALTER TABLE socialnetwork.user_followers_followed MODIFY follower_id VARCHAR(20)  NOT NULL   COMMENT 'colui che viene seguito';
 
@@ -133,7 +134,7 @@ ALTER TABLE socialnetwork.esami MODIFY sezione VARCHAR(20)  NOT NULL   COMMENT '
 
 ALTER TABLE socialnetwork.post COMMENT 'la tabella dei post con post_id, autore e il contenuto testuale (ma non solo) del post';
 
-ALTER TABLE socialnetwork.post MODIFY post_id INT  NOT NULL   COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
+ALTER TABLE socialnetwork.post MODIFY post_id INT  NOT NULL  AUTO_INCREMENT COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
 
 ALTER TABLE socialnetwork.post MODIFY string VARCHAR(200)  NOT NULL   COMMENT 'ciò che scrivi';
 
@@ -141,11 +142,11 @@ ALTER TABLE socialnetwork.post MODIFY esame_id INT     COMMENT 'l''esame di rife
 
 ALTER TABLE socialnetwork.post_user_reaction COMMENT 'tabella che collega l''utente(user) che fa la reazione(reaction) ad un post(post)';
 
-ALTER TABLE socialnetwork.post_user_reaction MODIFY pur_id INT  NOT NULL   COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
+ALTER TABLE socialnetwork.post_user_reaction MODIFY pur_id INT  NOT NULL  AUTO_INCREMENT COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
 
 ALTER TABLE socialnetwork.user_info COMMENT 'tabella che arricchisce la tabella user';
 
-ALTER TABLE socialnetwork.user_info MODIFY user_info_count INT  NOT NULL   COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
+ALTER TABLE socialnetwork.user_info MODIFY user_info_count INT  NOT NULL  AUTO_INCREMENT COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
 
 ALTER TABLE socialnetwork.user_info MODIFY user_id VARCHAR(20)  NOT NULL   COMMENT 'è la FK';
 
@@ -155,9 +156,8 @@ ALTER TABLE socialnetwork.user_info MODIFY uni_residence VARCHAR(100)  NOT NULL 
 
 ALTER TABLE socialnetwork.comment COMMENT 'tabella dei commenti';
 
-ALTER TABLE socialnetwork.comment MODIFY comment_id INT  NOT NULL   COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
+ALTER TABLE socialnetwork.comment MODIFY comment_id INT  NOT NULL  AUTO_INCREMENT COMMENT 'chiave primaria, semplicemente un numero che deve essere incrementato ogni volta che si aggiunge una nuova riga';
 
 ALTER TABLE socialnetwork.notifiche MODIFY user_1_id VARCHAR(20)  NOT NULL   COMMENT 'user che fa l''azione';
 
 ALTER TABLE socialnetwork.notifiche MODIFY tipologia INT  NOT NULL   COMMENT 'follow(1), reaction(2), commento(3)';
-

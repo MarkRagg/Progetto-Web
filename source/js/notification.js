@@ -1,18 +1,23 @@
-function showNotifications(response) {
+function removeAllNotifications() {
   document.querySelectorAll("div.list-element")?.forEach(x => x.remove());
+}
+
+function showNotifications(response) {
+  removeAllNotifications();
   response["notification-list"].forEach(element => {
     const html_string = getHtmlFromTipology(element["tipologia"] , element);
     const new_notification = document.createElement("div");
     new_notification.classList = "list-element";
+    console.log(element["notifica_id"]);
     new_notification.innerHTML = `
     <div class="container mt-5 mb-5 bg-light">
       <div class="row d-flex align-items-center">`
        + html_string +   
       `</div>
-      <button type="submit" data-toggle="button" class="btn btn-outline-danger m-1">Delete</button>
+      <button type="submit" data-toggle="button" class="delete-btn btn btn-outline-danger m-1">Delete</button>
     </div> 
     `;
-    updateBtn(element["user_1_id"], response["following-list"]);
+    updateBtn(element["user_1_id"], response["following-list"], element["notifica_id"], new_notification);
     main.appendChild(new_notification);
   });
 } 
@@ -32,7 +37,7 @@ if(element["post_id"] != null) {
     case 1:
       html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
         <p class="m-0"><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has followed you!</p>
-        <button type="button" data-toggle="button" class="bottone btn btn-outline-primary"></button>
+        <button type="button" data-toggle="button" class="follow-btn btn btn-outline-primary"></button>
       </div>`;
       break;
     case 2:
@@ -46,6 +51,24 @@ if(element["post_id"] != null) {
   }
 
   return html_string;
+}
+
+function deleteNotification(notification_id) {
+  const formData = new FormData();
+  console.log(notification_id);
+  formData.append("notification_id", notification_id);
+  axios.post("api-remove-notification.php", formData).then(response => {
+    if(!response.data["success"]) {
+      console.log(response.data["errormsg"]);
+    }
+    axios.get("api-notification.php").then(response => {
+      if (!response.data["new-notification"]) {
+        removeAllNotifications();
+      } else {
+        showNotifications(response.data);
+      }
+    });
+  });
 }
 
 /**
@@ -66,10 +89,9 @@ function followOrUnfollow(user_follower, action){
     }
     axios.get("api-notification.php").then(response => {
       if (!response.data["new-notification"]) {
-        // TODO error message
+        removeAllNotifications();
       } else {
         showNotifications(response.data);
-        //post info to php
       }
     });
   });
@@ -83,30 +105,43 @@ function addOrReplace(btn, class_to_add, class_to_replace) {
   }
 }
 
-function updateBtn(user_follower, following_list) {
-  document.querySelectorAll('.bottone')?.forEach(elem => {
+/**
+ * Update event listener for follow button 
+ * and for delete-btn
+ * @param {*} user_follower 
+ * @param {*} following_list 
+ */
+function updateBtn(user_follower, following_list, notification_id, div) {
+  console.log("entra");
+
+  followBtn = div.querySelector(".follow-btn");
+  if(followBtn != null) {
     if(!following_list.includes(user_follower)) {
-      elem.innerText = "Follow";
-      addOrReplace(elem, "btn-outline-primary", "btn-primary");
-      elem.addEventListener('click', function abstractFunct() {
+      followBtn.innerText = "Follow";
+      addOrReplace(followBtn, "btn-outline-primary", "btn-primary");
+      followBtn.addEventListener('click', function abstractFunct() {
         followOrUnfollow(user_follower, "follow");
       });
     } else {
-      elem.innerText = "Unfollow";
-      addOrReplace(elem, "btn-primary", "btn-outline-primary");
-      elem.addEventListener('click', function abstractFunct() {
+      followBtn.innerText = "Unfollow";
+      addOrReplace(followBtn, "btn-primary", "btn-outline-primary");
+      followBtn.addEventListener('click', function abstractFunct() {
         followOrUnfollow(user_follower, "unfollow");
       });
     }
+  }
+
+  deleteBtn = div.querySelector(".delete-btn");
+  deleteBtn.addEventListener('click', function abstractFunct() {
+    deleteNotification(notification_id);
   });
 }
 
 const main = document.querySelector("main");
   axios.get("api-notification.php").then(response => {
     if (!response.data["new-notification"]) {
-      // TODO error message
+      removeAllNotifications();
     } else {
       showNotifications(response.data);
-      //post info to php
     }
   });

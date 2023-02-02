@@ -11,6 +11,16 @@ if ($templateParams["user_exists"]) {
     $post_count = $templateParams["post_count"];
     $follower_count = $templateParams["follower_count"];
     $followed_count = $templateParams["followed_count"];
+    $isFollowing = false;
+    $followBtnText = "Segui";
+    $followBtnClass = "primary";
+    if (isset($_SESSION["user_id"])) {
+        $isFollowing = $dbh->isUserFollowing($_SESSION["user_id"], $username);
+        if ($isFollowing) {
+            $followBtnText = "Non seguire";
+            $followBtnClass = "danger";
+        }
+    }
     $main = <<<EOD
     <section>
         <div class="container">
@@ -25,6 +35,9 @@ if ($templateParams["user_exists"]) {
             </div>
         </div>
         <div class="container text-center">
+            <div class="row justify-content-center">
+                <button type="button" id="followBtn" class="col-6 btn btn-$followBtnClass">$followBtnText</button>   
+            </div>
             <div class="row">
                 <ul class="list-group list-group-horizontal">
                     <li class="list-group-item col-6 h3">Data di nascita: $date_of_birth</li>

@@ -324,5 +324,16 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    /**
+     * Returns true if follower_id is following followed_id
+     */
+    public function isUserFollowing($follower_id, $followed_id) {
+        $stmt = $this->db->prepare("SELECT * FROM user_followers_followed WHERE follower_id = ? AND user_id = ?");
+        $stmt->bind_param("ss", $follower_id, $followed_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return !empty($result->fetch_all(MYSQLI_ASSOC));
+    }
 }  
 ?>

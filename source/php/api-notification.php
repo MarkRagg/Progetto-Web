@@ -9,13 +9,10 @@ if(isset($_SESSION["user_id"])) {
   $result["notification-list"] = $dbh->getNotificationsByUser($user_id);
   if(count($result["notification-list"]) > 0) {
     $result["new-notification"] = true;
+    $result["following-list"] = array_column($dbh->getFollowing($user_id), "username");
   }
 } else {
   $result["errormsg"] = "You're not logged";
-}
-
-if(isset($_POST["user-followed"]) && isset($_POST["user-follower"])) {
-  $result["query_result"] = $dbh->addFollower($_POST["user-followed"], $_POST["user-follower"]);
 }
 
 header("Content-Type: application/json");

@@ -36,7 +36,7 @@ function generatePost(post_data) {
                 <div class="input-group">
                   <input type="text" class="quickpost form-control mx-3" placeholder="Post veloce">
                   <div class="input-group-append">
-                    <button type="submit" class="bttnpost btn btn-primary">Posta</button>
+                    <button type="submit" class="bttnpost btn btn-primary" disabled>Posta</button>
                   </div>
                 </div>
             </div>`;
@@ -107,7 +107,7 @@ function updateButton(response) {
         formData.append('post_id', response[i]["post_id"]);
         formData.append('type', -1);
         //console.log(formData);
-        axios.post('../php/like.php', formData).then(response => {
+        axios.post('../php/api-like.php', formData).then(response => {
           console.log(response);
         });
         formData.delete('post_id');
@@ -119,7 +119,7 @@ function updateButton(response) {
         for (const value of formData.values()) {
           //console.log(value);
         }
-        axios.post('../php/like.php', formData).then(response => {
+        axios.post('../php/api-like.php', formData).then(response => {
           console.log(response);
         });
 
@@ -153,15 +153,6 @@ function showAlreadyLiked(response, i, btn, nlikes) {
   }
 }
 
-const main = document.querySelector("main");
-axios.get("api-showpost.php").then(response => {
-  //console.log(response.data);
-  showPost(response.data);
-  updateButton(response.data);
-  //test(response.data);
-  sendPost();
-});
-
 function sendPost() {
   const btnpost = document.querySelector(".bttnpost");
   btnpost.addEventListener('click', function onClick() {
@@ -184,22 +175,22 @@ function sendPost() {
   });
 }
 
-/*
-function test(vars) {
-  const btnpost = document.querySelectorAll(".comlink");
-  console.log(btnpost);
-  for (let i = 0; i < btnpost.length; i++) {
-    btnpost[i].addEventListener('click', function onClick() {
-      console.log(vars[i]["post_id"]);
-      const formdata = new FormData();
-      formdata.append('post_id', vars[i]["post_id"]);
-      
-      axios.post('../php/bhp.php', formdata).then(response => {
-        console.log(response);
-      });
-      
-      //location.href = "../php/post-comment.php?post_id=" + vars[i]["post_id"];
-    });
-  }
-}
-*/
+const main = document.querySelector("main");
+axios.get("api-showpost.php").then(response => {
+  //console.log(response.data);
+  showPost(response.data);
+  updateButton(response.data);
+  //test(response.data);
+  sendPost();
+
+  document.querySelector(".quickpost").addEventListener('keyup', function() {
+    if (document.querySelector(".quickpost").value.length > 0){
+      document.querySelector(".bttnpost").disabled = false;
+    }
+    else{
+      document.querySelector(".bttnpost").disabled = true;
+    }
+  });
+
+});
+

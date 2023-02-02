@@ -2,7 +2,6 @@
 require_once 'db_config.php';
 
 $templateParams["title"] = "Profile";
-$templateParams["name"] = "show-profile.php";
 $templateParams["user_exists"] = false;
 $templateParams["errormsg"] = "Missing username";
 $templateParams["paginaprofilouser"]=$_SESSION["user_id"];
@@ -10,6 +9,7 @@ $templateParams["paginaprofilouser"]=$_SESSION["user_id"];
 if (isset($_GET["username"])) {
     $templateParams["user_exists"] = $dbh->checkValueInDb("user", "user_id", $_GET["username"]);
     if ($templateParams["user_exists"]) {
+        $templateParams["name"] = "show-profile.php";
         $user = $dbh->getUserInfo($_GET["username"]);
         $templateParams["username"] = $_GET["username"];
         $templateParams["u_name"] = $user["name"];
@@ -24,6 +24,7 @@ if (isset($_GET["username"])) {
         $templateParams["js"] = array("../js/user-profile-list.js", "../js/follow.js", "https://unpkg.com/axios/dist/axios.min.js");
     } else {
         $templateParams["errormsg"] = "User not found";
+        $templateParams["name"] = "show-error.php";
     }
 }
 

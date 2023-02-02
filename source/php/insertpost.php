@@ -14,15 +14,17 @@ if(isset($_POST["submit"]) && isset($_POST["post"])){
             list($result, $msg) = uploadImage(UPLOAD_DIR, $_FILES["imgpost"]);
             if($result == 1){
                 $dbh->addPost($testo, $_SESSION["user_id"], $msg);
+                header("Location: showhomepage.php");
             } else {
                 $error = $msg;
             }
         } else {
             $dbh->addPost($testo, $_SESSION["user_id"], null);
+            header("Location: showhomepage.php");
         }
         
         //$dbh->addPost($testo, $_SESSION["user_id"]);
-        header("Location: showhomepage.php");
+        
         //echo($result);
         
     } else if($testo == ""){

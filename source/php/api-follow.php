@@ -18,7 +18,6 @@ if (isset($_SESSION["user_id"])) {
                     if ($result["success"]) {
                         $dbh->addFollower($followed_id, $user_id);
                         $dbh->addNotification($user_id, $followed_id, null, FOLLOW);
-                        // TODO create notification
                     } else {
                         $result["errormsg"] = "Cannot follow already followed user";
                     }

@@ -39,7 +39,6 @@ function generatePost(post_data) {
                   </div>
                 </div>
             </div>`;
-  //if(post_data.length != 0){
   for (let i = 0; i < post_data.length && i < 10; i++) {
     section += `
     
@@ -75,7 +74,6 @@ function generatePost(post_data) {
             <hr/>
         `
   }
-//}
 
   section += `</div>
     </div>
@@ -96,8 +94,6 @@ function updateButton(response) {
   const btn = document.querySelectorAll('.bottone');
   const nlikes = document.querySelectorAll('.numeroLike');
 
-  //console.log(btn);
-
   const formData = new FormData();
 
   for (let i = 0; i < btn.length; i++) {
@@ -107,7 +103,6 @@ function updateButton(response) {
         removeLike(btn, i, nlikes);
         formData.append('post_id', response[i]["post_id"]);
         formData.append('type', -1);
-        //console.log(formData);
         axios.post('../php/api-like.php', formData).then(response => {
           console.log(response);
         });
@@ -117,9 +112,6 @@ function updateButton(response) {
         addLike(btn, i, nlikes);
         formData.append('post_id', response[i]["post_id"]);
         formData.append('type', 1);
-        for (const value of formData.values()) {
-          //console.log(value);
-        }
         axios.post('../php/api-like.php', formData).then(response => {
           console.log(response);
         });
@@ -195,7 +187,7 @@ axios.get("api-showpost.php").then(response => {
   sendPost();
 
 
-  //getLoggedUserInfo()
+  getLoggedUserInfo()
   //console.log(getLoggedUserInfo());
   
   document.querySelector(".quickpost").addEventListener('keyup', function() {

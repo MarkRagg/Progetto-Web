@@ -9,9 +9,8 @@ function generatePost(post_data) {
             <img src="" alt="" class="card-img-top img-fluid">
             <div class="card-body text-center ">
               <img src="" alt="img" width="120" height="120" class="rounded-circle mt-n5">
-              <h5 class="card-title">NOME UTENTE</h5>
+              <h5 id="nome_utente" class="card-title">  </h5>
               <p class="card-text text-justify mb-2">DESCRIZIONE TIPO INSTAGRAM.</p>
-
             </div>
           </div>
           <div class="card shadow-sm card-left2 mb-4">
@@ -40,7 +39,8 @@ function generatePost(post_data) {
                   </div>
                 </div>
             </div>`;
-  for (let i = 0; i < post_data.length; i++) {
+  //if(post_data.length != 0){
+  for (let i = 0; i < post_data.length && i < 10; i++) {
     section += `
     
             <div class="card-body">
@@ -56,8 +56,8 @@ function generatePost(post_data) {
                     class="fa fa-ellipsis-h"></em> </div>
               </div>
               <div class="px-4 mt-3 mb-3">`
-    if (post_data[i]["image"] != null) {
-      section += `<img src="${post_data[i]["image"]}" alt="" class="img-fluid">`;
+    if (post_data[i]["immagine"] != null) {
+      section += `<img src="../img/${post_data[i]["immagine"]}" alt="" class="img-fluid">`;
     }
     section += `
                 <p class="text-justify">${post_data[i]["string"]}.</p>
@@ -75,6 +75,7 @@ function generatePost(post_data) {
             <hr/>
         `
   }
+//}
 
   section += `</div>
     </div>
@@ -175,14 +176,28 @@ function sendPost() {
   });
 }
 
+function getLoggedUserInfo() {
+  
+
+  axios.get('../php/api-getuserinfo.php').then(response => {
+    console.log(response.data);
+    document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
+  });
+  
+
+}
+
 const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {
-  //console.log(response.data);
+  console.log(response.data);
   showPost(response.data);
   updateButton(response.data);
-  //test(response.data);
   sendPost();
 
+
+  //getLoggedUserInfo()
+  //console.log(getLoggedUserInfo());
+  
   document.querySelector(".quickpost").addEventListener('keyup', function() {
     if (document.querySelector(".quickpost").value.length > 0){
       document.querySelector(".bttnpost").disabled = false;
@@ -191,6 +206,6 @@ axios.get("api-showpost.php").then(response => {
       document.querySelector(".bttnpost").disabled = true;
     }
   });
-
+  
 });
 

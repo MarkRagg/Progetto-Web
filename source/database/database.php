@@ -89,7 +89,7 @@ class DatabaseManager {
      * returns n posts
      */
     public function getPosts($n) {
-        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image,`post_id`, data FROM `post`,user_info WHERE user_info.user_id=post.author ORDER BY RAND() LIMIT ?");
+        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image,`post_id`, data, immagine FROM `post`,user_info WHERE user_info.user_id=post.author ORDER BY RAND() LIMIT ?");
         $stmt->bind_param("i", $n);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -118,11 +118,11 @@ class DatabaseManager {
     /** 
      * add a post to the db
     */   
-    public function addPost($string, $author){
+    public function addPost($string, $author, $img){
         $data = date("Y-m-d");
         $id = $this->getNewId("post_id", "post");
-        $stmt = $this->db->prepare("INSERT INTO post (post_id, author, string, data, esame_id) VALUES (?, ?, ?, ?, null);");
-        $stmt->bind_param("ssss", $id, $author, $string, $data);
+        $stmt = $this->db->prepare("INSERT INTO post (post_id, author, string, data, esame_id, immagine) VALUES (?, ?, ?, ?, null, ?);");
+        $stmt->bind_param("sssss", $id, $author, $string, $data, $img);
         $result = $stmt->execute();
         return $result;
     }

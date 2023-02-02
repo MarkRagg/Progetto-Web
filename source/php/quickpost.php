@@ -6,7 +6,7 @@ $error["error"] = true;
 if(isset($_POST["post"])){
     $testo = $_POST["post"];
     if ($testo != "" && isset($_SESSION["user_id"])) {
-        $dbh->addPost($testo, $_SESSION["user_id"]);
+        $dbh->addPost($testo, $_SESSION["user_id"], null);
         $error["error"] = false;
         $error["info"] = "Post inserito con successo";
     } else {

@@ -6,6 +6,7 @@
             <form action="insertpost.php" method="POST" enctype="multipart/form-data">
             <h2><strong><label for="post">Il Tuo Nuovo Post:</label></strong></h2>
                 <hr/>
+                <label for="imgarticolo">Aggiungi immagine</label><input type="file" name="imgpost" id="imgpost" />
                 <textarea class="form-control" id="post" name="post" rows="4"></textarea>
                 <small id="infoPostLunghezza" class="form-text text-muted">
                     Il post puo' essere lungo massimo 200 caratteri.</small>

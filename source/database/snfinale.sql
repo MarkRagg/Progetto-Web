@@ -42,7 +42,8 @@ CREATE  TABLE socialnetwork.post (
 	author               VARCHAR(20)  NOT NULL     ,
 	string               VARCHAR(200)  NOT NULL     ,
 	data                 DATE  NOT NULL     ,
-	esame_id             INT       
+	esame_id             INT   ,
+	immagine			 VARCHAR(100)    
  ) engine=InnoDB;
 
 CREATE  TABLE socialnetwork.post_user_reaction ( 

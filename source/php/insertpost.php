@@ -10,8 +10,21 @@ $error = "";
 if(isset($_POST["submit"]) && isset($_POST["post"])){
     $testo = $_POST["post"];
     if ($testo != "" && isset($_SESSION["user_id"])) {
-        $dbh->addPost($testo, $_SESSION["user_id"]);
+        if(isset($_FILES["imgpost"]) && $_FILES["imgpost"]["name"] != ""){
+            list($result, $msg) = uploadImage(UPLOAD_DIR, $_FILES["imgpost"]);
+            if($result == 1){
+                $dbh->addPost($testo, $_SESSION["user_id"], $msg);
+            } else {
+                $error = $msg;
+            }
+        } else {
+            $dbh->addPost($testo, $_SESSION["user_id"], null);
+        }
+        
+        //$dbh->addPost($testo, $_SESSION["user_id"]);
         header("Location: showhomepage.php");
+        //echo($result);
+        
     } else if($testo == ""){
         $error = "Errore; Il testo non può essere vuoto";
     } else {

@@ -282,13 +282,11 @@ class DatabaseManager {
     }
 
     public function isUserSubbedToCourse($user_id, $course_id) {
-        $courseSubs = $this->getSubsFromCourse($course_id);
-        foreach ($courseSubs as $sub) {
-            if ($sub["user_id"] === $user_id) {
-                return true;
-            }
-        }
-        return false;
+        $stmt = $this->db->prepare("SELECT * FROM user_info WHERE user_id = ? AND corso_id = ?");
+        $stmt->bind_param("ss", $user_id, $course_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return !empty($result->fetch_all(MYSQLI_ASSOC));
     }
 
     public function isUserSubbed($user_id) {

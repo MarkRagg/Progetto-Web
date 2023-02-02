@@ -158,6 +158,7 @@ axios.get("api-showpost.php").then(response => {
   //console.log(response.data);
   showPost(response.data);
   updateButton(response.data);
+  //test(response.data);
   sendPost();
 });
 
@@ -182,3 +183,23 @@ function sendPost() {
     }
   });
 }
+
+/*
+function test(vars) {
+  const btnpost = document.querySelectorAll(".comlink");
+  console.log(btnpost);
+  for (let i = 0; i < btnpost.length; i++) {
+    btnpost[i].addEventListener('click', function onClick() {
+      console.log(vars[i]["post_id"]);
+      const formdata = new FormData();
+      formdata.append('post_id', vars[i]["post_id"]);
+      
+      axios.post('../php/bhp.php', formdata).then(response => {
+        console.log(response);
+      });
+      
+      //location.href = "../php/post-comment.php?post_id=" + vars[i]["post_id"];
+    });
+  }
+}
+*/

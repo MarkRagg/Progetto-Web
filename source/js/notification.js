@@ -8,16 +8,15 @@ function showNotifications(response) {
     const html_string = getHtmlFromTipology(element["tipologia"] , element);
     const new_notification = document.createElement("div");
     new_notification.classList = "list-element";
-    console.log(element["notifica_id"]);
     new_notification.innerHTML = `
-    <div class="container mt-5 mb-5 bg-light">
+    <div class="container mt-5 mb-5 bg-light onclick="window.location='http://google.com';""> 
       <div class="row d-flex align-items-center">`
-       + html_string +   
+      + html_string + 
       `</div>
       <button type="submit" data-toggle="button" class="delete-btn btn btn-outline-danger m-1">Delete</button>
     </div> 
     `;
-    updateBtn(element["user_1_id"], response["following-list"], element["notifica_id"], new_notification);
+    updateBtn(element["user_1_id"], response["following-list"], element["notifica_id"], element["post_id"], new_notification);
     main.appendChild(new_notification);
   });
 } 
@@ -41,10 +40,16 @@ if(element["post_id"] != null) {
       </div>`;
       break;
     case 2:
-      html_string = `<p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has react your post!</p>`;
+      html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
+      <p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has react your post!</p>
+      <button type="button" data-toggle="button" class="post-btn btn btn-outline-primary">Go into</button>
+      </div>`;
       break;
     case 3:
-      html_string = `<p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has comment your post!</p>`
+      html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
+      <p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has comment your post!</p>
+      <button type="button" data-toggle="button" class="post-btn btn btn-outline-primary">Go into</button>
+      </div>`;
       break;
     default:
       break;
@@ -111,7 +116,7 @@ function addOrReplace(btn, class_to_add, class_to_replace) {
  * @param {*} user_follower 
  * @param {*} following_list 
  */
-function updateBtn(user_follower, following_list, notification_id, div) {
+function updateBtn(user_follower, following_list, notification_id, post_id, div) {
   console.log("entra");
 
   followBtn = div.querySelector(".follow-btn");
@@ -129,6 +134,13 @@ function updateBtn(user_follower, following_list, notification_id, div) {
         followOrUnfollow(user_follower, "unfollow");
       });
     }
+  }
+
+  goIntoBtn = div.querySelector(".post-btn");
+  if(goIntoBtn != null) {
+    goIntoBtn.addEventListener('click', function abstractFunct() {
+      window.location.href= "../php/post-comment.php?post_id=" + post_id;
+    });
   }
 
   deleteBtn = div.querySelector(".delete-btn");

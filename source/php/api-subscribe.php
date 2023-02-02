@@ -33,7 +33,12 @@ if (isset($_SESSION["user_id"])) {
                         $result["errormsg"] = "User is not subscribed";
                     }
                     break;
+                default:
+                    $result["errormsg"] = "Uknown action";
+                    break;
             }
+        } else {
+            $result["errormsg"] = "action not set";
         }
     } else {
         $result["errormsg"] = "course_id not set";

@@ -37,7 +37,7 @@ if (isset($_SESSION["user_id"])) {
                 <li class="list-group-item col h3">Residenza: <?php echo($templateParams["residence"]) ?></li>
                 <?php 
                 if ($templateParams["corso_id"] !== NULL) {
-                    echo("<li class=\"list-group-item col h3\">Corso: ".$courseInfo["nome"]."</li>");
+                    echo("<li class=\"list-group-item col h3\">Corso: <a href=\"course.php?course_id=".$courseInfo["corso_id"]."\">".$courseInfo["nome"]."</a></li>");
                 }
                 ?>
             </ul>

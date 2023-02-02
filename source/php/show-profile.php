@@ -14,11 +14,15 @@ if ($templateParams["user_exists"]) {
     $isFollowing = false;
     $followBtnText = "Segui";
     $followBtnClass = "primary";
+    $followBtnDisable = "";
     if (isset($_SESSION["user_id"])) {
         $isFollowing = $dbh->isUserFollowing($_SESSION["user_id"], $username);
         if ($isFollowing) {
             $followBtnText = "Non seguire";
             $followBtnClass = "danger";
+        }
+        if ($username === $_SESSION["user_id"]) {
+            $followBtnDisable = "disabled";
         }
     }
     $main = <<<EOD
@@ -36,7 +40,7 @@ if ($templateParams["user_exists"]) {
         </div>
         <div class="container text-center">
             <div class="row justify-content-center">
-                <button type="button" id="followBtn" class="col-6 btn btn-$followBtnClass">$followBtnText</button>   
+                <button type="button" id="followBtn" class="col-6 btn btn-$followBtnClass $followBtnDisable">$followBtnText</button>   
             </div>
             <div class="row">
                 <ul class="list-group list-group-horizontal">

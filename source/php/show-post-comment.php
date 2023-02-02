@@ -44,7 +44,7 @@
                         </div>
                         <hr/>
                         <div class="input-group">
-                            <input type="text" class="quickpost form-control mx-1" placeholder="Commenta">
+                            <input type="text" class="commento form-control mx-1" placeholder="Commenta">
                             <div class="input-group-append">
                                 <button type="submit" class="bttnpost btn btn-primary mx-2">Commenta</button>
                             </div>

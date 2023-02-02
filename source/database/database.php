@@ -67,7 +67,7 @@ class DatabaseManager {
      * Returns a user's data given their username
      */
     public function getUserInfo($user_id) {
-        $stmt = $this->db->prepare("SELECT name, surname, date_of_birth, uni_residence, corso_id, user_image FROM user_info WHERE user_id = ?");
+        $stmt = $this->db->prepare("SELECT name, surname, date_of_birth, uni_residence, corso_id, user_image, descrizione FROM user_info WHERE user_id = ?");
         $stmt->bind_param("s", $user_id);
         $stmt->execute();
         $result = $stmt->get_result();

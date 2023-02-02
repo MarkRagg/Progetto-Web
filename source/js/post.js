@@ -10,7 +10,7 @@ function generatePost(post_data) {
             <div class="card-body text-center ">
               <img src="" alt="img" width="120" height="120" class="rounded-circle mt-n5">
               <h5 id="nome_utente" class="card-title">  </h5>
-              <p class="card-text text-justify mb-2">DESCRIZIONE TIPO INSTAGRAM.</p>
+              <p class="card-text text-justify mb-2" id="descrizione">  .</p>
             </div>
           </div>
           <div class="card shadow-sm card-left2 mb-4">
@@ -174,6 +174,7 @@ function getLoggedUserInfo() {
   axios.get('../php/api-getuserinfo.php').then(response => {
     console.log(response.data);
     document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
+    document.querySelector("#descrizione").innerHTML = response.data["descrizione"];
   });
   
 
@@ -188,7 +189,6 @@ axios.get("api-showpost.php").then(response => {
 
 
   getLoggedUserInfo()
-  //console.log(getLoggedUserInfo());
   
   document.querySelector(".quickpost").addEventListener('keyup', function() {
     if (document.querySelector(".quickpost").value.length > 0){

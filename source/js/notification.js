@@ -65,7 +65,6 @@ function followOrUnfollow(user_follower, action){
       console.log(response.data["errormsg"]);
     }
     axios.get("api-notification.php").then(response => {
-      console.log(response.data);
       if (!response.data["new-notification"]) {
         // TODO error message
       } else {

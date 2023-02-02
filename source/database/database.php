@@ -344,5 +344,12 @@ class DatabaseManager {
         $stmt->bind_param("ss", $follower_id, $followed_id);
         return $stmt->execute();
     }
+
+    public function addNotification($user_1_id, $user_2_id, $post_id, $tipology) {
+        $stmt = $this->db->prepare("INSERT INTO notifiche (user_1_id, user_2_id, post_id, tipologia) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssii", $user_1_id, $user_2_id, $post_id, $tipology);
+        $result = $stmt->execute();
+        return $result;
+    }
 }  
 ?>

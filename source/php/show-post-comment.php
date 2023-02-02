@@ -1,37 +1,9 @@
-    <!--
-    require_once 'db_config.php';
-
-    if($templateParams["post_exists"]){
-
-        
-        for ($i = 0; $i < count($templateParams["comments"]); $i++) {
-            echo($templateParams["comments"][$i]["comment_id"]);
-            echo " ";
-            echo($templateParams["comments"][$i]["author"]);
-            echo " ";
-            echo($templateParams["comments"][$i]["post_id"]);
-            echo " ";
-            echo($templateParams["comments"][$i]["post_comment"]);
-            echo " ";
-            echo($templateParams["comments"][$i]["data_commento"]);
-        }
-        echo($templateParams["numLikes"]);
-        
-        $commenti = $templateParams["comments"];
-        $numLikes = $templateParams["numLikes"];
-        $postid = $templateParams["post_id"];
-        $autore = $templateParams["author"];
-        $data = $templateParams["data"];
-        $contenuto = $templateParams["string"];
-        $esameid = $templateParams["esame_id"];
-    } else {
-        echo($templateParams["errormsg"]);
-    }
-
-$ciao = "ciao";
--->
     <div class="container mt-2 mb-5">
         <div class="row">
+            <div class="col-12 col-lg-3">
+                <div class="left-column">
+                </div>
+            </div>
             <div class="col-12 col-lg-6">
                 <div class="middle-column">
                     <div class="card border-primary">
@@ -88,7 +60,7 @@ $ciao = "ciao";
                                 </div>
                             </div>
                             <div class="d-flex flex-row mt-1 ellipsis"> <small
-                                    class="mr-2"><?php echo $commento["data_commento"];?></small> <em
+                                    class="mr-2"><?php echo date("F j, Y", strtotime($commento["data_commento"]));?></small> <em
                                     class="fa fa-ellipsis-h"></em>
                             </div>
                         </div>

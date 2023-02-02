@@ -25,7 +25,7 @@ if (isset($_GET["post_id"])){
         $templateParams["errormsg"] = "Post found";
         $templateParams["post_id"] = $post["post_id"];
         $templateParams["author"] = $post["author"];
-        $templateParams["data"] = $post["data"];
+        $templateParams["data"] = date("F j, Y", strtotime($post["data"]));
         $templateParams["string"] = $post["string"];
         $templateParams["esame_id"] = $post["esame_id"];
         $comments = $dbh->getComments($idPost);

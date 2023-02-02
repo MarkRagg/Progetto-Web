@@ -262,8 +262,8 @@ class DatabaseManager {
         $stmt->bind_param("sss", $post_id, $user_id, $reaction_type);
         $stmt->execute();
         $result = $stmt->get_result();
-        $res = $result->fetch_all(MYSQLI_ASSOC)[0];
-        return $res!=null;
+        $res = $result->fetch_all(MYSQLI_ASSOC);
+        return !empty($res);
     }
 
     public function getNotificationsByUser($user_id) {

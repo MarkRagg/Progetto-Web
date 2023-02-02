@@ -364,5 +364,14 @@ class DatabaseManager {
         $result = $stmt->execute();
         return $result;
     }
+
+    public function addComment($comment, $postid, $author){
+        $data = date("Y-m-d");
+        $stmt = $this->db->prepare("INSERT INTO comment (comment_id, author, post_id, post_comment, data_commento) VALUES (?, ?, ?, ?, ?)");
+        $id = $this->getNewId("comment_id", "comment");
+        $stmt->bind_param("sssss", $id, $author, $postid, $comment, $data);
+        $result = $stmt->execute();
+        return $result;
+    }
 }  
 ?>

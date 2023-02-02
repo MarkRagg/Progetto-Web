@@ -38,15 +38,13 @@
                                         <?php echo $templateParams["numLikes"];?>
                                     </span>
                                 </button>
-                                <a href="../php/post-comment.php?post_id=<?php echo $templateParams["post_id"];?>"
-                                    class="comlink">Commenta</a>
                             </div>
                         </div>
                         <hr/>
                         <div class="input-group">
                             <input type="text" class="commento form-control mx-1" placeholder="Commenta">
                             <div class="input-group-append">
-                                <button type="submit" class="bttnpost btn btn-primary mx-2">Commenta</button>
+                                <button type="submit" class="bttnpost btn btn-primary mx-2" disabled>Commenta</button>
                             </div>
                         </div>
                         <?php foreach ($templateParams["comments"] as $commento): ?>

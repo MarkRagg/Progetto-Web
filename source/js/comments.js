@@ -7,47 +7,30 @@ getParameter = (key) => {
   return parameterList.get(key)
 }
 
-console.log("ciao");
-
-const x = document.querySelector("#bottoneLikePost");
-console.log(x);
+const idjs = getParameter('post_id');
 
 const bottonePosta = document.querySelector(".bttnpost");
 
+document.querySelector(".commento").addEventListener('keyup', function() {
+  if (document.querySelector(".commento").value.length > 0){
+    document.querySelector(".bttnpost").disabled = false;
+  }
+  else{
+    document.querySelector(".bttnpost").disabled = true;
+  }
+});
+
 bottonePosta.addEventListener('click', function onClick() {
-  const post = document.querySelector(".commento").value;
-  console.log(post);
-  /*
-  const formData = new FormData();
-  formData.append('post', post);
-  axios.post('api-quickpost.php', formData).then(response => {
-    if (!response.data["error"]) {
+  const comment = document.querySelector(".commento").value;
+  console.log(comment);
+  if(comment.length > 0) {
+    const formData = new FormData();
+    formData.append('comment', comment);
+    formData.append('post_id', idjs);
+    
+    axios.post('../php/api-add-comment.php', formData).then(response => {
+      console.log(response.data);
       location.reload();
-      console.log(response.data["info"]);
-    } else {
-      console.log(response.data["info"]);
-    }
-  });
-  */
+    });
+  }
 });
-
-
-/*
-const formData = new FormData();
-const id = getParameter('post_id');
-formData.append('post_id', id);
-
-axios.post('api-post-comment.php', formData).then(response => {
-  console.log(response.data);
-  console.log(id);
-
-});
-
-
-
-axios.get('api-post-comment.php').then(response => {
-  console.log(response.data);
-});
-
-*/
-

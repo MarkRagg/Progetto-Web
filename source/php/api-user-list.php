@@ -11,7 +11,7 @@ if (isset($_POST["profileUsername"]) && isset($_POST["requestedList"])) {
             $result["success"] = true;
             $followers = $dbh->getFollowers($profileUsername);
             for($i = 0; $i < count($followers); $i++) {
-                $followerInfo = $dbh->getUserInfo($followers[$i]["follower_id"]);
+                $followerInfo = $dbh->getUserInfo($followers[$i]["username"]);
                 $followers[$i] = array_merge($followers[$i], $followerInfo);
             }
             $result["userList"] = $followers;
@@ -21,7 +21,7 @@ if (isset($_POST["profileUsername"]) && isset($_POST["requestedList"])) {
             $result["success"] = true;
             $following = $dbh->getFollowing($profileUsername);
             for($i = 0; $i < count($following); $i++) {
-                $followingInfo = $dbh->getUserInfo($following[$i]["user_id"]);
+                $followingInfo = $dbh->getUserInfo($following[$i]["username"]);
                 $following[$i] = array_merge($following[$i], $followingInfo);
             }
             $result["userList"] = $following;

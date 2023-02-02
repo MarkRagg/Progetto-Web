@@ -131,7 +131,7 @@ class DatabaseManager {
      * Returns the followers of the user with the given username
      */
     public function getFollowers($username) {
-        $stmt = $this->db->prepare("SELECT follower_id FROM user_followers_followed WHERE user_id = ?");
+        $stmt = $this->db->prepare("SELECT follower_id AS username FROM user_followers_followed WHERE user_id = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -142,7 +142,7 @@ class DatabaseManager {
      * Returns the users followed by the user with the given username
      */
     public function getFollowing($username) {
-        $stmt = $this->db->prepare("SELECT user_id FROM user_followers_followed WHERE follower_id = ?");
+        $stmt = $this->db->prepare("SELECT user_id AS username FROM user_followers_followed WHERE follower_id = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -334,6 +334,15 @@ class DatabaseManager {
         $stmt->execute();
         $result = $stmt->get_result();
         return !empty($result->fetch_all(MYSQLI_ASSOC));
+    }
+    
+    /**
+     * Removes follower_id from followed_id's followers
+     */
+    public function removeFollower($follower_id, $followed_id) {
+        $stmt = $this->db->prepare("DELETE FROM user_followers_followed WHERE follower_id = ? AND user_id = ?");
+        $stmt->bind_param("ss", $follower_id, $followed_id);
+        return $stmt->execute();
     }
 }  
 ?>

@@ -414,5 +414,11 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_array(MYSQLI_ASSOC)["uni_id"];
     }
+
+    public function setImageToUser($image_str, $user_id) {
+        $stmt = $this->db->prepare("UPDATE user_info SET user_image=? WHERE user_id=?");
+        $stmt->bind_param("ss", $image_str, $user_id);
+        return $stmt->execute();
+    }
 }  
 ?>

@@ -8,7 +8,7 @@ function showUserList(users) {
         const newUser = document.createElement("div");
         newUser.classList = "listElement";
         newUser.innerHTML = `
-        <div class="container mt-4 mb-5 bg-white rounded-3">
+        <div class="container mt-4 mb-5 bg-white rounded-3 p-3">
             <div class="row">
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">

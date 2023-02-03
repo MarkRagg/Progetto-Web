@@ -11,6 +11,8 @@ if (isset($_GET["uni_id"])) {
         $templateParams["uni_id"] = $uni["uni_id"];
         $templateParams["uni_name"] = $uni["nome"];
         $templateParams["location"] = $uni["sede"];
+        $templateParams["course_count"] = $dbh->getCourseCount($uni["uni_id"]);
+        $templateParams["courses"] = $dbh->getCoursesFromUni($uni["uni_id"]);
         $templateParams["name"] = "show-uni.php";
     } else {
         $templateParams["errormsg"] = "University not found";

@@ -373,5 +373,27 @@ class DatabaseManager {
         $result = $stmt->execute();
         return $result;
     }
+
+    /**
+     * Returns the number of courses in a university
+     */
+    public function getCourseCount($uni_id) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) AS courseCount FROM corsi WHERE uni_id=?;");
+        $stmt->bind_param("i", $uni_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_array(MYSQLI_ASSOC)["courseCount"];
+    }
+
+    /**
+     * Returns info about all courses in a university
+     */
+    public function getCoursesFromUni($uni_id) {
+        $stmt = $this->db->prepare("SELECT * FROM corsi WHERE uni_id=?;");
+        $stmt->bind_param("i", $uni_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }  
 ?>

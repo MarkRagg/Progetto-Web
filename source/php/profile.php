@@ -1,5 +1,6 @@
 <?php
 require_once 'db_config.php';
+define("IMG_PATH", "../img/");
 
 $templateParams["title"] = "Profile";
 $templateParams["user_exists"] = false;
@@ -17,7 +18,7 @@ if (isset($_GET["username"])) {
         $templateParams["date_of_birth"] = $user["date_of_birth"];
         $templateParams["residence"] = $user["uni_residence"];
         $templateParams["corso_id"] = $user["corso_id"];
-        $templateParams["user_image"] = $user["user_image"];
+        $templateParams["user_image"] = IMG_PATH . $user["user_image"];
         $templateParams["post_count"] = $dbh->getPostCountFromUser($templateParams["username"]);
         $templateParams["follower_count"] = $dbh->getFollowerCount($templateParams["username"]);
         $templateParams["followed_count"] = $dbh->getFollowedCount($templateParams["username"]);

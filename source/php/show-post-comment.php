@@ -8,7 +8,7 @@
                 <div class="middle-column">
                     <div class="card border-primary">
                         <div class="card-header">
-                            <h4 class="card-title text-center">Discussione</h4>
+                            <h4 class="card-title text-center">Discussione DA CAMBIARE PERCHE H4</h4>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between p-2 px-3">
@@ -27,6 +27,7 @@
                                 </div>
                             </div>
                             <div class="px-4 mt-3 mb-3">
+                                <img src="../img/<?php echo $templateParams["immagine"];?>" alt="" class="img-fluid">
                                 <p class="text-justify"><?php echo $templateParams["string"];?>.</p>
                             </div>
                             <div class="d-flex align-items-center mt-4">
@@ -42,9 +43,10 @@
                         </div>
                         <hr/>
                         <div class="input-group">
-                            <input type="text" class="commento form-control mx-1" placeholder="Commenta">
+                            <label for="commento" class="visually-hidden">Commenta</label> 
+                            <input type="text" class="commento form-control mx-1" id="commento" placeholder="Commenta">
                             <div class="input-group-append">
-                                <button type="submit" class="bttnpost btn btn-primary mx-2" disabled>Commenta</button>
+                                <button type="submit" id="bttnpost" class="bttnpost btn btn-primary mx-2" disabled>Commenta</button>
                             </div>
                         </div>
                         <?php foreach ($templateParams["comments"] as $commento): ?>

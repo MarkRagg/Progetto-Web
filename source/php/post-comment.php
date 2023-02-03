@@ -28,6 +28,7 @@ if (isset($_GET["post_id"])){
         $templateParams["data"] = date("F j, Y", strtotime($post["data"]));
         $templateParams["string"] = $post["string"];
         $templateParams["esame_id"] = $post["esame_id"];
+        $templateParams["immagine"] = $post["immagine"];
         $comments = $dbh->getComments($idPost);
         $templateParams["comments"] = $comments;
         $templateParams["numLikes"] = $dbh->getPostLikes($idPost);

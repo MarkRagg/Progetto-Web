@@ -10,6 +10,7 @@ for($i = 0; $i < count($post); $i++){
     $post[$i]["data"] = date("F j, Y", strtotime($post[$i]["data"]));
     $post[$i]["num_like"] = $dbh->getPostLikes($post[$i]["post_id"]);
     $post[$i]["num_fire"] = $dbh->getPostReactionInfo($post[$i]["post_id"], 2);
+    $post[$i]["num_comments"] = $dbh->getPostComments($post[$i]["post_id"]);
     $post[$i]["user_has_liked"] = $dbh->hasReacted($post[$i]["post_id"], $_SESSION["user_id"], 1);
     $post[$i]["user_has_fired"] = $dbh->hasReacted($post[$i]["post_id"], $_SESSION["user_id"], 2);
 }

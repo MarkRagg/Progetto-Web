@@ -428,5 +428,13 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["info"];
     }
+
+    public function getPostComments($post_id){
+        $stmt = $this->db->prepare("SELECT COUNT(*) AS comment FROM comment WHERE post_id = ?");
+        $stmt->bind_param("s", $post_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["comment"];
+    }
 }  
 ?>

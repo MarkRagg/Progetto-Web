@@ -403,5 +403,16 @@ class DatabaseManager {
         $result = $this->db->query("SELECT * FROM universita;");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    /**
+     * Returns the id of the university a course belongs to
+     */
+    public function getUniFromCourse($course_id) {
+        $stmt = $this->db->prepare("SELECT * FROM universita, corsi WHERE corso_id = ? AND universita.uni_id=corsi.uni_id;");
+        $stmt->bind_param("i", $course_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_array(MYSQLI_ASSOC)["uni_id"];
+    }
 }  
 ?>

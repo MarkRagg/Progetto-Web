@@ -62,13 +62,43 @@ function generatePost(post_data) {
                 <p class="text-justify">${post_data[i]["string"]}.</p>
               </div>
               <div class="d-flex align-items-center mt-4">
-                <button id="bottoneLikePost${i}" class="bottone btn btn-outline-danger position-relative me-5 ms-5 btn-sm">Like
+                <button id="bottoneLikePost${i}" class="bottone btn btn-outline-danger position-relative me-2 ms-4 "><i class="bi bi-hand-thumbs-up"></i>
                   <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroLikePost${i}">
                     ${post_data[i]["num_like"]}
                   </span>
                 </button>
-                <a href="../php/post-comment.php?post_id=${post_data[i]["post_id"]}" class="comlink" >Commenta</a>
+                <button id="bottoneCommentPost${i}" class="comlink btn btn-outline-danger position-relative me-2 ms-2 " onclick="location.href='../php/post-comment.php?post_id=${post_data[i]["post_id"]}';"><i class="bi bi-chat-left-text-fill"></i>
+                  <span class="commento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroCommentiPost${i}">
+                    ${post_data[i]["num_like"]}
+                  </span>
+                </button>
+                <button id="" class="btn btn-outline-danger position-relative me-2 ms-2 "><i class="bi bi-fire"></i>
+                  <span class="commento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroCommentiPost${i}">
+                    ${post_data[i]["num_like"]}
+                  </span>
+                </button>
+                <button id="" class="btn btn-outline-danger position-relative me-2 ms-2 "><i class="bi bi-emoji-smile-upside-down"></i>
+                  <span class="commento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroCommentiPost${i}">
+                    ${post_data[i]["num_like"]}
+                  </span>
+                </button>
+                <button id="" class="btn btn-outline-danger position-relative me-2 ms-2 "><i class="bi bi-heart-fill"></i>
+                  <span class="commento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroCommentiPost${i}">
+                    ${post_data[i]["num_like"]}
+                  </span>
+                </button>
+                <button id="" class="btn btn-outline-danger position-relative me-2 ms-2 "><i class="bi bi-emoji-kiss"></i>
+                  <span class="commento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroCommentiPost${i}">
+                    ${post_data[i]["num_like"]}
+                  </span>
+                </button>
+                
               </div>
             </div>
             <hr/>
@@ -128,21 +158,21 @@ function addLike(btn, i, nlikes) {
   btn[i].classList.replace("btn-outline-danger", 'btn-danger');
   btn[i].classList.replace("bottone", "btnlkd");
   nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + 1;
-  btn[i].innerHTML = "Liked" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
+  btn[i].innerHTML = `<i class="bi bi-hand-thumbs-up-fill"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
 }
 
 function removeLike(btn, i, nlikes) {
   btn[i].classList.replace('btn-danger', "btn-outline-danger");
   btn[i].classList.replace("btnlkd", "bottone");
   nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
-  btn[i].innerHTML = "Like" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
+  btn[i].innerHTML = `<i class="bi bi-hand-thumbs-up"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
 }
 
 function showAlreadyLiked(response, i, btn, nlikes) {
   if (response[i]["user_has_liked"] == true) {
     btn[i].classList.replace("btn-outline-danger", "btn-danger");
     btn[i].classList.replace("bottone", "btnlkd");
-    btn[i].innerHTML = "Liked" + `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
+    btn[i].innerHTML = `<i class="bi bi-hand-thumbs-up-fill"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
   }
 }
 
@@ -169,14 +199,14 @@ function sendPost() {
 }
 
 function getLoggedUserInfo() {
-  
+
 
   axios.get('../php/api-getuserinfo.php').then(response => {
     console.log(response.data);
     document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
     document.querySelector("#descrizione").innerHTML = response.data["descrizione"];
   });
-  
+
 
 }
 
@@ -189,15 +219,15 @@ axios.get("api-showpost.php").then(response => {
 
 
   getLoggedUserInfo()
-  
-  document.querySelector(".quickpost").addEventListener('keyup', function() {
-    if (document.querySelector(".quickpost").value.length > 0){
+
+  document.querySelector(".quickpost").addEventListener('keyup', function () {
+    if (document.querySelector(".quickpost").value.length > 0) {
       document.querySelector(".bttnpost").disabled = false;
     }
-    else{
+    else {
       document.querySelector(".bttnpost").disabled = true;
     }
   });
-  
+
 });
 

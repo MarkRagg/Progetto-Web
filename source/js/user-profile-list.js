@@ -8,23 +8,18 @@ function showUserList(users) {
         const newUser = document.createElement("div");
         newUser.classList = "listElement";
         newUser.innerHTML = `
-        <div class="container mt-4 mb-5">
-            <div class="d-flex justify-content-center row">
-                <div class="col-md-8">
-                    <div class="feed p-2">
-                        <div class="bg-white border mt-2">
-                            <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                                <div class="d-flex flex-row align-items-center feed-text px-2"><img src="${element["user_image"]}" width="50" height="50" alt=""/>
-                                    <div class="d-flex flex-column flex-wrap ml-2"><a class="nav-link" href="profile.php?username=${element["username"]}" > ${element["username"]} </a></div>
-                                </div>
-                                <div class="feed-icon px-2"><em class="fa fa-ellipsis-v text-black-50"></em></div>
-                            </div>
-                        </div>
+        <div class="container mt-4 mb-5 bg-white rounded-3">
+            <div class="row">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <img src="${element["user_image"]}" class="rounded-circle" width="20%" hight="20%" alt="">
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <a class="h5" href="profile.php?username=${element["username"]}">${element["name"]} ${element["surname"]} @${element["username"]}</a> 
                     </div>
                 </div>
             </div>
-        </div>
-        `;
+        </div>`;
         main.appendChild(newUser);
     });
 }
@@ -96,7 +91,6 @@ function makeRequestAndEdit(username, requestedList) {
                 showErrorMsg(response.data["errormsg"]);
             } else {
                 showUserList(response.data["userList"])
-                console.log(response.data);
             }
         });
     } else {
@@ -105,7 +99,6 @@ function makeRequestAndEdit(username, requestedList) {
                 showErrorMsg(response.data["errormsg"]);
             } else {
                 showPostList(response.data["userPosts"]);
-                console.log(response.data);
             }
         });
     }

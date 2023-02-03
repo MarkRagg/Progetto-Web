@@ -403,5 +403,11 @@ class DatabaseManager {
         $result = $this->db->query("SELECT * FROM universita;");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+    
+    public function setImageToUser($image_str, $user_id) {
+        $stmt = $this->db->prepare("UPDATE user_info SET user_image=? WHERE user_id=?");
+        $stmt->bind_param("ss", $image_str, $user_id);
+        return $stmt->execute();
+    }
 }  
 ?>

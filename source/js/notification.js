@@ -111,8 +111,8 @@ function addOrReplace(btn, class_to_add, class_to_replace) {
 }
 
 /**
- * Update event listener for follow button 
- * and for delete-btn
+ * Update event listener for follow button, delete-btn
+ * and post button
  * @param {*} user_follower 
  * @param {*} following_list 
  */

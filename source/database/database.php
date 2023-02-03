@@ -395,5 +395,13 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    /**
+     * Returns all universities
+     */
+    public function getAllUnis() {
+        $result = $this->db->query("SELECT * FROM universita;");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }  
 ?>

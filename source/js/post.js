@@ -32,7 +32,8 @@ function generatePost(post_data) {
           <div class="card border-primary">
             <div class="card-header">
                 <div class="input-group">
-                  <input type="text" class="quickpost form-control mx-3" placeholder="Post veloce">
+                <label for="quickpost" class="visually-hidden">Post veloce:</label> 
+                  <input type="text" id="quickpost" class="quickpost form-control mx-3" placeholder="Post veloce">
                   <div class="input-group-append">
                     <button type="submit" class="bttnpost btn btn-primary" disabled>Posta</button>
                   </div>
@@ -63,70 +64,51 @@ function generatePost(post_data) {
               <div class="d-flex align-items-center mt-4">
 
 
-                <button id="bottoneLikePost${i}" class="bottone btn btn-outline-danger position-relative me-2 ms-4 "><i class="bi bi-hand-thumbs-up"></i>
+                <button id="bottoneLikePost${i}" class="bottone btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
                   <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroLikePost${i}">
                     ${post_data[i]["num_like"]}
                   </span>
                 </button>
 
-
-                <button id="bottoneCommentPost${i}" class="btn btn-outline-danger position-relative me-2 ms-2 " onclick="location.href='../php/post-comment.php?post_id=${post_data[i]["post_id"]}';"><i class="bi bi-chat-left-text-fill"></i>
+                <button id="bottoneCommentPost${i}" class="btn btn-outline-danger position-relative me-2 ms-2 " onclick="location.href='../php/post-comment.php?post_id=${post_data[i]["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
                   <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroCommentiPost${i}">
                     ${post_data[i]["num_comments"]}
                   </span>
                 </button>
 
-                
-
-
-
-
-
-
-
-
-
-
-                <button id="bottoneFirePost${i}" class="btnFire btn btn-outline-danger position-relative me-2 ms-2 "><i class="bi bi-fire"></i>
+                <button id="bottoneFirePost${i}" class="btnFire btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
                   <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroFirePost${i}">
                     ${post_data[i]["num_fire"]}
                   </span>
                 </button>
-                
 
+                <button class="btnSmile btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-smile-upside-down"></em>
+                  <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroSmilePost${i}">
+                    ${post_data[i]["num_smile"]}
+                  </span>
+                </button>
 
-
-
-
-
-
-
-
-
-
-                <button class="btn btn-outline-danger position-relative me-2 ms-2 "><i class="bi bi-emoji-smile-upside-down"></i>
-                  <span class="commento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroCommdentiPost${i}">
-                    ${post_data[i]["num_like"]}
+                <button class="btnCuore btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-heart-fill"></em>
+                  <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroCuoriPost${i}">
+                    ${post_data[i]["num_cuore"]}
                   </span>
                 </button>
 
 
-                <button class="btn btn-outline-danger position-relative me-2 ms-2 "><i class="bi bi-heart-fill"></i>
-                  <span class="commento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroCommefntiPost${i}">
-                    ${post_data[i]["num_like"]}
-                  </span>
-                </button>
 
 
-                <button  class="btn btn-outline-danger position-relative me-2 ms-2 "><i class="bi bi-emoji-kiss"></i>
-                  <span class="commento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroCommgentiPost${i}">
-                    ${post_data[i]["num_like"]}
+
+
+
+                <button  class="btnBacio btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
+                  <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroBaciPost${i}">
+                    ${post_data[i]["num_baci"]}
                   </span>
                 </button>
 
@@ -139,7 +121,6 @@ function generatePost(post_data) {
   section += `</div>
     </div>
   </div>
-</div>
 </div>
 </div>`;
 
@@ -163,6 +144,10 @@ function updateButton(response, idbtn, idnum, numeroin, numeroout, contains) {
       showAlreadyLiked(response, i, btn, nlikes);
     } else if (numeroin == 2){
       showAlreadyFire(response, i, btn, nlikes);
+    } else if (numeroin == 3){
+      showAlreadySmile(response, i, btn, nlikes);
+    } else if (numeroin == 4){
+      showAlreadyCuore(response, i, btn, nlikes);
     }
     btn[i].addEventListener('click', function onClick() {
       if (btn[i].classList.contains(contains)) {
@@ -171,78 +156,126 @@ function updateButton(response, idbtn, idnum, numeroin, numeroout, contains) {
           removeLike(btn, i, nlikes);
         } else if (numeroout == -2){
           removeFire(btn, i, nlikes);
+        } else if (numeroout == -3){
+          removeSmile(btn, i, nlikes);
+        } else if (numeroout == -4){
+          removeCuore(btn, i, nlikes);
         }
 
-        //uguale per tutti, vado dal db
-        formData.append('post_id', response[i]["post_id"]);
-        formData.append('type', numeroout);
-        axios.post('../php/api-like.php', formData).then(response => {
-          console.log(response);
-        });
-        formData.delete('post_id');
-        formData.delete('type');
+        removeReaction(formData, response, i, numeroout);
       } else {
         if (numeroin == 1){
           addLike(btn, i, nlikes);
         } else if (numeroin == 2){
           addFire(btn, i, nlikes);
+        } else if (numeroin == 3){
+          addSmile(btn, i, nlikes);
+        } else if (numeroin == 4){
+          addCuore(btn, i, nlikes);
         }
-        formData.append('post_id', response[i]["post_id"]);
-        formData.append('type', numeroin);
-        axios.post('../php/api-like.php', formData).then(response => {
-          console.log(response);
-        });
 
-        formData.delete('post_id');
-        formData.delete('user');
-        formData.delete('type');
+        addReaction(formData, response, i, numeroin);
       }
     });
   }
+}
+
+function addReaction(formData, response, i, numeroin) {
+  formData.append('post_id', response[i]["post_id"]);
+  formData.append('type', numeroin);
+  axios.post('../php/api-like.php', formData).then(response => {
+    console.log(response);
+  });
+
+  formData.delete('post_id');
+  formData.delete('user');
+  formData.delete('type');
+}
+
+function removeReaction(formData, response, i, numeroout) {
+  formData.append('post_id', response[i]["post_id"]);
+  formData.append('type', numeroout);
+  axios.post('../php/api-like.php', formData).then(response => {
+    console.log(response);
+  });
+  formData.delete('post_id');
+  formData.delete('type');
 }
 
 function addLike(btn, i, nlikes) {
   btn[i].classList.replace("btn-outline-danger", 'btn-danger');
   btn[i].classList.replace("bottone", "btnlkd");
   nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + 1;
-  btn[i].innerHTML = `<i class="bi bi-hand-thumbs-up-fill"></i><span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
 }
 
 function addFire(btn, i, nfires) {
   btn[i].classList.replace("btn-outline-danger", 'btn-danger');
   btn[i].classList.replace("btnFire", "btnFireLkd");
   nfires[i].innerHTML = parseInt(nfires[i].innerHTML) + 1;
-  btn[i].innerHTML = `<i class="bi bi-fire"></i><span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"id="numeroFirePost${i}">`+nfires[i].innerHTML +`</span>`;
 }
 
 function removeLike(btn, i, nlikes) {
   btn[i].classList.replace('btn-danger', "btn-outline-danger");
   btn[i].classList.replace("btnlkd", "bottone");
   nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
-  btn[i].innerHTML = `<i class="bi bi-hand-thumbs-up"></i><span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
 }
 
 function removeFire(btn, i, nfires) {
   btn[i].classList.replace('btn-danger', "btn-outline-danger");
   btn[i].classList.replace("btnFireLkd", "btnFire");
   nfires[i].innerHTML = parseInt(nfires[i].innerHTML) - 1;
-  btn[i].innerHTML = `<i class="bi bi-fire"></i><span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"id="numeroFirePost${i}">`+nfires[i].innerHTML +`</span>`;
 }
 
-function showAlreadyLiked(response, i, btn, nlikes) {
+function showAlreadyLiked(response, i, btn) {
   if (response[i]["user_has_liked"] == true) {
     btn[i].classList.replace("btn-outline-danger", "btn-danger");
     btn[i].classList.replace("bottone", "btnlkd");
-    btn[i].innerHTML = `<i class="bi bi-hand-thumbs-up-fill"></i><span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numeroLike${i}" >` + nlikes[i].innerHTML + `</span>`;
   }
 }
 
-function showAlreadyFire(response, i, btn, nfires) {
+function showAlreadyFire(response, i, btn) {
   if (response[i]["user_has_fired"] == true) {
     btn[i].classList.replace("btn-outline-danger", "btn-danger");
     btn[i].classList.replace("btnFire", "btnFireLkd");
-    btn[i].innerHTML = `<i class="bi bi-fire"></i><span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"id="numeroFirePost${i}">`+nfires[i].innerHTML +`</span>`;
   }
+}
+
+function showAlreadySmile(response, i, btn) {
+  if (response[i]["user_has_smile"] == true) {
+    btn[i].classList.replace("btn-outline-danger", "btn-danger");
+    btn[i].classList.replace("btnSmile", "btnSmileLkd");
+  }
+}
+
+function removeSmile(btn, i, nfires) {
+  btn[i].classList.replace('btn-danger', "btn-outline-danger");
+  btn[i].classList.replace("btnSmileLkd", "btnSmile");
+  nfires[i].innerHTML = parseInt(nfires[i].innerHTML) - 1;
+}
+
+function addSmile(btn, i, nfires) {
+  btn[i].classList.replace("btn-outline-danger", 'btn-danger');
+  btn[i].classList.replace("btnSmile", "btnSmileLkd");
+  nfires[i].innerHTML = parseInt(nfires[i].innerHTML) + 1;
+}
+
+function showAlreadyCuore(response, i, btn) {
+  if (response[i]["user_has_cuore"] == true) {
+    btn[i].classList.replace("btn-outline-danger", "btn-danger");
+    btn[i].classList.replace("btnCuore", "btnCuoreLkd");
+  }
+}
+
+function addCuore(btn, i, nfires) {
+  btn[i].classList.replace("btn-outline-danger", 'btn-danger');
+  btn[i].classList.replace("btnCuore", "btnCuoreLkd");
+  nfires[i].innerHTML = parseInt(nfires[i].innerHTML) + 1;
+}
+
+function removeCuore(btn, i, nfires) {
+  btn[i].classList.replace('btn-danger', "btn-outline-danger");
+  btn[i].classList.replace("btnCuoreLkd", "btnCuore");
+  nfires[i].innerHTML = parseInt(nfires[i].innerHTML) - 1;
 }
 
 function sendPost() {
@@ -290,12 +323,20 @@ const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {
   //console.log(response.data);
   showPost(response.data);
+
   const btnLike = ".bottone";
   const numeroLike = ".numeroLike"
+  updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");
   const btnFire = ".btnFire";
   const numeroFire = ".numeroFire"
-  updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");
   updateButton(response.data, btnFire, numeroFire, 2, -2, "btnFireLkd");
+  const btnSmile = ".btnSmile"
+  const numeroSmile = ".numeroSmile"
+  updateButton(response.data, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
+  const btnCuore = ".btnCuore"
+  const numeroCuore = ".numeroCuore"
+  updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
+
   sendPost();
   getLoggedUserInfo()
   dynamicButtonPost();

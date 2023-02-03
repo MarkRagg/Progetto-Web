@@ -20,7 +20,7 @@ if (isset($_POST["post_id"]) && isset($_SESSION["user_id"]) && isset($_POST["typ
         }
     } else if ($type < 0) {
         $dbh->removeLike($postId, -$type, $user);
-        $res = "rimosso".$type;
+        $res = "rimosso".-$type;
     }
 
     

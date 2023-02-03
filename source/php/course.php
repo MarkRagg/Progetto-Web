@@ -4,7 +4,7 @@ require_once 'db_config.php';
 $templateParams["title"] = "Corso";
 $templateParams["name"] = "show-course.php";
 $templateParams["course_exists"] = false;
-$templateParams["errormsg"] = "Missing username";
+$templateParams["errormsg"] = "Missing id";
 $templateParams["paginaprofilouser"]=$_SESSION["user_id"];
 
 if (isset($_GET["course_id"])) {

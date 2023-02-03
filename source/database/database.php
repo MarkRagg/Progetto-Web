@@ -420,5 +420,13 @@ class DatabaseManager {
         $stmt->bind_param("ss", $image_str, $user_id);
         return $stmt->execute();
     }
+
+    public function getPostReactionInfo($post_id, $numReaction){
+        $stmt = $this->db->prepare("SELECT COUNT(*) AS info FROM post_user_reaction WHERE post_id = ? AND reaction_id = ?");
+        $stmt->bind_param("ss", $post_id, $numReaction);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["info"];
+    }
 }  
 ?>

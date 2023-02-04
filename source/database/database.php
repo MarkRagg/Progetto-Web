@@ -444,5 +444,38 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+    
+    /**
+     * Returns the number of posts that belong to class with the given id
+     */
+    public function getPostCountFromClass($class_id) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) as post_count FROM post WHERE esame_id=?;");
+        $stmt->bind_param("i", $class_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_array(MYSQLI_ASSOC)["post_count"];
+    }
+
+    /**
+     * Returns all posts that belong to class with the given id
+     */
+    public function getPostsFromClass($class_id) {
+        $stmt = $this->db->prepare("SELECT * FROM post WHERE esame_id=?;");
+        $stmt->bind_param("i", $class_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    /**
+     * Returns info about the class with the given id
+     */
+    public function getClassInfo($class_id) {
+        $stmt = $this->db->prepare("SELECT * FROM esami WHERE esame_id=?;");
+        $stmt->bind_param("i", $class_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_array(MYSQLI_ASSOC);
+    }
 }  
 ?>

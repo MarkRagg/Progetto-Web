@@ -16,8 +16,12 @@ if (isset($_SESSION["user_id"])) {
 }
 ?>
 <section>
-    <div class="container">
-        <img src="<?php echo($templateParams["user_image"]) ?>" alt="immagine profilo"/>
+    <div class="container my-5">
+        <div class="row flex-row align-items-center justify-content-center text-center">
+            <div class="col-6">
+                <img src="<?php echo(UPLOAD_DIR.$templateParams["user_image"]) ?>" class="img-fluid rounded-circle" alt="immagine profilo"/>
+            </div>
+        </div>
     </div>
     <div class="container text-center">
         <div class="row">
@@ -28,7 +32,7 @@ if (isset($_SESSION["user_id"])) {
         </div>
     </div>
     <div class="container text-center">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-4">
             <button type="button" id="followBtn" class="col-6 btn btn-<?php echo($followBtnClass)?> <?php echo($followBtnDisable)?>"><?php echo($followBtnText) ?></button>   
         </div>
         <div class="row">

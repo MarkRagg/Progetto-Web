@@ -1,3 +1,4 @@
+
 function generatePost(post_data) {
   let section = `<div class="container mt-2 mb-5">
     <div class="row">
@@ -117,9 +118,7 @@ function generatePost(post_data) {
             </div>
             `
   }
-
   section += `
-    <div> <button id="load">Carica altro</button></div>
   </div>
   </div>
     </div>
@@ -136,8 +135,8 @@ function showPost(post_data) {
 }
 
 function updateButton(response, idbtn, idnum, numeroin, numeroout, contains) {
-  const btn = document.querySelectorAll(idbtn);
-  const nlikes = document.querySelectorAll(idnum);
+  const btn = document.querySelectorAll("."+idbtn);
+  const nlikes = document.querySelectorAll("."+idnum);
   const formData = new FormData();
 
   for (let i = 0; i < btn.length; i++) {
@@ -150,6 +149,8 @@ function updateButton(response, idbtn, idnum, numeroin, numeroout, contains) {
     } else if (numeroin == 4){
       showAlreadyCuore(response, i, btn, nlikes);
     }
+    if(!btn[i].classList.contains("added")){
+    btn[i].classList.add("added");
     btn[i].addEventListener('click', function onClick() {
       if (btn[i].classList.contains(contains)) {
         if (numeroout == -1){
@@ -177,6 +178,9 @@ function updateButton(response, idbtn, idnum, numeroin, numeroout, contains) {
         addReaction(formData, response, i, numeroin);
       }
     });
+  }
+    //btn[i].classList.remove(idbtn);
+    //nlikes[i].classList.remove(idnum);
   }
 }
 
@@ -325,17 +329,17 @@ const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {
   showPost(response.data);
   num = response.data.length;
-  const btnLike = ".bottoneL";
-  const numeroLike = ".numeroLike"
+  const btnLike = "bottoneL";
+  const numeroLike = "numeroLike"
   updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");
-  const btnFire = ".btnFireL";
-  const numeroFire = ".numeroFire"
+  const btnFire = "btnFireL";
+  const numeroFire = "numeroFire"
   updateButton(response.data, btnFire, numeroFire, 2, -2, "btnFireLkd");
-  const btnSmile = ".btnSmileL"
-  const numeroSmile = ".numeroSmile"
+  const btnSmile = "btnSmileL"
+  const numeroSmile = "numeroSmile"
   updateButton(response.data, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
-  const btnCuore = ".btnCuoreL"
-  const numeroCuore = ".numeroCuore"
+  const btnCuore = "btnCuoreL"
+  const numeroCuore = "numeroCuore"
   updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
   rd = response.data;
   console.log(rd);
@@ -344,7 +348,7 @@ axios.get("api-showpost.php").then(response => {
   dynamicButtonPost();
 
 
-
+/*
   const loadMorePosts = document.getElementById("load");
   loadMorePosts.addEventListener('click', function () {
     const formData = new FormData();
@@ -360,12 +364,6 @@ axios.get("api-showpost.php").then(response => {
         element.append(newdiv);
       }
       num = num + response.data.length;
-      /*
-      const a = ".bottone";
-      const b = ".numeroLike"
-      const btn = document.querySelectorAll(a);
-      console.log(btn);
-      */
       const btnLike = ".bottoneL";
       const numeroLike = ".numeroLike"
       updateButton(rd, btnLike, numeroLike, 1, -1, "btnlkd");
@@ -385,19 +383,15 @@ axios.get("api-showpost.php").then(response => {
       
     });
   });
-/*
-  const a = ".bottoneL ";
-  const b = ".numeroLike"
-  const btn = document.querySelectorAll(a);
-  console.log(btn);
-*/
+  */
+
 
 });
 
 
 
 
-/*
+
 document.addEventListener(
   'scroll',
   (event) => {
@@ -407,39 +401,54 @@ document.addEventListener(
 );
 
 
+let loading = false;
 
-function loadMore() {
-  if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+async function loadMore() {
+  
+  if (window.scrollY + window.innerHeight >= document.body.scrollHeight && !loading) {
+    loading = true;
     const formData = new FormData();
     formData.append('num', num);
-    axios.post("api-loadPost.php", formData).then(response => {
-
-      console.log(response.data);
-
-      for (let i = 0; i < response.data.length; i++) {
-        let newdiv = newPosts(response.data[i], i+num);
-        let element = document.getElementById('adddiv');
-        element.append(newdiv);
-      }
-      abc += response.data;
-      const btnLike = ".bottone";
-      const numeroLike = ".numeroLike"
-      updateButton(abc, btnLike, numeroLike, 1, -1, "btnlkd");
-      const btnFire = ".btnFire";
-      const numeroFire = ".numeroFire"
-      updateButton(abc, btnFire, numeroFire, 2, -2, "btnFireLkd");
-      const btnSmile = ".btnSmile"
-      const numeroSmile = ".numeroSmile"
-      updateButton(abc, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
-      const btnCuore = ".btnCuore"
-      const numeroCuore = ".numeroCuore"
-      updateButton(abc, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
-    });
-    num += 5;
+    const resp = await axios.post("api-loadPost.php", formData);
     
+    q = resp.data;
+    if (q.length == 0) {
+      document.removeEventListener('scroll', loadMore);
+      return;
+    }
+    rd = rd.concat(q);
+    //console.log(q);
+
+    for (let i = 0; i < q.length; i++) {
+      let newdiv = newPosts(q[i], i+num);
+      let element = document.getElementById('adddiv');
+      element.append(newdiv);
+    }
+    
+    
+    num = num + q.length;
+    const btnLike = "bottoneL";
+    const numeroLike = "numeroLike"
+    updateButton(rd, btnLike, numeroLike, 1, -1, "btnlkd");
+    
+    const btnFire = "btnFireL";
+    const numeroFire = "numeroFire"
+    updateButton(rd, btnFire, numeroFire, 2, -2, "btnFireLkd");
+    
+    const btnSmile = "btnSmileL"
+    const numeroSmile = "numeroSmile"
+    updateButton(rd, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
+    
+    const btnCuore = "btnCuoreL"
+    const numeroCuore = "numeroCuore"
+    updateButton(rd, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
+    loading = false;
   }
+  
 }
-*/
+
+
+
 function newPosts(post_data, i){
   let newdiv = `
               <div class="d-flex justify-content-between p-2 px-3">
@@ -519,3 +528,7 @@ function newPosts(post_data, i){
             div.innerHTML = newdiv;
             return div;
 }
+
+//use create a hello object and call the name function
+const hell = new hello();
+hell.name();

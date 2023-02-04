@@ -1,5 +1,3 @@
-//${post_data[i]["user_image"]}
-
 function generatePost(post_data) {
   let section = `<div class="container mt-2 mb-5">
     <div class="row">
@@ -42,8 +40,7 @@ function generatePost(post_data) {
             <div class="card-body" id="adddiv">`;
   for (let i = 0; i < post_data.length && i < 10; i++) {
     section += `
-    
-            <div>
+              <div>
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
                     src="https://www.w3schools.com/html/workplace.jpg" width="50" class="rounded-circle" alt="">
@@ -66,7 +63,7 @@ function generatePost(post_data) {
               <div class="d-flex align-items-center mt-4">
 
 
-                <button id="bottoneLikePost${i}" class="bottone btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
+                <button id="bottoneLikePost${i}" class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
                   <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroLikePost${i}">
                     ${post_data[i]["num_like"]}
@@ -116,11 +113,14 @@ function generatePost(post_data) {
 
 
               </div>
-            
-            <hr/>`
+            <hr/>
+            </div>
+            `
   }
 
-  section += `</div>
+  section += `
+    <div> <button id="load">Carica altro</button></div>
+  </div>
   </div>
     </div>
   </div>
@@ -137,8 +137,8 @@ function showPost(post_data) {
 
 function updateButton(response, idbtn, idnum, numeroin, numeroout, contains) {
   const btn = document.querySelectorAll(idbtn);
+  //console.log(btn);
   const nlikes = document.querySelectorAll(idnum);
-
   const formData = new FormData();
 
   for (let i = 0; i < btn.length; i++) {
@@ -304,7 +304,7 @@ function sendPost() {
 
 function getLoggedUserInfo() {
   axios.get('../php/api-getuserinfo.php').then(response => {
-    console.log(response.data);
+    //console.log(response.data);
     document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
     document.querySelector("#descrizione").innerHTML = response.data["descrizione"];
   });
@@ -320,13 +320,15 @@ function dynamicButtonPost() {
     }
   });
 }
+
 let num;
+let rd;
 const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {
-  //console.log(response.data);
   showPost(response.data);
-
-  const btnLike = ".bottone";
+  num = response.data.length;
+  //console.log(num);
+  const btnLike = ".bottoneL";
   const numeroLike = ".numeroLike"
   updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");
   const btnFire = ".btnFire";
@@ -338,15 +340,67 @@ axios.get("api-showpost.php").then(response => {
   const btnCuore = ".btnCuore"
   const numeroCuore = ".numeroCuore"
   updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
-
+  rd = response.data;
+  console.log(rd);
   sendPost();
   getLoggedUserInfo()
   dynamicButtonPost();
 
-  num = response.data.length;
+
+
+  const loadMorePosts = document.getElementById("load");
+  loadMorePosts.addEventListener('click', function () {
+    const formData = new FormData();
+    formData.append('num', num);
+    axios.post("api-loadPost.php", formData).then(response => {
+
+      //console.log(response.data);
+      //add to rd the new responde.data
+      rd = rd.concat(response.data);
+      console.log(rd);
+
+      for (let i = 0; i < response.data.length; i++) {
+        let newdiv = newPosts(response.data[i], i + num);
+        let element = document.getElementById('adddiv');
+        element.append(newdiv);
+      }
+      num = num + response.data.length;
+      /*
+      const a = ".bottone";
+      const b = ".numeroLike"
+      const btn = document.querySelectorAll(a);
+      console.log(btn);
+      */
+      const btnLike = ".bottoneL";
+      const numeroLike = ".numeroLike"
+      updateButton(rd, btnLike, numeroLike, 1, -1, "btnlkd");
+      /*
+      const btnFire = ".btnFire";
+      const numeroFire = ".numeroFire"
+      updateButton(response.data, btnFire, numeroFire, 2, -2, "btnFireLkd");
+      const btnSmile = ".btnSmile"
+      const numeroSmile = ".numeroSmile"
+      updateButton(response.data, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
+      const btnCuore = ".btnCuore"
+      const numeroCuore = ".numeroCuore"
+      updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
+      num += response.data.length;
+      */
+    });
+  });
+/*
+  const a = ".bottoneL ";
+  const b = ".numeroLike"
+  const btn = document.querySelectorAll(a);
+  console.log(btn);
+*/
+
 });
 
 
+
+
+/*
 document.addEventListener(
   'scroll',
   (event) => {
@@ -366,19 +420,33 @@ function loadMore() {
       console.log(response.data);
 
       for (let i = 0; i < response.data.length; i++) {
-        let newdiv = newPosts(response.data[i]);
+        let newdiv = newPosts(response.data[i], i+num);
         let element = document.getElementById('adddiv');
         element.append(newdiv);
       }
+      abc += response.data;
+      const btnLike = ".bottone";
+      const numeroLike = ".numeroLike"
+      updateButton(abc, btnLike, numeroLike, 1, -1, "btnlkd");
+      const btnFire = ".btnFire";
+      const numeroFire = ".numeroFire"
+      updateButton(abc, btnFire, numeroFire, 2, -2, "btnFireLkd");
+      const btnSmile = ".btnSmile"
+      const numeroSmile = ".numeroSmile"
+      updateButton(abc, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
+      const btnCuore = ".btnCuore"
+      const numeroCuore = ".numeroCuore"
+      updateButton(abc, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
     });
     num += 5;
+    
   }
 }
-
-function newPosts(post_data){
+*/
+function newPosts(post_data, i){
   let newdiv = `
               <div class="d-flex justify-content-between p-2 px-3">
-                <div class="d-flex flex-row align-items-center"> <img id="imgProfile"
+                <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
                     src="https://www.w3schools.com/html/workplace.jpg" width="50" class="rounded-circle" alt="">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data["author"]}">@${post_data["author"]}</a>
                     <small class="text-primary">LINK AL CORSO/ESAME OPPURE NIENTE</small>
@@ -398,37 +466,37 @@ function newPosts(post_data){
               <div class="d-flex align-items-center mt-4">
 
 
-                <button id="bottoneLikePost" class="bottone btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
+                <button id="bottoneLikePost${i}" class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
                   <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroLikePost">
+                    id="numeroLikePost${i}">
                     ${post_data["num_like"]}
                   </span>
                 </button>
 
-                <button id="bottoneCommentPost" class="btn btn-outline-danger position-relative me-2 ms-2 " onclick="location.href='../php/post-comment.php?post_id=${post_data["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
+                <button id="bottoneCommentPost${i}" class="btn btn-outline-danger position-relative me-2 ms-2 " onclick="location.href='../php/post-comment.php?post_id=${post_data["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
                   <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroCommentiPost">
+                    id="numeroCommentiPost${i}">
                     ${post_data["num_comments"]}
                   </span>
                 </button>
 
-                <button id="bottoneFirePost" class="btnFire btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
+                <button id="bottoneFirePost${i}" class="btnFire btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
                   <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroFirePost">
+                    id="numeroFirePost${i}">
                     ${post_data["num_fire"]}
                   </span>
                 </button>
 
                 <button class="btnSmile btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-smile-upside-down"></em>
                   <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroSmilePost">
+                    id="numeroSmilePost${i}">
                     ${post_data["num_smile"]}
                   </span>
                 </button>
 
                 <button class="btnCuore btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-heart-fill"></em>
                   <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroCuoriPost">
+                    id="numeroCuoriPost${i}">
                     ${post_data["num_cuore"]}
                   </span>
                 </button>
@@ -441,7 +509,7 @@ function newPosts(post_data){
 
                 <button  class="btnBacio btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
                   <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroBaciPost">
+                    id="numeroBaciPost${post_data["post_id"]}">
                     ${post_data["num_baci"]}
                   </span>
                 </button>

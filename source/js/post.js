@@ -38,11 +38,12 @@ function generatePost(post_data) {
                     <button type="submit" class="bttnpost btn btn-primary" disabled>Posta</button>
                   </div>
                 </div>
-            </div>`;
+            </div>
+            <div class="card-body" id="adddiv">`;
   for (let i = 0; i < post_data.length && i < 10; i++) {
     section += `
     
-            <div class="card-body">
+            <div>
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
                     src="https://www.w3schools.com/html/workplace.jpg" width="50" class="rounded-circle" alt="">
@@ -59,6 +60,7 @@ function generatePost(post_data) {
       section += `<img src="../img/${post_data[i]["immagine"]}" alt="" class="img-fluid">`;
     }
     section += `
+                
                 <p class="text-justify">${post_data[i]["string"]}.</p>
               </div>
               <div class="d-flex align-items-center mt-4">
@@ -114,15 +116,15 @@ function generatePost(post_data) {
 
 
               </div>
-            </div>
+            
             <hr/>`
   }
 
   section += `</div>
+  </div>
     </div>
   </div>
-</div>
-</div>`;
+`;
 
   const variabile = document.createElement("section");
   variabile.innerHTML = section;
@@ -318,7 +320,7 @@ function dynamicButtonPost() {
     }
   });
 }
-
+let num;
 const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {
   //console.log(response.data);
@@ -340,7 +342,116 @@ axios.get("api-showpost.php").then(response => {
   sendPost();
   getLoggedUserInfo()
   dynamicButtonPost();
+
+  num = response.data.length;
+});
+
+
+window.addEventListener('scroll', function () {
+  loadMore();
 });
 
 
 
+function loadMore() {
+  if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+
+    //console.log(num);
+    const formData = new FormData();
+    formData.append('num', num);
+    //console.log(num);
+    axios.post("api-loadPost.php", formData).then(response => {
+
+      console.log(response.data);
+
+      for (let i = 0; i < response.data.length; i++) {
+        let newdiv = newPosts(response.data[i]);
+        let element = document.getElementById('adddiv');
+        element.append(newdiv);
+      }
+      //console.log(num);
+      num += 5;
+    });
+
+  }
+}
+
+function newPosts(post_data){
+  let newdiv = `
+              <div class="d-flex justify-content-between p-2 px-3">
+                <div class="d-flex flex-row align-items-center"> <img id="imgProfile"
+                    src="https://www.w3schools.com/html/workplace.jpg" width="50" class="rounded-circle" alt="">
+                  <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data["author"]}">@${post_data["author"]}</a>
+                    <small class="text-primary">LINK AL CORSO/ESAME OPPURE NIENTE</small>
+                  </div>
+
+                </div>
+                <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">${post_data["data"]}</small> <em
+                    class="fa fa-ellipsis-h"></em> </div>
+              </div>
+              <div class="px-4 mt-3 mb-3">`;
+    if (post_data["immagine"] != null) {
+      newdiv += `<img src="../img/${post_data["immagine"]}" alt="" class="img-fluid">`;
+    }
+    newdiv += `
+                <p class="text-justify">${post_data["string"]}.</p>
+              </div>
+              <div class="d-flex align-items-center mt-4">
+
+
+                <button id="bottoneLikePost" class="bottone btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
+                  <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroLikePost">
+                    ${post_data["num_like"]}
+                  </span>
+                </button>
+
+                <button id="bottoneCommentPost" class="btn btn-outline-danger position-relative me-2 ms-2 " onclick="location.href='../php/post-comment.php?post_id=${post_data["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
+                  <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroCommentiPost">
+                    ${post_data["num_comments"]}
+                  </span>
+                </button>
+
+                <button id="bottoneFirePost" class="btnFire btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
+                  <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroFirePost">
+                    ${post_data["num_fire"]}
+                  </span>
+                </button>
+
+                <button class="btnSmile btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-smile-upside-down"></em>
+                  <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroSmilePost">
+                    ${post_data["num_smile"]}
+                  </span>
+                </button>
+
+                <button class="btnCuore btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-heart-fill"></em>
+                  <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroCuoriPost">
+                    ${post_data["num_cuore"]}
+                  </span>
+                </button>
+
+
+
+
+
+
+
+                <button  class="btnBacio btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
+                  <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="numeroBaciPost">
+                    ${post_data["num_baci"]}
+                  </span>
+                </button>
+
+
+              </div>
+            
+            <hr/>`
+            let div = document.createElement("div");
+            div.innerHTML = newdiv;
+            return div;
+}

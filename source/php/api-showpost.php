@@ -1,7 +1,7 @@
 <?php
 require_once("db_config.php");
 
-$numeropost = 10;
+$numeropost = 5;
 
 $post = $dbh->getPosts($numeropost);
 

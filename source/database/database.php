@@ -89,7 +89,7 @@ class DatabaseManager {
      * returns n posts
      */
     public function getPosts($n) {
-        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image,`post_id`, data, immagine FROM `post`,user_info WHERE user_info.user_id=post.author ORDER BY RAND() LIMIT ?");
+        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image,`post_id`, data, immagine FROM `post`,user_info WHERE user_info.user_id=post.author LIMIT ?");
         $stmt->bind_param("i", $n);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -435,6 +435,14 @@ class DatabaseManager {
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["comment"];
+    }
+
+    public function getMorePosts($num, $from){
+        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image,`post_id`, data, immagine FROM `post`,user_info WHERE user_info.user_id=post.author LIMIT ? OFFSET ?");
+        $stmt->bind_param("ss", $num, $from);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }  
 ?>

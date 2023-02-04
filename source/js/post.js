@@ -77,21 +77,21 @@ function generatePost(post_data) {
                   </span>
                 </button>
 
-                <button id="bottoneFirePost${i}" class="btnFire btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
+                <button id="bottoneFirePost${i}" class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
                   <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroFirePost${i}">
                     ${post_data[i]["num_fire"]}
                   </span>
                 </button>
 
-                <button class="btnSmile btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-smile-upside-down"></em>
+                <button class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-smile-upside-down"></em>
                   <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroSmilePost${i}">
                     ${post_data[i]["num_smile"]}
                   </span>
                 </button>
 
-                <button class="btnCuore btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-heart-fill"></em>
+                <button class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-heart-fill"></em>
                   <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroCuoriPost${i}">
                     ${post_data[i]["num_cuore"]}
@@ -137,7 +137,6 @@ function showPost(post_data) {
 
 function updateButton(response, idbtn, idnum, numeroin, numeroout, contains) {
   const btn = document.querySelectorAll(idbtn);
-  //console.log(btn);
   const nlikes = document.querySelectorAll(idnum);
   const formData = new FormData();
 
@@ -153,7 +152,6 @@ function updateButton(response, idbtn, idnum, numeroin, numeroout, contains) {
     }
     btn[i].addEventListener('click', function onClick() {
       if (btn[i].classList.contains(contains)) {
-        //grafica, che cambia per ognuno
         if (numeroout == -1){
           removeLike(btn, i, nlikes);
         } else if (numeroout == -2){
@@ -327,17 +325,16 @@ const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {
   showPost(response.data);
   num = response.data.length;
-  //console.log(num);
   const btnLike = ".bottoneL";
   const numeroLike = ".numeroLike"
   updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");
-  const btnFire = ".btnFire";
+  const btnFire = ".btnFireL";
   const numeroFire = ".numeroFire"
   updateButton(response.data, btnFire, numeroFire, 2, -2, "btnFireLkd");
-  const btnSmile = ".btnSmile"
+  const btnSmile = ".btnSmileL"
   const numeroSmile = ".numeroSmile"
   updateButton(response.data, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
-  const btnCuore = ".btnCuore"
+  const btnCuore = ".btnCuoreL"
   const numeroCuore = ".numeroCuore"
   updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
   rd = response.data;
@@ -354,8 +351,6 @@ axios.get("api-showpost.php").then(response => {
     formData.append('num', num);
     axios.post("api-loadPost.php", formData).then(response => {
 
-      //console.log(response.data);
-      //add to rd the new responde.data
       rd = rd.concat(response.data);
       console.log(rd);
 
@@ -374,18 +369,20 @@ axios.get("api-showpost.php").then(response => {
       const btnLike = ".bottoneL";
       const numeroLike = ".numeroLike"
       updateButton(rd, btnLike, numeroLike, 1, -1, "btnlkd");
-      /*
-      const btnFire = ".btnFire";
+      
+      const btnFire = ".btnFireL";
       const numeroFire = ".numeroFire"
-      updateButton(response.data, btnFire, numeroFire, 2, -2, "btnFireLkd");
-      const btnSmile = ".btnSmile"
+      updateButton(rd, btnFire, numeroFire, 2, -2, "btnFireLkd");
+      
+      const btnSmile = ".btnSmileL"
       const numeroSmile = ".numeroSmile"
-      updateButton(response.data, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
-      const btnCuore = ".btnCuore"
+      updateButton(rd, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
+      
+      const btnCuore = ".btnCuoreL"
       const numeroCuore = ".numeroCuore"
-      updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
-      num += response.data.length;
-      */
+      updateButton(rd, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
+      //num += rd.length;
+      
     });
   });
 /*
@@ -480,21 +477,21 @@ function newPosts(post_data, i){
                   </span>
                 </button>
 
-                <button id="bottoneFirePost${i}" class="btnFire btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
+                <button id="bottoneFirePost${i}" class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
                   <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroFirePost${i}">
                     ${post_data["num_fire"]}
                   </span>
                 </button>
 
-                <button class="btnSmile btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-smile-upside-down"></em>
+                <button class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-smile-upside-down"></em>
                   <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroSmilePost${i}">
                     ${post_data["num_smile"]}
                   </span>
                 </button>
 
-                <button class="btnCuore btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-heart-fill"></em>
+                <button class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-heart-fill"></em>
                   <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroCuoriPost${i}">
                     ${post_data["num_cuore"]}

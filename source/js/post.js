@@ -347,19 +347,20 @@ axios.get("api-showpost.php").then(response => {
 });
 
 
-window.addEventListener('scroll', function () {
-  loadMore();
-});
+document.addEventListener(
+  'scroll',
+  (event) => {
+      loadMore();
+  }, 
+  { passive: true }
+);
 
 
 
 function loadMore() {
   if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-
-    //console.log(num);
     const formData = new FormData();
     formData.append('num', num);
-    //console.log(num);
     axios.post("api-loadPost.php", formData).then(response => {
 
       console.log(response.data);
@@ -369,10 +370,8 @@ function loadMore() {
         let element = document.getElementById('adddiv');
         element.append(newdiv);
       }
-      //console.log(num);
-      num += 5;
     });
-
+    num += 5;
   }
 }
 

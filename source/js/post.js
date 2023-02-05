@@ -1,4 +1,3 @@
-
 function generatePost(post_data) {
   let section = `<div class="container mt-2 mb-5">
     <div class="row">
@@ -135,8 +134,8 @@ function showPost(post_data) {
 }
 
 function updateButton(response, idbtn, idnum, numeroin, numeroout, contains) {
-  const btn = document.querySelectorAll("."+idbtn);
-  const nlikes = document.querySelectorAll("."+idnum);
+  const btn = document.querySelectorAll("." + idbtn);
+  const nlikes = document.querySelectorAll("." + idnum);
   const formData = new FormData();
 
   for (let i = 0; i < btn.length; i++) {
@@ -144,43 +143,41 @@ function updateButton(response, idbtn, idnum, numeroin, numeroout, contains) {
       showAlreadyLiked(response, i, btn, nlikes);
     } else if (numeroin == 2){
       showAlreadyFire(response, i, btn, nlikes);
-    } else if (numeroin == 3){
+    } else if (numeroin == 3) {
       showAlreadySmile(response, i, btn, nlikes);
-    } else if (numeroin == 4){
+    } else if (numeroin == 4) {
       showAlreadyCuore(response, i, btn, nlikes);
     }
-    if(!btn[i].classList.contains("added")){
-    btn[i].classList.add("added");
-    btn[i].addEventListener('click', function onClick() {
-      if (btn[i].classList.contains(contains)) {
-        if (numeroout == -1){
-          removeLike(btn, i, nlikes);
-        } else if (numeroout == -2){
-          removeFire(btn, i, nlikes);
-        } else if (numeroout == -3){
-          removeSmile(btn, i, nlikes);
-        } else if (numeroout == -4){
-          removeCuore(btn, i, nlikes);
-        }
+    if (!btn[i].classList.contains("added")) {
+      btn[i].classList.add("added");
+      btn[i].addEventListener('click', function onClick() {
+        if (btn[i].classList.contains(contains)) {
+          if (numeroout == -1) {
+            changeReaction(btn, i, nlikes, "btnlkd", "bottone", -1);
+          } else if (numeroout == -2) {
+            changeReaction(btn, i, nlikes, "btnFireLkd", "btnFire", -1);
+          } else if (numeroout == -3) {
+            changeReaction(btn, i, nlikes, "btnSmileLkd", "btnSmile", -1);
+          } else if (numeroout == -4) {
+            changeReaction(btn, i, nlikes, "btnCuoreLkd", "btnCuore", -1);
+          }
 
-        removeReaction(formData, response, i, numeroout);
-      } else {
-        if (numeroin == 1){
-          addLike(btn, i, nlikes);
-        } else if (numeroin == 2){
-          addFire(btn, i, nlikes);
-        } else if (numeroin == 3){
-          addSmile(btn, i, nlikes);
-        } else if (numeroin == 4){
-          addCuore(btn, i, nlikes);
-        }
+          removeReaction(formData, response, i, numeroout);
+        } else {
+          if (numeroin == 1) {
+            changeReaction(btn, i, nlikes, "bottone", "btnlkd", 1);
+          } else if (numeroin == 2) {
+            changeReaction(btn, i, nlikes, "btnFire", "btnFireLkd", 1);
+          } else if (numeroin == 3) {
+            changeReaction(btn, i, nlikes, "btnSmile", "btnSmileLkd", 1);
+          } else if (numeroin == 4) {
+            changeReaction(btn, i, nlikes, "btnCuore", "btnCuoreLkd", 1);
+          }
 
-        addReaction(formData, response, i, numeroin);
-      }
-    });
-  }
-    //btn[i].classList.remove(idbtn);
-    //nlikes[i].classList.remove(idnum);
+          addReaction(formData, response, i, numeroin);
+        }
+      });
+    }
   }
 }
 
@@ -206,28 +203,15 @@ function removeReaction(formData, response, i, numeroout) {
   formData.delete('type');
 }
 
-function addLike(btn, i, nlikes) {
-  btn[i].classList.replace("btn-outline-danger", 'btn-danger');
-  btn[i].classList.replace("bottone", "btnlkd");
-  nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + 1;
-}
-
-function addFire(btn, i, nfires) {
-  btn[i].classList.replace("btn-outline-danger", 'btn-danger');
-  btn[i].classList.replace("btnFire", "btnFireLkd");
-  nfires[i].innerHTML = parseInt(nfires[i].innerHTML) + 1;
-}
-
-function removeLike(btn, i, nlikes) {
-  btn[i].classList.replace('btn-danger', "btn-outline-danger");
-  btn[i].classList.replace("btnlkd", "bottone");
-  nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) - 1;
-}
-
-function removeFire(btn, i, nfires) {
-  btn[i].classList.replace('btn-danger', "btn-outline-danger");
-  btn[i].classList.replace("btnFireLkd", "btnFire");
-  nfires[i].innerHTML = parseInt(nfires[i].innerHTML) - 1;
+function changeReaction(btn, i, nlikes, replaceThis, replaceWithThis, number) {
+  console.log(btn[i]);
+  if (number > 0) {
+    btn[i].classList.replace("btn-outline-danger", "btn-danger");
+  } else {
+    btn[i].classList.replace("btn-danger", "btn-outline-danger");
+  }
+  btn[i].classList.replace(replaceThis, replaceWithThis);
+  nlikes[i].innerHTML = parseInt(nlikes[i].innerHTML) + number;
 }
 
 function showAlreadyLiked(response, i, btn) {
@@ -251,35 +235,11 @@ function showAlreadySmile(response, i, btn) {
   }
 }
 
-function removeSmile(btn, i, nfires) {
-  btn[i].classList.replace('btn-danger', "btn-outline-danger");
-  btn[i].classList.replace("btnSmileLkd", "btnSmile");
-  nfires[i].innerHTML = parseInt(nfires[i].innerHTML) - 1;
-}
-
-function addSmile(btn, i, nfires) {
-  btn[i].classList.replace("btn-outline-danger", 'btn-danger');
-  btn[i].classList.replace("btnSmile", "btnSmileLkd");
-  nfires[i].innerHTML = parseInt(nfires[i].innerHTML) + 1;
-}
-
 function showAlreadyCuore(response, i, btn) {
   if (response[i]["user_has_cuore"] == true) {
     btn[i].classList.replace("btn-outline-danger", "btn-danger");
     btn[i].classList.replace("btnCuore", "btnCuoreLkd");
   }
-}
-
-function addCuore(btn, i, nfires) {
-  btn[i].classList.replace("btn-outline-danger", 'btn-danger');
-  btn[i].classList.replace("btnCuore", "btnCuoreLkd");
-  nfires[i].innerHTML = parseInt(nfires[i].innerHTML) + 1;
-}
-
-function removeCuore(btn, i, nfires) {
-  btn[i].classList.replace('btn-danger', "btn-outline-danger");
-  btn[i].classList.replace("btnCuoreLkd", "btnCuore");
-  nfires[i].innerHTML = parseInt(nfires[i].innerHTML) - 1;
 }
 
 function sendPost() {
@@ -346,46 +306,6 @@ axios.get("api-showpost.php").then(response => {
   sendPost();
   getLoggedUserInfo()
   dynamicButtonPost();
-
-
-/*
-  const loadMorePosts = document.getElementById("load");
-  loadMorePosts.addEventListener('click', function () {
-    const formData = new FormData();
-    formData.append('num', num);
-    axios.post("api-loadPost.php", formData).then(response => {
-
-      rd = rd.concat(response.data);
-      console.log(rd);
-
-      for (let i = 0; i < response.data.length; i++) {
-        let newdiv = newPosts(response.data[i], i + num);
-        let element = document.getElementById('adddiv');
-        element.append(newdiv);
-      }
-      num = num + response.data.length;
-      const btnLike = ".bottoneL";
-      const numeroLike = ".numeroLike"
-      updateButton(rd, btnLike, numeroLike, 1, -1, "btnlkd");
-      
-      const btnFire = ".btnFireL";
-      const numeroFire = ".numeroFire"
-      updateButton(rd, btnFire, numeroFire, 2, -2, "btnFireLkd");
-      
-      const btnSmile = ".btnSmileL"
-      const numeroSmile = ".numeroSmile"
-      updateButton(rd, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
-      
-      const btnCuore = ".btnCuoreL"
-      const numeroCuore = ".numeroCuore"
-      updateButton(rd, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
-      //num += rd.length;
-      
-    });
-  });
-  */
-
-
 });
 
 
@@ -395,8 +315,8 @@ axios.get("api-showpost.php").then(response => {
 document.addEventListener(
   'scroll',
   (event) => {
-      loadMore();
-  }, 
+    loadMore();
+  },
   { passive: true }
 );
 
@@ -404,52 +324,48 @@ document.addEventListener(
 let loading = false;
 
 async function loadMore() {
-  
+
   if (window.scrollY + window.innerHeight >= document.body.scrollHeight && !loading) {
     loading = true;
     const formData = new FormData();
     formData.append('num', num);
     const resp = await axios.post("api-loadPost.php", formData);
-    
+
     q = resp.data;
     if (q.length == 0) {
       document.removeEventListener('scroll', loadMore);
       return;
     }
     rd = rd.concat(q);
-    //console.log(q);
 
     for (let i = 0; i < q.length; i++) {
-      let newdiv = newPosts(q[i], i+num);
+      let newdiv = newPosts(q[i], i + num);
       let element = document.getElementById('adddiv');
       element.append(newdiv);
     }
-    
-    
+
     num = num + q.length;
     const btnLike = "bottoneL";
     const numeroLike = "numeroLike"
     updateButton(rd, btnLike, numeroLike, 1, -1, "btnlkd");
-    
+
     const btnFire = "btnFireL";
     const numeroFire = "numeroFire"
     updateButton(rd, btnFire, numeroFire, 2, -2, "btnFireLkd");
-    
+
     const btnSmile = "btnSmileL"
     const numeroSmile = "numeroSmile"
     updateButton(rd, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
-    
+
     const btnCuore = "btnCuoreL"
     const numeroCuore = "numeroCuore"
     updateButton(rd, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
     loading = false;
   }
-  
+
 }
 
-
-
-function newPosts(post_data, i){
+function newPosts(post_data, i) {
   let newdiv = `
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
@@ -463,10 +379,10 @@ function newPosts(post_data, i){
                     class="fa fa-ellipsis-h"></em> </div>
               </div>
               <div class="px-4 mt-3 mb-3">`;
-    if (post_data["immagine"] != null) {
-      newdiv += `<img src="../img/${post_data["immagine"]}" alt="" class="img-fluid">`;
-    }
-    newdiv += `
+  if (post_data["immagine"] != null) {
+    newdiv += `<img src="../img/${post_data["immagine"]}" alt="" class="img-fluid">`;
+  }
+  newdiv += `
                 <p class="text-justify">${post_data["string"]}.</p>
               </div>
               <div class="d-flex align-items-center mt-4">
@@ -524,11 +440,7 @@ function newPosts(post_data, i){
               </div>
             
             <hr/>`
-            let div = document.createElement("div");
-            div.innerHTML = newdiv;
-            return div;
+  let div = document.createElement("div");
+  div.innerHTML = newdiv;
+  return div;
 }
-
-//use create a hello object and call the name function
-const hell = new hello();
-hell.name();

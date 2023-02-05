@@ -221,8 +221,12 @@ async function loadMore() {
     q = resp.data;
     if (q.length == 0) {
       document.removeEventListener('scroll', loadMore);
+      let element = document.getElementById('adddiv');
+      let newdiv = showEndPost();
+      element.append(newdiv);
       return;
     }
+    
     rd = rd.concat(q);
 
     for (let i = 0; i < q.length; i++) {
@@ -327,6 +331,15 @@ function newPosts(post_data, i) {
               </div>
             
             <hr/>`
+  let div = document.createElement("div");
+  div.innerHTML = newdiv;
+  return div;
+}
+
+function showEndPost(){
+  let newdiv = `<div class="d-flex justify-content-between p-2 px-3">
+    <p>Non ci sono più post da mostrare</p>
+  </div>`
   let div = document.createElement("div");
   div.innerHTML = newdiv;
   return div;

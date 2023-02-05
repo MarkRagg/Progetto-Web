@@ -5,7 +5,7 @@ require_once 'db_config.php';
 if (isset($_POST["num"])) {
     $numeropost = 5;
     $scarto = $_POST["num"];
-    $post = $dbh->getMorePosts($numeropost, $scarto);
+    $post = $dbh->getMorePosts($_SESSION["user_id"], $numeropost, $scarto);
 
     for($i = 0; $i < count($post); $i++){
         $post[$i]["data"] = date("F j, Y", strtotime($post[$i]["data"]));

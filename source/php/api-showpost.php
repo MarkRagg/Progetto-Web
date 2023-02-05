@@ -3,7 +3,7 @@ require_once("db_config.php");
 
 $numeropost = 10;
 
-$post = $dbh->getPosts($numeropost);
+$post = $dbh->getPosts($_SESSION["user_id"], $numeropost);
 
 
 for($i = 0; $i < count($post); $i++){

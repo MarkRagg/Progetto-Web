@@ -88,9 +88,9 @@ class DatabaseManager {
     /**
      * returns n posts
      */
-    public function getPosts($n) {
-        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image,`post_id`, data, immagine FROM `post`,user_info WHERE user_info.user_id=post.author LIMIT ?");
-        $stmt->bind_param("i", $n);
+    public function getPosts($id, $n) {
+        $stmt = $this->db->prepare("SELECT post.*, user_info.user_image FROM user_followers_followed LEFT JOIN post ON post.author = user_followers_followed.user_id LEFT JOIN user_info on post.author=user_info.user_id WHERE user_followers_followed.follower_id = ? limit ?;");
+        $stmt->bind_param("si",$id, $n);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -437,9 +437,9 @@ class DatabaseManager {
         return $result->fetch_all(MYSQLI_ASSOC)[0]["comment"];
     }
 
-    public function getMorePosts($num, $from){
-        $stmt = $this->db->prepare("SELECT `author`,`string`,user_info.user_image,`post_id`, data, immagine FROM `post`,user_info WHERE user_info.user_id=post.author LIMIT ? OFFSET ?");
-        $stmt->bind_param("ss", $num, $from);
+    public function getMorePosts($id, $num, $from){
+        $stmt = $this->db->prepare("SELECT post.*, user_info.user_image FROM user_followers_followed LEFT JOIN post ON post.author = user_followers_followed.user_id LEFT JOIN user_info on post.author=user_info.user_id WHERE user_followers_followed.follower_id = ? limit ? OFFSET ?");
+        $stmt->bind_param("sss", $id, $num, $from);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);

@@ -43,7 +43,7 @@ function generatePost(post_data) {
               <div>
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
-                    src="https://www.w3schools.com/html/workplace.jpg" width="50" class="rounded-circle" alt="">
+                    src="../img/${post_data[i]["user_image"]}" width="50" class="rounded-circle" alt="">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data[i]["author"]}">@${post_data[i]["author"]}</a>
                     <small class="text-primary">LINK AL CORSO/ESAME OPPURE NIENTE</small>
                   </div>
@@ -226,7 +226,7 @@ async function loadMore() {
       element.append(newdiv);
       return;
     }
-    
+
     rd = rd.concat(q);
 
     for (let i = 0; i < q.length; i++) {

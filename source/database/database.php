@@ -496,5 +496,13 @@ class DatabaseManager {
         }
         return $result;
     }
+
+    public function hasReactedAll($user_id, $post_id) {
+        $reactions = $this->getAllReactions();
+        foreach ($reactions as $reaction) {
+            $result["user_has_".$reaction["reaction_info"]] = $this->hasReacted($post_id, $user_id, $reaction["reaction_id"]);
+        }
+        return $result;
+    }
 }  
 ?>

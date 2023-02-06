@@ -9,6 +9,19 @@ if (isset($_POST["profileUsername"])) {
     if ($nameCheck) {
         $result["success"] = true;
         $result["userPosts"] = $dbh->getAllUserPosts($username);
+        for ($i = 0; $i < count($result["userPosts"]); $i++) {
+            $id = $result["userPosts"][$i]["post_id"];
+            if ($result["userPosts"][$i]["esame_id"]) {
+                $class = $dbh->getClassInfo($result["userPosts"][$i]["esame_id"]);
+                $result["userPosts"][$i] = array_merge($result["userPosts"][$i], $class);
+            }
+            // TODO get all reactions count
+            $reactCount = $dbh->getAllReactionCount($id);
+            $userReactions = $dbh->hasReactedAll($_SESSION["user_id"], $id);
+            $result["userPosts"][$i] = array_merge($result["userPosts"][$i], $reactCount);
+            $result["userPosts"][$i] = array_merge($result["userPosts"][$i], $userReactions);
+            $result["userPosts"][$i]["num_comments"] = $dbh->getPostComments($id);
+        }
     } else {
         $result["errormsg"] = "User not found";
     }

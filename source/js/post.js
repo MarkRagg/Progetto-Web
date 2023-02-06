@@ -5,9 +5,9 @@ function generatePost(post_data) {
         <div class="left-column">
           <div class="card card-left1 mb-4">
             <div class="card-body text-center ">
-              <img src="" alt="img" width="120" height="120" class="rounded-circle mt-n5" id="profile_picture">
+              <img src="" alt="immagine profilo" width="120" height="120" class="rounded-circle mt-n5" id="profile_picture">
               <p id="nome_utente" class="card-title">  </p>
-              <p class="card-text text-justify mb-2" id="descrizione">  .</p>
+              <p class="card-text text-justify mb-2" id="descrizione"></p>
             </div>
           </div>
           <div class="card shadow-sm card-left2 mb-4">
@@ -44,7 +44,7 @@ function generatePost(post_data) {
               <div>
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
-                    src="../img/${post_data[i]["user_image"]}" width="50" class="rounded-circle" alt="">
+                    src="../img/${post_data[i]["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data[i]["author"]}">@${post_data[i]["author"]}</a>
                     <small class="text-primary">LINK AL CORSO/ESAME OPPURE NIENTE</small>
                   </div>
@@ -55,7 +55,7 @@ function generatePost(post_data) {
               </div>
               <div class="px-4 mt-3 mb-3">`
       if (post_data[i]["immagine"] != null) {
-        section += `<img src="../img/${post_data[i]["immagine"]}" alt="" class="img-fluid">`;
+        section += `<img src="../img/${post_data[i]["immagine"]}" alt="immagine del post" class="img-fluid">`;
       }
       section += `
                 
@@ -99,12 +99,6 @@ function generatePost(post_data) {
                   </span>
                 </button>
 
-
-
-
-
-
-
                 <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
                   <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroBaciPost${i}">
@@ -135,7 +129,7 @@ function newPosts(post_data, i) {
   let newdiv = `
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
-                    src="https://www.w3schools.com/html/workplace.jpg" width="50" class="rounded-circle" alt="">
+                    src="../img/${post_data[i]["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data["author"]}">@${post_data["author"]}</a>
                     <small class="text-primary">LINK AL CORSO/ESAME OPPURE NIENTE</small>
                   </div>
@@ -146,7 +140,7 @@ function newPosts(post_data, i) {
               </div>
               <div class="px-4 mt-3 mb-3">`;
   if (post_data["immagine"] != null) {
-    newdiv += `<img src="../img/${post_data["immagine"]}" alt="" class="img-fluid">`;
+    newdiv += `<img src="../img/${post_data["immagine"]}" alt="immagine del post" class="img-fluid">`;
   }
   newdiv += `
                 <p class="text-justify">${post_data["string"]}.</p>
@@ -188,12 +182,6 @@ function newPosts(post_data, i) {
                     ${post_data["num_cuore"]}
                   </span>
                 </button>
-
-
-
-
-
-
 
                 <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
                   <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"

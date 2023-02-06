@@ -38,7 +38,7 @@ function generatePost(post_data) {
                 </div>
             </div>
             <div class="card-body" id="adddiv">`;
-  for (let i = 0; i < post_data.length && i < 10; i++) {
+  for (let i = 0; i < post_data.length && i < 10 && post_data[0]["author"] !== null ; i++) {
     section += `
               <div>
               <div class="d-flex justify-content-between p-2 px-3">
@@ -157,7 +157,7 @@ function sendPost() {
 
 function getLoggedUserInfo() {
   axios.get('../php/api-getuserinfo.php').then(response => {
-    //console.log(response.data);
+    console.log(response.data);
     document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
     document.querySelector("#descrizione").innerHTML = response.data["descrizione"];
   });
@@ -198,6 +198,7 @@ axios.get("api-showpost.php").then(response => {
   getLoggedUserInfo()
   dynamicButtonPost();
 });
+
 
 document.addEventListener(
   'scroll',

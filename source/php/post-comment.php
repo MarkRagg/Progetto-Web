@@ -16,7 +16,7 @@ $io=$_GET["post_id"];
 if (isset($_GET["post_id"])){
     $_SESSION["post_id"] = $_GET["post_id"];
 
-    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../js/comments.js");
+    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../js/reactions.js", "../js/comments.js");
     $idPost = $_GET["post_id"];
     $templateParams["post_exists"] = $dbh->checkValueInDb("post", "post_id", $idPost);
     if ($templateParams["post_exists"]) {
@@ -32,7 +32,10 @@ if (isset($_GET["post_id"])){
         $comments = $dbh->getComments($idPost);
         $templateParams["comments"] = $comments;
         $templateParams["numLikes"] = $dbh->getPostLikes($idPost);
-        
+        $templateParams["num_fire"] = $dbh->getPostReactionInfo($idPost, 2);
+        $templateParams["num_smile"] = $dbh->getPostReactionInfo($idPost, 3);
+        $templateParams["num_cuore"] = $dbh->getPostReactionInfo($idPost, 4);
+        $templateParams["num_baci"] = $dbh->getPostReactionInfo($idPost, 5);
     } else {
         $templateParams["errormsg"] = "Post not found";
     }

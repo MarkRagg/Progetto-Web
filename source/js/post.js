@@ -229,7 +229,7 @@ function sendPost() {
 
 function getLoggedUserInfo() {
   axios.get('../php/api-getuserinfo.php').then(response => {
-    console.log(response.data);
+    //console.log(response.data);
     document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
     document.querySelector("#descrizione").innerHTML = response.data["user_info"]["descrizione"] != ' ' ? response.data["user_info"]["descrizione"] : "Nessuna descrizione inserita";
     document.querySelector("#residenza").innerHTML = response.data["user_info"]["uni_residence"];

@@ -1,5 +1,5 @@
 getParameter = (key) => {
-  
+
   address = window.location.search
 
   parameterList = new URLSearchParams(address)
@@ -11,11 +11,11 @@ const idjs = getParameter('post_id');
 
 const bottonePosta = document.querySelector(".bttnpost");
 
-document.querySelector(".commento").addEventListener('keyup', function() {
-  if (document.querySelector(".commento").value.length > 0){
+document.querySelector(".commento").addEventListener('keyup', function () {
+  if (document.querySelector(".commento").value.length > 0) {
     document.querySelector(".bttnpost").disabled = false;
   }
-  else{
+  else {
     document.querySelector(".bttnpost").disabled = true;
   }
 });
@@ -23,14 +23,35 @@ document.querySelector(".commento").addEventListener('keyup', function() {
 bottonePosta.addEventListener('click', function onClick() {
   const comment = document.querySelector(".commento").value;
   console.log(comment);
-  if(comment.length > 0) {
+  if (comment.length > 0) {
     const formData = new FormData();
     formData.append('comment', comment);
     formData.append('post_id', idjs);
-    
+
     axios.post('../php/api-add-comment.php', formData).then(response => {
       console.log(response.data);
       location.reload();
     });
   }
+});
+
+const formData = new FormData();
+formData.append('post_id', idjs);
+
+axios.post('../php/api-prova.php', formData).then(response => {
+    const btnLike = "bottoneL";
+    const numeroLike = "numeroLike"
+    updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");
+    const btnFire = "btnFireL";
+    const numeroFire = "numeroFire"
+    updateButton(response.data, btnFire, numeroFire, 2, -2, "btnFireLkd");
+    const btnSmile = "btnSmileL"
+    const numeroSmile = "numeroSmile"
+    updateButton(response.data, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
+    const btnCuore = "btnCuoreL"
+    const numeroCuore = "numeroCuore"
+    updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
+    const btnBacio = "btnBacioL"
+    const numeroBacio = "numeroBacio"
+    updateButton(response.data, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
 });

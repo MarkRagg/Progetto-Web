@@ -6,7 +6,7 @@ function generatePost(post_data) {
           <div class="card card-left1 mb-4">
             <div class="card-body text-center ">
               <img src="" alt="img" width="120" height="120" class="rounded-circle mt-n5">
-              <h5 id="nome_utente" class="card-title">  </h5>
+              <p id="nome_utente" class="card-title">  </p>
               <p class="card-text text-justify mb-2" id="descrizione">  .</p>
             </div>
           </div>
@@ -14,11 +14,11 @@ function generatePost(post_data) {
             <div class="card-body">
               <h5 class="mb-3 card-title">Tue informazioni: <small><a href="#" class="ml-1">CAMBIA</a></small></h5>
               <p class="card-text"> <em class="fas fa-calendar-week mr-2"></em> Studi a: <a href="#"
-                  class="text-decoration-none">universita di bolo</a></p>
+                  class="text-decoration-none" id="universita"></a></p>
               <p class="card-text"> <em class="fas fa-user-friends mr-2"></em> Che cosa studi? <a href="#"
-                  class="text-decoration-none">Corso</a></p>
+                  class="text-decoration-none" id="corso"></a></p>
               <p class="card-text"> <em class="fas fa-user-friends mr-2"></em> Residenza: <a href="#"
-                  class="text-decoration-none">Citta</a></p>
+                  class="text-decoration-none" id="residenza"></a></p>
             </div>
           </div>
         </div>
@@ -39,8 +39,8 @@ function generatePost(post_data) {
             </div>
             <div class="card-body" id="adddiv">`;
   for (let i = 0; i < post_data.length && i < 10; i++) {
-    if (post_data[0]["author"] !== null ){
-    section += `
+    if (post_data[0]["author"] !== null) {
+      section += `
               <div>
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
@@ -54,10 +54,10 @@ function generatePost(post_data) {
                     class="fa fa-ellipsis-h"></em> </div>
               </div>
               <div class="px-4 mt-3 mb-3">`
-    if (post_data[i]["immagine"] != null) {
-      section += `<img src="../img/${post_data[i]["immagine"]}" alt="" class="img-fluid">`;
-    }
-    section += `
+      if (post_data[i]["immagine"] != null) {
+        section += `<img src="../img/${post_data[i]["immagine"]}" alt="" class="img-fluid">`;
+      }
+      section += `
                 
                 <p class="text-justify">${post_data[i]["string"]}.</p>
               </div>
@@ -117,7 +117,7 @@ function generatePost(post_data) {
             <hr/>
             </div>
             `
-  }
+    }
   }
   section += `
   </div>
@@ -161,7 +161,10 @@ function getLoggedUserInfo() {
   axios.get('../php/api-getuserinfo.php').then(response => {
     console.log(response.data);
     document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
-    document.querySelector("#descrizione").innerHTML = response.data["descrizione"];
+    document.querySelector("#descrizione").innerHTML = response.data["user_info"]["descrizione"] != null ? response.data["user_info"]["descrizione"] : "Nessuna descrizione inserita";
+    document.querySelector("#residenza").innerHTML = response.data["user_info"]["uni_residence"];
+    document.querySelector("#universita").innerHTML = response.data["uni_info"]!=null ? response.data["uni_info"]["nome"] : "Nessuna università selezionata";
+    document.querySelector("#corso").innerHTML = response.data["course_info"] != null ? response.data["course_info"]["nome"] : "Nessun corso selezionato";
   });
 }
 
@@ -338,7 +341,7 @@ function newPosts(post_data, i) {
   return div;
 }
 
-function showEndPost(){
+function showEndPost() {
   let newdiv = `<div class="d-flex justify-content-between p-2 px-3">
     <p>Non ci sono più post da mostrare</p>
   </div>`

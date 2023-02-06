@@ -40,6 +40,7 @@ formData.append('post_id', idjs);
 
 axios.post('../php/api-reactions-on-comment-post.php', formData).then(response => {
   if(response.data[0]["error"] == false){
+    console.log(response.data);
     const btnLike = "bottoneL";
     const numeroLike = "numeroLike"
     updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");

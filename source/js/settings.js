@@ -15,7 +15,7 @@ function showPage(response) {
               <label for="user_image">Profile image</label>
             </div>
             <div class="col-6">
-              <input type="file" name="user_image" id="user_img" />
+              <input type="file" name="user_image" id="user_image" />
             </div>
           <div class="w-100 p-2"></div>
             <div class="col-6">
@@ -38,37 +38,37 @@ function showPage(response) {
   main.innerHTML = form;
 }
 
-function saveChanges(bio, img, course) {
+function saveChanges(bio, img, course, user_id) {
   var formData = new FormData();
   formData.append("bio", bio);
-  formData.append("img", img);
+  formData.append("img", img); 
   formData.append("course", course);
 
   axios.post('api-save-settings.php', formData).then(response => {
     if(response.data["success"]) {
-      //Redirect to homepage or profile
+      window.location.href = "../php/profile.php?username=" + user_id;
     } else {
       //TODO
     }
   });
 }
 
-function updateButton() {
-  console.log(document.querySelector("#apply_changes"));
+function updateButton(user_id) {
   document.querySelector("#apply_changes").addEventListener('click', function (event) {
     event.preventDefault();
     const bio = document.querySelector("#bio").value;
-    const img = document.querySelector("#user_image") != null ? document.querySelector("#user_image").value : null;
+    const img = document.querySelector("#user_image") != null ? document.querySelector("#user_image").files[0] : null;
     const course = document.querySelector("#course").value;
-    saveChanges(bio, img, course);
+    saveChanges(bio, img, course, user_id);
   });
 }
 
 const main = document.querySelector("main");
 axios.get("api-get-current-settings.php").then(response => {
   if(response.data["logged"]) {
+    console.log(response.data);
     showPage(response.data);
-    updateButton();
+    updateButton(response.data["user_id"]);
   } else {
     console.log(response.data["errormsg"]);
   }

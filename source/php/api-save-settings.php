@@ -9,9 +9,12 @@ if(isset($_SESSION["user_id"])) {
     $result["success"] = true;
     $dbh->updateBio($_SESSION["user_id"], $_POST["bio"]);
   }
-  if(isset($_POST["img"]) && $_POST["img"] != "null") {
-    $result["success"] = true;
-    $dbh->setImageToUser($_POST["img"], $user_info["user_id"]);
+  if(isset($_FILES["img"]) && $_FILES["img"] != null && $_FILES["img"]['name'] != $user_info["user_image"]) {
+    list($success, $img) = uploadImage(UPLOAD_DIR, $_FILES["img"]);
+    if($success == 1) {
+      $result["success"] = true;
+      $dbh->setImageToUser($img, $_SESSION["user_id"]);
+    }
   }
 }
 

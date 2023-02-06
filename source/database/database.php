@@ -504,5 +504,11 @@ class DatabaseManager {
         }
         return $result;
     }
+
+    public function updateBio($user_id, $bio) {
+        $stmt = $this->db->prepare("UPDATE user_info SET descrizione=? WHERE user_id=?");
+        $stmt->bind_param("ss", $bio, $user_id);
+        return $stmt->execute();
+    }
 }  
 ?>

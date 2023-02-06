@@ -12,7 +12,7 @@ function generatePost(post_data) {
           </div>
           <div class="card shadow-sm card-left2 mb-4">
             <div class="card-body">
-              <h5 class="mb-3 card-title">Tue informazioni: <small><a href="#" class="ml-1">CAMBIA</a></small></h5>
+              <h5 class="mb-3 card-title">Tue informazioni: <small><a href="../php/settings.php" class="ml-1">CAMBIA</a></small></h5>
               <p class="card-text"> <em class="fas fa-calendar-week mr-2"></em> Studi a: <a href="#"
                   class="text-decoration-none" id="universita"></a></p>
               <p class="card-text"> <em class="fas fa-user-friends mr-2"></em> Che cosa studi? <a href="#"

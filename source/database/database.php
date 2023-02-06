@@ -477,5 +477,24 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_array(MYSQLI_ASSOC);
     }
+
+    /**
+     * Returns all reactions present in the database
+     */
+    public function getAllReactions() {
+        $result = $this->db->query("SELECT * FROM reaction;");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
+     * Returns the count of all reactions for a post
+     */
+    public function getAllReactionCount($post_id) {
+        $reactions = $this->getAllReactions();
+        foreach ($reactions as $reaction) {
+            $result["num_".$reaction["reaction_info"]] = $this->getPostReactionInfo($post_id, $reaction["reaction_id"]);
+        }
+        return $result;
+    }
 }  
 ?>

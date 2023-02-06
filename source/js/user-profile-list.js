@@ -38,12 +38,12 @@ function showPostList(posts) {
             esame = `<a href="class.php?class_id=${element["esame_id"]}">${element["nome"]}</a>`;
         }
         if (element["immagine"] != null) {
-            img = `<img src="${element["immagine"]}" alt="" class="img-fluid">`;
+            img = `<img src="${uploadDir}${element["immagine"]}" alt="" class="img-fluid">`;
         }
         const newPost = document.createElement("div");
         newPost.classList = "listElement";
         newPost.innerHTML = `
-        <div class="container">
+        <div class="container mb-5">
             <div class="row flex-row d-flex justify-content-center align-items-center bg-white p-3 m-3 rounded-3">
                 <div class="col d-flex justify-content-between p-2 px-3">
                     <div class="d-flex flex-row align-items-center">

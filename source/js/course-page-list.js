@@ -1,42 +1,47 @@
 function showClassList(classList) {
-    document.querySelectorAll("div.listElement")?.forEach(x => x.remove());
+    document.querySelectorAll(".listElement")?.forEach(x => x.remove());
+    const classTable = document.createElement("div");
+    classTable.classList = "listElement container";
+    classTable.innerHTML = `
+    <div class="row bg-white flex-row d-flex justify-content-center align-items-center p-3 m-3 rounded-3">
+        <table class="table col-6">
+            <thead>
+                <tr>
+                    <th id="name" scope="col">Nome</th>
+                    <th id="section" scope="col">Sezione</th>
+                    <th id="id" scope="col">Id</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    `;
+    main.appendChild(classTable);
+    const tbody = document.querySelector("tbody");
     classList.forEach(element => {
-        const newClass = document.createElement("div");
-        newClass.classList = "listElement";
+        const headId = element["nome"].toLowerCase().replaceAll(" ", "");
+        const newClass = document.createElement("tr");
         newClass.innerHTML = `
-        <div class="container bg-light border rounded-3 text-center">
-            <div class="row border">
-                <div class="col">
-                    <h1>${element["nome"]}</h1>
-                </div>
-            </div>
-            <div class="row border">
-            <table class="table table-info text-center">
-                <thead>
-                    <tr><th scope="column">Id</th><th scope="column">Sezione</th></tr>
-                </thead>
-                <tbody>
-                    <td>${element["corso_id"]}</td><td>${element["sezione"]}</td>
-                </tbody>
-            </table>
-            </div>
-        </div>
+        <th id="${headId}" headers="name" scope="row"><a href="class.php?class_id=${element["esame_id"]}">${element["nome"]}</a></th>
+        <td headers="section ${headId}">${element["sezione"]}</td>
+        <td headers="id ${headId}">${element["esame_id"]}</td>
         `;
-        main.appendChild(newClass);
+        tbody.appendChild(newClass);
     });
 }
 
 function showSubscribers(subList) {
-    document.querySelectorAll("div.listElement")?.forEach(x => x.remove());
+    document.querySelectorAll(".listElement")?.forEach(x => x.remove());
     subList.forEach(element => {
         const newSub = document.createElement("div");
         newSub.classList = "listElement";
         newSub.innerHTML = `
-        <div class="container mt-4 mb-5 bg-white rounded-3 p-3">
+        <div class="container my-5 bg-white rounded-3 p-3">
             <div class="row">
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
-                        <img src="${element["user_image"]}" class="rounded-circle" width="20%" hight="20%" alt="">
+                        <img src="${uploadDir}${element["user_image"]}" class="rounded-circle" width="20%" hight="20%" alt="">
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <a class="h5" href="profile.php?username=${element["user_id"]}">${element["name"]} ${element["surname"]} @${element["user_id"]}</a> 
@@ -111,6 +116,7 @@ const classesLink = document.querySelector("a#classes");
 const subscribersLink = document.querySelector("a#subscribers");
 const linkSet = new Set([classesLink, subscribersLink]);
 const courseId = document.querySelector("h2").innerText;
+const uploadDir = "../img/";
 
 classesLink.addEventListener("click", function(event) {
     event.preventDefault();

@@ -28,7 +28,7 @@ if ($templateParams["course_exists"]) {
             </div>
         </div>
         <div class="container text-center">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mb-4">
                 <button type="button" id="subBtn" class="col-6 btn btn-$subBtnClass">$subBtnText</button>   
             </div>
             <div class="row">

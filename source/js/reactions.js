@@ -86,14 +86,14 @@ function changeReaction(btn, i, nlikes, replaceThis, replaceWithThis, number) {
 }
 
 function showAlreadyLiked(response, i, btn) {
-    if (response[i]["user_has_liked"] == true) {
+    if (response[i]["user_has_like"] == true) {
         btn[i].classList.replace("btn-outline-danger", "btn-danger");
         btn[i].classList.replace("bottone", "btnlkd");
     }
 }
 
 function showAlreadyFire(response, i, btn) {
-    if (response[i]["user_has_fired"] == true) {
+    if (response[i]["user_has_fire"] == true) {
         btn[i].classList.replace("btn-outline-danger", "btn-danger");
         btn[i].classList.replace("btnFire", "btnFireLkd");
     }
@@ -114,7 +114,7 @@ function showAlreadyCuore(response, i, btn) {
 }
 
 function showAlreadyBacio(response, i, btn) {
-    if (response[i]["user_has_bacio"] == true) {
+    if (response[i]["user_has_baci"] == true) {
         btn[i].classList.replace("btn-outline-danger", "btn-danger");
         btn[i].classList.replace("btnBacio", "btnBacioLkd");
     }

@@ -3,21 +3,21 @@ function showPage(response) {
     <div class="d-flex justify-content-center align-middle">
       <div class="flex-column border">
         <div class="p-5">
-          <div class="row">
+          <div class="row p-2">
             <div class="col-6">
               <label for="bio">Bio</label>
             </div>
             <div class="col-6">
               <textarea id="bio" name="bio" rows="5" cols="30">${response["bio"]}</textarea>
             </div>
-          <div class="w-100"></div>
+          <div class="w-100 p-2"></div>
             <div class="col-6">
               <label for="user_image">Profile image</label>
             </div>
             <div class="col-6">
               <input type="file" name="user_image" id="user_img" />
             </div>
-          <div class="w-100"></div>
+          <div class="w-100 p-2"></div>
             <div class="col-6">
               <label for="course">Course</label>
             </div>

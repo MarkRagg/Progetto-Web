@@ -46,7 +46,7 @@ if (isset($_SESSION["user_id"])) {
                 ?>
             </ul>
         </div>
-        <div class="row">
+        <div class="row p-0 mb-5">
             <ul class="list-group list-group-horizontal">
                 <li class="col-4 list-group-item align-items-center h4"><a class="link-dark" id="posts" href="#">Post</a> <span class="badge bg-dark rounded-pill"><?php echo($templateParams["post_count"]) ?></span></li>
                 <li class="col-4 list-group-item align-items-center h4"><a class="link-dark" id="followers" href="#">Seguaci</a> <span class="badge bg-dark rounded-pill"><?php echo($templateParams["follower_count"]) ?></span></li>

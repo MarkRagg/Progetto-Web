@@ -35,7 +35,7 @@ if (isset($_SESSION["user_id"])) {
         <div class="row justify-content-center mb-4">
             <button type="button" id="followBtn" class="col-6 btn btn-<?php echo($followBtnClass)?> <?php echo($followBtnDisable)?>"><?php echo($followBtnText) ?></button>   
         </div>
-        <div class="row">
+        <div class="row p-0">
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item col h3">Data di nascita: <?php echo($templateParams["date_of_birth"]) ?></li>
                 <li class="list-group-item col h3">Residenza: <?php echo($templateParams["residence"]) ?></li>

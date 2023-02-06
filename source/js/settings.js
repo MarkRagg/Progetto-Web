@@ -29,7 +29,7 @@ function showPage(response) {
           </div>
           <hr/>
           <div class="d-flex justify-content-end">
-            <button type="submit" data-toggle="button" class="btn btn-outline-primary">Save</button>
+            <button type="submit" data-toggle="button" class="btn btn-outline-primary" id="apply_changes">Save</button>
           </div>
        </div> 
       </div>
@@ -38,11 +38,38 @@ function showPage(response) {
   main.innerHTML = form;
 }
 
-const main = document.querySelector("main");
-  axios.get("api-get-current-settings.php").then(response => {
-    if(response.data["logged"]) {
-      showPage(response.data);
+function saveChanges(bio, img, course) {
+  var formData = new FormData();
+  formData.append("bio", bio);
+  formData.append("img", img);
+  formData.append("course", course);
+
+  axios.post('api-save-settings.php', formData).then(response => {
+    if(response.data["success"]) {
+      //Redirect to homepage or profile
     } else {
-      console.log(response.data["errormsg"]);
+      //TODO
     }
   });
+}
+
+function updateButton() {
+  console.log(document.querySelector("#apply_changes"));
+  document.querySelector("#apply_changes").addEventListener('click', function (event) {
+    event.preventDefault();
+    const bio = document.querySelector("#bio").value;
+    const img = document.querySelector("#user_image") != null ? document.querySelector("#user_image").value : null;
+    const course = document.querySelector("#course").value;
+    saveChanges(bio, img, course);
+  });
+}
+
+const main = document.querySelector("main");
+axios.get("api-get-current-settings.php").then(response => {
+  if(response.data["logged"]) {
+    showPage(response.data);
+    updateButton();
+  } else {
+    console.log(response.data["errormsg"]);
+  }
+});

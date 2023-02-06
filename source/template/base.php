@@ -38,7 +38,7 @@
                                 href="../php/profile.php?username=<?php echo $_SESSION["user_id"];?>">Profile</a>
                         </li>
                         <li><a class="dropdown-item" href="../php/insertpost.php">Inserisci post</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="../php/settings.php">Settings</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

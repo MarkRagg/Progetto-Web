@@ -9,7 +9,7 @@ function showNotifications(response) {
     const new_notification = document.createElement("div");
     new_notification.classList = "list-element";
     new_notification.innerHTML = `
-    <div class="container mt-5 mb-5 bg-light onclick="window.location='http://google.com';""> 
+    <div class="container mt-5 mb-5 bg-light> 
       <div class="row d-flex align-items-center">`
       + html_string + 
       `</div>

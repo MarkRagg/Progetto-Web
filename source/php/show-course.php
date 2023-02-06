@@ -34,7 +34,7 @@ if ($templateParams["course_exists"]) {
             <div class="row">
                 <ul class="list-group list-group-horizontal">
                     <li class="list-group-item col-6 h3">Anno scolastico: $year</li>
-                    <li class="list-group-item col-6 h3">Università: <a href="#">$uni_name</a></li>
+                    <li class="list-group-item col-6 h3">Università: <a href="uni.php?uni_id=$uni_id">$uni_name</a></li>
                 </ul>
             </div>
             <div class="row">

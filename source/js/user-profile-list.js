@@ -12,7 +12,7 @@ function showUserList(users) {
             <div class="row">
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
-                        <img src="${element["user_image"]}" class="rounded-circle" width="20%" hight="20%" alt="">
+                        <img src="${uploadDir}${element["user_image"]}" class="rounded-circle" width="20%" hight="20%" alt="">
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <a class="h5" href="profile.php?username=${element["username"]}">${element["name"]} ${element["surname"]} @${element["username"]}</a> 
@@ -142,6 +142,7 @@ function makeRequestAndEdit(username, requestedList) {
             if (!response.data["success"]) {
                 showErrorMsg(response.data["errormsg"]);
             } else {
+                console.log(response.data);
                 showUserList(response.data["userList"])
             }
         });
@@ -183,6 +184,7 @@ function updateLinks(listElements, currentLink) {
     activateElement(currentLink);
 }
 
+const uploadDir = "../img/";
 const main = document.querySelector("main");
 const followersLink = document.querySelector("a#followers");
 const followingLink = document.querySelector("a#following");

@@ -111,7 +111,7 @@ function showPostList(posts) {
         updateButton(posts, btnLike, numeroLike, 1, -1, "btnlkd");
         updateButton(posts, btnFire, numeroFire, 2, -2, "btnFireLkd");
         updateButton(posts, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
-        updateButton(posts, btnCuore, numeroCuore, 4, -4, "btnSmileLkd");
+        updateButton(posts, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
         i++;
     });
 }

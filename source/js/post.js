@@ -129,7 +129,7 @@ function newPosts(post_data, i) {
   let newdiv = `
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
-                    src="../img/${post_data[i]["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
+                    src="../img/${post_data["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data["author"]}">@${post_data["author"]}</a>
                     <small class="text-primary">LINK AL CORSO/ESAME OPPURE NIENTE</small>
                   </div>
@@ -337,7 +337,7 @@ async function loadMore() {
 
     const btnBacio = "btnBacioL"
     const numeroBacio = "numeroBacio"
-    updateButton(response.data, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
+    updateButton(rd, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
     loading = false;
   }
 

@@ -38,7 +38,8 @@ bottonePosta.addEventListener('click', function onClick() {
 const formData = new FormData();
 formData.append('post_id', idjs);
 
-axios.post('../php/api-prova.php', formData).then(response => {
+axios.post('../php/api-reactions-on-comment-post.php', formData).then(response => {
+  if(response.data[0]["error"] == false){
     const btnLike = "bottoneL";
     const numeroLike = "numeroLike"
     updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");
@@ -54,4 +55,7 @@ axios.post('../php/api-prova.php', formData).then(response => {
     const btnBacio = "btnBacioL"
     const numeroBacio = "numeroBacio"
     updateButton(response.data, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
+  } else {
+    console.log(response.data);
+  }
 });

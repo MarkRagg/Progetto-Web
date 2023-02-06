@@ -4,8 +4,6 @@ require_once("db_config.php");
 
 if(isset($_POST["post_id"])){
     $idPost = $_POST["post_id"];
-
-
     $templateParams[0]["user_has_liked"] = $dbh->hasReacted($idPost, $_SESSION["user_id"], 1);
     $templateParams[0]["user_has_fired"] = $dbh->hasReacted($idPost, $_SESSION["user_id"], 2);
     $templateParams[0]["user_has_smile"] = $dbh->hasReacted($idPost, $_SESSION["user_id"], 3);

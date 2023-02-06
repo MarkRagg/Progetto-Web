@@ -105,7 +105,7 @@ function generatePost(post_data) {
 
 
 
-                <button  class="btnBacio btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
+                <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
                   <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroBaciPost${i}">
                     ${post_data[i]["num_baci"]}
@@ -195,7 +195,7 @@ function newPosts(post_data, i) {
 
 
 
-                <button  class="btnBacio btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
+                <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
                   <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroBaciPost${post_data["post_id"]}">
                     ${post_data["num_baci"]}
@@ -247,7 +247,6 @@ function getLoggedUserInfo() {
     document.querySelector("#residenza").innerHTML = response.data["user_info"]["uni_residence"];
     document.querySelector("#universita").innerHTML = response.data["uni_info"]!=null ? response.data["uni_info"]["nome"] : "Nessuna università selezionata";
     document.querySelector("#corso").innerHTML = response.data["course_info"] != null ? response.data["course_info"]["nome"] : "Nessun corso selezionato";
-    //set the profile picture
     if (response.data["user_info"]["user_image"] != null) {
       document.querySelector("#profile_picture").src = "../img/" +response.data["user_info"]["user_image"];
     }
@@ -283,6 +282,9 @@ axios.get("api-showpost.php").then(response => {
   const btnCuore = "btnCuoreL"
   const numeroCuore = "numeroCuore"
   updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
+  const btnBacio = "btnBacioL"
+  const numeroBacio = "numeroBacio"
+  updateButton(response.data, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
   rd = response.data;
   console.log(rd);
   sendPost();
@@ -344,6 +346,10 @@ async function loadMore() {
     const btnCuore = "btnCuoreL"
     const numeroCuore = "numeroCuore"
     updateButton(rd, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
+
+    const btnBacio = "btnBacioL"
+    const numeroBacio = "numeroBacio"
+    updateButton(response.data, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
     loading = false;
   }
 

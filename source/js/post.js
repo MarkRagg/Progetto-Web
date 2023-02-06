@@ -39,6 +39,7 @@ function generatePost(post_data) {
             </div>
             <div class="card-body" id="adddiv">`;
   for (let i = 0; i < post_data.length && i < 10; i++) {
+    if (post_data[0]["author"] !== null ){
     section += `
               <div>
               <div class="d-flex justify-content-between p-2 px-3">
@@ -117,6 +118,7 @@ function generatePost(post_data) {
             </div>
             `
   }
+  }
   section += `
   </div>
   </div>
@@ -157,7 +159,7 @@ function sendPost() {
 
 function getLoggedUserInfo() {
   axios.get('../php/api-getuserinfo.php').then(response => {
-    //console.log(response.data);
+    console.log(response.data);
     document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
     document.querySelector("#descrizione").innerHTML = response.data["descrizione"];
   });
@@ -199,6 +201,7 @@ axios.get("api-showpost.php").then(response => {
   dynamicButtonPost();
 });
 
+
 document.addEventListener(
   'scroll',
   (event) => {
@@ -211,7 +214,6 @@ document.addEventListener(
 let loading = false;
 
 async function loadMore() {
-
   if (window.scrollY + window.innerHeight >= document.body.scrollHeight && !loading) {
     loading = true;
     const formData = new FormData();

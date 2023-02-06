@@ -38,7 +38,8 @@ function generatePost(post_data) {
                 </div>
             </div>
             <div class="card-body" id="adddiv">`;
-  for (let i = 0; i < post_data.length && i < 10 && post_data[0]["author"] !== null ; i++) {
+  for (let i = 0; i < post_data.length && i < 10; i++) {
+    if (post_data[0]["author"] !== null ){
     section += `
               <div>
               <div class="d-flex justify-content-between p-2 px-3">
@@ -116,6 +117,7 @@ function generatePost(post_data) {
             <hr/>
             </div>
             `
+  }
   }
   section += `
   </div>
@@ -212,7 +214,6 @@ document.addEventListener(
 let loading = false;
 
 async function loadMore() {
-
   if (window.scrollY + window.innerHeight >= document.body.scrollHeight && !loading) {
     loading = true;
     const formData = new FormData();

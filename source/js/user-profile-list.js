@@ -108,6 +108,10 @@ function showPostList(posts) {
             </div>
         `;
         main.appendChild(newPost);
+        updateButton(posts, btnLike, numeroLike, 1, -1, "btnlkd");
+        updateButton(posts, btnFire, numeroFire, 2, -2, "btnFireLkd");
+        updateButton(posts, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
+        updateButton(posts, btnCuore, numeroCuore, 4, -4, "btnSmileLkd");
         i++;
     });
 }
@@ -186,6 +190,14 @@ const postsLink = document.querySelector("a#posts");
 const profileUsername = document.querySelector("h2").innerText;
 const linkList = [postsLink, followersLink, followingLink];
 const userImagePath = document.querySelector("img#profileImage").getAttribute("src");
+const btnLike = "bottoneL";
+const numeroLike = "numeroLike"
+const btnFire = "btnFireL";
+const numeroFire = "numeroFire";
+const btnSmile = "btnSmileL";
+const numeroSmile = "numeroSmile";
+const btnCuore = "btnCuoreL";
+const numeroCuore = "numeroCuore";
 followersLink.addEventListener("click", function(event) {
     event.preventDefault();
     makeRequestAndEdit(profileUsername, "followers");

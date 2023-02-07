@@ -429,6 +429,9 @@ class DatabaseManager {
         return $result->fetch_all(MYSQLI_ASSOC)[0]["info"];
     }
 
+    /**
+     * Returns the number of comments to a post
+     */
     public function getPostComments($post_id){
         $stmt = $this->db->prepare("SELECT COUNT(*) AS comment FROM comment WHERE post_id = ?");
         $stmt->bind_param("s", $post_id);

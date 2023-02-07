@@ -89,7 +89,7 @@ class DatabaseManager {
      * returns n posts
      */
     public function getPosts($id, $n) {
-        $stmt = $this->db->prepare("SELECT post.*, user_info.user_image FROM user_followers_followed LEFT JOIN post ON post.author = user_followers_followed.user_id LEFT JOIN user_info on post.author=user_info.user_id WHERE user_followers_followed.follower_id = ? ORDER by post.data DESC limit ?;");
+        $stmt = $this->db->prepare("SELECT post.*, user_info.user_image FROM user_followers_followed LEFT JOIN post ON post.author = user_followers_followed.user_id LEFT JOIN user_info on post.author=user_info.user_id WHERE user_followers_followed.follower_id = ? and post.author is not null ORDER by post.data DESC limit ?;");
         $stmt->bind_param("si",$id, $n);
         $stmt->execute();
         $result = $stmt->get_result();

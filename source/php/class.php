@@ -18,8 +18,8 @@ if (isset($_GET["class_id"])) {
         $templateParams["uni_id"] = $course["uni_id"];
         $uni = $dbh->getUniInfo($templateParams["uni_id"]);
         $templateParams = array_merge($templateParams, $uni);
-        $templateParams["post_count"] = $dbh->getPostCountFromClass($course["corso_id"]);
-        $templateParams["posts"] = $dbh->getPostsFromClass($course["corso_id"]);
+        $templateParams["post_count"] = $dbh->getPostCountFromClass($templateParams["class_id"]);
+        $templateParams["posts"] = $dbh->getPostsFromClass($templateParams["class_id"]);
         for ($i = 0; $i < count($templateParams["posts"]); $i++) {
             $author = $dbh->getUserInfo($templateParams["posts"][$i]["author"]);
             $templateParams["posts"][$i] = array_merge($templateParams["posts"][$i], $author);

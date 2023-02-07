@@ -22,7 +22,11 @@ if (isset($_GET["class_id"])) {
         $templateParams["posts"] = $dbh->getPostsFromClass($templateParams["class_id"]);
         for ($i = 0; $i < count($templateParams["posts"]); $i++) {
             $author = $dbh->getUserInfo($templateParams["posts"][$i]["author"]);
+            $reacions = $dbh->getAllReactionCount($templateParams["posts"][$i]["post_id"]);
+            $userReactions = $dbh->hasReactedAll($_SESSION["user_id"], $templateParams["posts"][$i]["author"]);
             $templateParams["posts"][$i] = array_merge($templateParams["posts"][$i], $author);
+            $templateParams["posts"][$i] = array_merge($templateParams["posts"][$i], $reacions);
+            $templateParams["posts"][$i]["num_comments"] = $dbh->getPostComments($templateParams["posts"][$i]["post_id"]);
         }
         $templateParams["name"] = "show-class.php";
     } else {

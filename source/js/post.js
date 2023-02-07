@@ -38,7 +38,7 @@ function generatePost(post_data) {
             </div>
             <div class="card-body" id="adddiv">`;
   for (let i = 0; i < post_data.length && i < 10; i++) {
-    if (post_data[i]["author"] !== null) {
+    //if (post_data[i]["author"] !== null) {
       section += `
               <div>
               <div class="d-flex justify-content-between p-2 px-3">
@@ -110,7 +110,7 @@ function generatePost(post_data) {
             <hr/>
             </div>
             `
-    }
+    //}
   }
   section += `
   </div>
@@ -324,11 +324,9 @@ async function loadMore() {
     rd = rd.concat(q);
 
     for (let i = 0; i < q.length; i++) {
-      if(q[i]["author"] !== null){
-        let newdiv = newPosts(q[i], i + num);
-        let element = document.getElementById('adddiv');
-        element.append(newdiv);
-      }
+      let newdiv = newPosts(q[i], i + num);
+      let element = document.getElementById('adddiv');
+      element.append(newdiv);
     }
 
     num = num + q.length;

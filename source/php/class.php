@@ -29,7 +29,7 @@ if (isset($_GET["class_id"])) {
             $templateParams["posts"][$i]["num_comments"] = $dbh->getPostComments($templateParams["posts"][$i]["post_id"]);
         }
         $templateParams["name"] = "show-class.php";
-        $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../js/reactions.js", "../js/class-posts.js");
+        $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../js/reactions.js", "../js/utils.js", "../js/class-posts.js");
     } else {
         $templateParams["errormsg"] = "Class not found";
     }

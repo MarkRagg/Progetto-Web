@@ -13,12 +13,11 @@ function generatePost(post_data) {
           <div class="card shadow-sm card-left2 mb-4">
             <div class="card-body">
               <h5 class="mb-3 card-title">Tue informazioni: <small><a href="../php/settings.php" class="ml-1">CAMBIA</a></small></h5>
-              <p class="card-text"> <em class="fas fa-calendar-week mr-2"></em> Studi a: <a href="#"
+              <p class="card-text">  Studi a: <a href="#"
                   class="text-decoration-none" id="universita"></a></p>
-              <p class="card-text"> <em class="fas fa-user-friends mr-2"></em> Che cosa studi? <a href="#"
+              <p class="card-text">  Che cosa studi? <a href="#"
                   class="text-decoration-none" id="corso"></a></p>
-              <p class="card-text"> <em class="fas fa-user-friends mr-2"></em> Residenza: <a href="#"
-                  class="text-decoration-none" id="residenza"></a></p>
+              <p class="card-text" id="residenza">Residenza: </p>
             </div>
           </div>
         </div>
@@ -148,44 +147,38 @@ function newPosts(post_data, i) {
               <div class="d-flex align-items-center mt-4">
 
 
-                <button id="bottoneLikePost${i}" class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
-                  <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroLikePost${i}">
+                <button class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
+                  <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_like"]}
                   </span>
                 </button>
 
-                <button id="bottoneCommentPost${i}" class="btn btn-outline-danger position-relative me-2 ms-2 " onclick="location.href='../php/post-comment.php?post_id=${post_data["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
-                  <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroCommentiPost${i}">
+                <button class="btn btn-outline-danger position-relative me-2 ms-2 " onclick="location.href='../php/post-comment.php?post_id=${post_data["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
+                  <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_comments"]}
                   </span>
                 </button>
 
-                <button id="bottoneFirePost${i}" class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
-                  <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroFirePost${i}">
+                <button class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
+                  <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_fire"]}
                   </span>
                 </button>
 
                 <button class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-smile-upside-down"></em>
-                  <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroSmilePost${i}">
+                  <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_smile"]}
                   </span>
                 </button>
 
                 <button class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-heart-fill"></em>
-                  <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroCuoriPost${i}">
+                  <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_cuore"]}
                   </span>
                 </button>
 
                 <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
-                  <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroBaciPost${post_data["post_id"]}">
+                  <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_baci"]}
                   </span>
                 </button>
@@ -229,12 +222,32 @@ function sendPost() {
 
 function getLoggedUserInfo() {
   axios.get('../php/api-getuserinfo.php').then(response => {
-    //console.log(response.data);
+    console.log(response.data);
     document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
-    document.querySelector("#descrizione").innerHTML = response.data["user_info"]["descrizione"] != ' ' ? response.data["user_info"]["descrizione"] : "Nessuna descrizione inserita";
-    document.querySelector("#residenza").innerHTML = response.data["user_info"]["uni_residence"];
-    document.querySelector("#universita").innerHTML = response.data["uni_info"]!=null ? response.data["uni_info"]["nome"] : "Nessuna università selezionata";
-    document.querySelector("#corso").innerHTML = response.data["course_info"] != null ? response.data["course_info"]["nome"] : "Nessun corso selezionato";
+    if (response.data["user_info"]["descrizione"] != ' '){
+      document.querySelector("#descrizione").innerHTML = response.data["user_info"]["descrizione"]
+    } else {
+      document.querySelector("#descrizione").innerHTML = "Nessuna descrizione inserita";
+    }
+
+    document.querySelector("#residenza").innerHTML += response.data["user_info"]["uni_residence"];
+
+    if (response.data["uni_info"]!=null ){
+      document.querySelector("#universita").innerHTML = response.data["uni_info"]["nome"]
+      document.querySelector("#universita").href = "uni.php?uni_id=" + response.data["uni_info"]["uni_id"];
+    } else {
+      document.querySelector("#universita").innerHTML = "Nessuna università selezionata";
+      document.querySelector("#universita").href = "uni-list.php";
+    }
+
+    if(response.data["course_info"] != null){
+      document.querySelector("#corso").innerHTML =  response.data["course_info"]["nome"];
+      document.querySelector("#corso").href = "course.php?course_id=" + response.data["course_info"]["corso_id"];
+    } else {
+      document.querySelector("#corso").innerHTML = "Nessun corso selezionato";
+      document.querySelector("#corso").href = "uni-list.php";
+    }
+
     if (response.data["user_info"]["user_image"] != null) {
       document.querySelector("#profile_picture").src = "../img/" +response.data["user_info"]["user_image"];
     }

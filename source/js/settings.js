@@ -69,7 +69,7 @@ function saveChanges(bio, img, course, user_id) {
   var formData = new FormData();
   formData.append("bio", bio);
   formData.append("img", img); 
-  formData.append("course", course);
+  formData.append("course_id", course);
 
   axios.post('api-save-settings.php', formData).then(response => {
     if(response.data["success"]) {

@@ -29,6 +29,7 @@ if (isset($_GET["post_id"])){
         $templateParams["string"] = $post["string"];
         $templateParams["esame_id"] = $post["esame_id"];
         $templateParams["immagine"] = $post["immagine"];
+        $templateParams["user_img"] = $dbh->getUserInfo($post["author"])["user_image"];
         $comments = $dbh->getComments($idPost);
         $templateParams["comments"] = $comments;
         $templateParams["numLikes"] = $dbh->getPostLikes($idPost);
@@ -38,6 +39,7 @@ if (isset($_GET["post_id"])){
         $templateParams["num_baci"] = $dbh->getPostReactionInfo($idPost, 5);
     } else {
         $templateParams["errormsg"] = "Post not found";
+        $templateParams["post_exists"] = false;
     }
 }
 

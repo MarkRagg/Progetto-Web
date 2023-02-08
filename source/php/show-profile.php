@@ -11,7 +11,7 @@ if (isset($_SESSION["user_id"])) {
         $followBtnClass = "danger";
     }
     if ($templateParams["username"] === $_SESSION["user_id"]) {
-        $followBtnDisable = "disabled";
+        $followBtnDisable = "hidden";
     }
 }
 ?>
@@ -31,7 +31,7 @@ if (isset($_SESSION["user_id"])) {
             <h2 class="col text-light">@<?php echo($templateParams["username"]) ?></h2>
         </div>
         <div class="row justify-content-center mb-4">
-            <button type="button" id="followBtn" class="col-6 btn btn-<?php echo($followBtnClass)?> <?php echo($followBtnDisable)?>"><?php echo($followBtnText) ?></button>   
+            <button type="button" id="followBtn" class="col-6 btn btn-<?php echo($followBtnClass)?>" <?php echo($followBtnDisable)?>><?php echo($followBtnText) ?></button>   
         </div>
     </div>
     <div class="container text-center bg-white rounded-3">

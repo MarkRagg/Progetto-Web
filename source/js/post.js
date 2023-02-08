@@ -266,27 +266,43 @@ function dynamicButtonPost() {
   });
 }
 
+document.addEventListener(
+  'scroll',
+  (event) => {
+    loadMore();
+  },
+  { passive: true }
+);
+
 let num;
 let rd;
+let end = false;
 const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {
   showPost(response.data);
   num = response.data.length;
-  const btnLike = "bottoneL";
-  const numeroLike = "numeroLike"
-  updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");
-  const btnFire = "btnFireL";
-  const numeroFire = "numeroFire"
-  updateButton(response.data, btnFire, numeroFire, 2, -2, "btnFireLkd");
-  const btnSmile = "btnSmileL"
-  const numeroSmile = "numeroSmile"
-  updateButton(response.data, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
-  const btnCuore = "btnCuoreL"
-  const numeroCuore = "numeroCuore"
-  updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
-  const btnBacio = "btnBacioL"
-  const numeroBacio = "numeroBacio"
-  updateButton(response.data, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
+  if(num == 0){
+    let element = document.getElementById('adddiv');
+    let newdiv = showEndPost();
+    element.append(newdiv);
+    end = true;
+  } else {
+    const btnLike = "bottoneL";
+    const numeroLike = "numeroLike"
+    updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");
+    const btnFire = "btnFireL";
+    const numeroFire = "numeroFire"
+    updateButton(response.data, btnFire, numeroFire, 2, -2, "btnFireLkd");
+    const btnSmile = "btnSmileL"
+    const numeroSmile = "numeroSmile"
+    updateButton(response.data, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
+    const btnCuore = "btnCuoreL"
+    const numeroCuore = "numeroCuore"
+    updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
+    const btnBacio = "btnBacioL"
+    const numeroBacio = "numeroBacio"
+    updateButton(response.data, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
+  }
   rd = response.data;
   console.log(rd);
   sendPost();
@@ -295,13 +311,7 @@ axios.get("api-showpost.php").then(response => {
 });
 
 
-document.addEventListener(
-  'scroll',
-  (event) => {
-    loadMore();
-  },
-  { passive: true }
-);
+
 
 
 let loading = false;
@@ -316,9 +326,11 @@ async function loadMore() {
     q = resp.data;
     if (q.length == 0) {
       document.removeEventListener('scroll', loadMore);
-      let element = document.getElementById('adddiv');
-      let newdiv = showEndPost();
-      element.append(newdiv);
+      if (end == false){
+        let element = document.getElementById('adddiv');
+        let newdiv = showEndPost();
+        element.append(newdiv);
+      }
       return;
     }
 

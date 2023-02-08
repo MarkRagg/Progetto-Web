@@ -22,7 +22,7 @@ for($i = 0; $i < count($post); $i++){
     $post[$i]["user_has_smile"] = $dbh->hasReacted($post[$i]["post_id"], $_SESSION["user_id"], 3);
     $post[$i]["user_has_cuore"] = $dbh->hasReacted($post[$i]["post_id"], $_SESSION["user_id"], 4);
     $post[$i]["user_has_baci"] = $dbh->hasReacted($post[$i]["post_id"], $_SESSION["user_id"], 5);*/
-
+    
     $reactCount = $dbh->getAllReactionCount($post[$i]["post_id"]);
     $userReactions = $dbh->hasReactedAll($_SESSION["user_id"], $post[$i]["post_id"]);
     $post[$i] = array_merge($post[$i] , $reactCount);

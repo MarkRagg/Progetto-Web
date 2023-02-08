@@ -1,6 +1,12 @@
 function generateOptions(values, selected, category) {
-  let options = ``;
+  let options = `<option value='0'></option>`;
   let add_selected = ``;
+  if(values == null && category == 'course') {
+    return options;
+  }
+  if(category == 'course') {
+    options = ``;
+  }
   values.forEach(element => {
     add_selected = ``;
     if(category == "uni") {
@@ -19,7 +25,7 @@ function generateOptions(values, selected, category) {
 }
 
 function showPage(response_settings, response_select) {
-  uni_options = generateOptions(response_settings["unis"], response_select["uni-selected"],"uni");
+  uni_options = generateOptions(response_select["unis"], response_select["uni-selected"],"uni");
   course_options = generateOptions(response_select["courses"], 1, "course");
   let form = `
     <div class="d-flex justify-content-center align-middle">
@@ -70,6 +76,7 @@ function saveChanges(bio, img, course, user_id) {
   formData.append("bio", bio);
   formData.append("img", img); 
   formData.append("course_id", course);
+  select = document.querySelector("#uni");
 
   axios.post('api-save-settings.php', formData).then(response => {
     if(response.data["success"]) {

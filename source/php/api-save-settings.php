@@ -20,8 +20,10 @@ if(isset($_SESSION["user_id"])) {
   }
   //code for change course
   if(isset($_POST["course_id"]) && $_POST["course_id"] != $user_info["corso_id"]) {
-    $result["success"] = true;
-    $dbh->subUserToCourse($_SESSION["user_id"], $_POST["course_id"]);
+    if($_POST["course_id"] != 0) {
+      $result["success"] = true;
+      $dbh->subUserToCourse($_SESSION["user_id"], $_POST["course_id"]);
+    }
   }
 }
 

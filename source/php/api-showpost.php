@@ -27,6 +27,11 @@ for($i = 0; $i < count($post); $i++){
     $userReactions = $dbh->hasReactedAll($_SESSION["user_id"], $post[$i]["post_id"]);
     $post[$i] = array_merge($post[$i] , $reactCount);
     $post[$i] = array_merge($post[$i] , $userReactions);
+    if($post[$i]["corso_id"] != null){
+        $post[$i]["nome_corso"]= $dbh->getCourseInfo($post[$i]["corso_id"])["nome"];
+    } else {
+        $post[$i]["nome_corso"] = "";
+    }
 }
 
 $templateParams["title"] = "Show Post";

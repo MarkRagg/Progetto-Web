@@ -15,6 +15,7 @@ if (isset($_GET["username"])) {
         $templateParams["username"] = $_GET["username"];
         $templateParams["u_name"] = $user["name"];
         $templateParams["surname"] = $user["surname"];
+        $templateParams["descrizione"] = $user["descrizione"];
         $templateParams["date_of_birth"] = $user["date_of_birth"];
         $templateParams["residence"] = $user["uni_residence"];
         $templateParams["corso_id"] = $user["corso_id"];

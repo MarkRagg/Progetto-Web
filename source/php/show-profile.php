@@ -41,21 +41,21 @@ if (isset($_SESSION["user_id"])) {
     </div>
     <div class="container text-center mb-5">
         <div class="row flex-row d-flex align-items-center justify-content-center">
-            <ul class="list-group list-group-horizontal p-0">
-                <li class="list-group-item col h3">Data di nascita: <?php echo($templateParams["date_of_birth"]) ?></li>
-                <li class="list-group-item col h3">Residenza: <?php echo($templateParams["residence"]) ?></li>
+            <ul class="list-group list-group-horizontal p-0 mb-1">
+                <li class="list-group-item col"><?php echo($templateParams["date_of_birth"]) ?></li>
+                <li class="list-group-item col">Residenza: <?php echo($templateParams["residence"]) ?></li>
                 <?php 
                 if ($templateParams["corso_id"] !== NULL) {
-                    echo("<li class=\"list-group-item col h3\">Corso: <a href=\"course.php?course_id=".$courseInfo["corso_id"]."\">".$courseInfo["nome"]."</a></li>");
+                    echo("<li class=\"list-group-item col \">Corso: <a href=\"course.php?course_id=".$courseInfo["corso_id"]."\">".$courseInfo["nome"]."</a></li>");
                 }
                 ?>
             </ul>
         </div>
         <div class="row flex-row d-flex align-items-center justify-content-center">
             <ul class="list-group list-group-horizontal p-0">
-                <li class="col-4 list-group-item align-items-center h4"><a class="link-primary" id="posts" href="#">Post</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["post_count"]) ?></span></li>
-                <li class="col-4 list-group-item align-items-center h4"><a class="link-primary" id="followers" href="#">Seguaci</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["follower_count"]) ?></span></li>
-                <li class="col-4 list-group-item align-items-center h4"><a class="link-primary" id="following" href="#">Seguiti</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["followed_count"]) ?></span></li>
+                <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="posts" href="#">Post</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["post_count"]) ?></span></li>
+                <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="followers" href="#">Seguaci</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["follower_count"]) ?></span></li>
+                <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="following" href="#">Seguiti</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["followed_count"]) ?></span></li>
             </ul>
         </div>
     </div>

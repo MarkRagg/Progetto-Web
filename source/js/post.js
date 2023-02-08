@@ -1,5 +1,5 @@
 function generatePost(post_data) {
-  let section = `<div class="container mt-2 mb-5">
+  let section = `
     <div class="row">
       <div class="col-12 col-lg-3">
         <div class="left-column">
@@ -38,7 +38,6 @@ function generatePost(post_data) {
             </div>
             <div class="card-body" id="adddiv">`;
   for (let i = 0; i < post_data.length && i < 10; i++) {
-    //if (post_data[i]["author"] !== null) {
     section += `
               <div>
               <div class="d-flex justify-content-between p-2 px-3">
@@ -52,7 +51,7 @@ function generatePost(post_data) {
                 <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">${post_data[i]["data"]}</small> <em
                     class="fa fa-ellipsis-h"></em> </div>
               </div>
-              <div class="px-4 mt-3 mb-3">`
+              <div class="px-4 mt-3 mb-3">`;
     if (post_data[i]["immagine"] != null) {
       section += `<img src="../img/${post_data[i]["immagine"]}" alt="immagine del post" class="img-fluid">`;
     }
@@ -109,17 +108,17 @@ function generatePost(post_data) {
               </div>
             <hr/>
             </div>
-            `
-    //}
+            `;
   }
   section += `
   </div>
   </div>
     </div>
-  </div>
+
 `;
 
-  const variabile = document.createElement("section");
+  const variabile = document.createElement("div");
+  variabile.classList.add("container", "mt-2" , "mb-5");
   variabile.innerHTML = section;
   return variabile;
 }

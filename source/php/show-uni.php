@@ -1,4 +1,4 @@
-<section>
+<section class="mb-5">
     <div class="container text-center p-5">
         <div class="row">
             <h1 class="col text-light"><?php echo($templateParams["uni_name"]) ?></h1>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <?php foreach($templateParams["courses"] as $course): ?>
-    <div class="container bg-white p-3 rounded-3 mt-3">
+    <div class="container bg-white p-3 rounded-3 my-3">
         <div class="flex-row d-flex justify-content-between align-items-center">
             <a class="col" href="course.php?course_id=<?php echo($course["corso_id"]) ?>">
                 <h4><?php echo($course["nome"]) ?></h4>

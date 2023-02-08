@@ -39,7 +39,7 @@ function generatePost(post_data) {
             <div class="card-body" id="adddiv">`;
   for (let i = 0; i < post_data.length && i < 10; i++) {
     //if (post_data[i]["author"] !== null) {
-      section += `
+    section += `
               <div>
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
@@ -53,10 +53,10 @@ function generatePost(post_data) {
                     class="fa fa-ellipsis-h"></em> </div>
               </div>
               <div class="px-4 mt-3 mb-3">`
-      if (post_data[i]["immagine"] != null) {
-        section += `<img src="../img/${post_data[i]["immagine"]}" alt="immagine del post" class="img-fluid">`;
-      }
-      section += `
+    if (post_data[i]["immagine"] != null) {
+      section += `<img src="../img/${post_data[i]["immagine"]}" alt="immagine del post" class="img-fluid">`;
+    }
+    section += `
                 
                 <p class="text-justify">${post_data[i]["string"]}.</p>
               </div>
@@ -223,33 +223,35 @@ function sendPost() {
 function getLoggedUserInfo() {
   axios.get('../php/api-getuserinfo.php').then(response => {
     console.log(response.data);
-    document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
-    if (response.data["user_info"]["descrizione"] != ' '){
-      document.querySelector("#descrizione").innerHTML = response.data["user_info"]["descrizione"]
-    } else {
-      document.querySelector("#descrizione").innerHTML = "Nessuna descrizione inserita";
-    }
+    if (response.data["status"]) {
+      document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
+      if (response.data["user_info"]["descrizione"] != ' ') {
+        document.querySelector("#descrizione").innerHTML = response.data["user_info"]["descrizione"]
+      } else {
+        document.querySelector("#descrizione").innerHTML = "Nessuna descrizione inserita";
+      }
 
-    document.querySelector("#residenza").innerHTML += response.data["user_info"]["uni_residence"];
+      document.querySelector("#residenza").innerHTML += response.data["user_info"]["uni_residence"];
 
-    if (response.data["uni_info"]!=null ){
-      document.querySelector("#universita").innerHTML = response.data["uni_info"]["nome"]
-      document.querySelector("#universita").href = "uni.php?uni_id=" + response.data["uni_info"]["uni_id"];
-    } else {
-      document.querySelector("#universita").innerHTML = "Nessuna università selezionata";
-      document.querySelector("#universita").href = "uni-list.php";
-    }
+      if (response.data["uni_info"] != null) {
+        document.querySelector("#universita").innerHTML = response.data["uni_info"]["nome"]
+        document.querySelector("#universita").href = "uni.php?uni_id=" + response.data["uni_info"]["uni_id"];
+      } else {
+        document.querySelector("#universita").innerHTML = "Nessuna università selezionata";
+        document.querySelector("#universita").href = "uni-list.php";
+      }
 
-    if(response.data["course_info"] != null){
-      document.querySelector("#corso").innerHTML =  response.data["course_info"]["nome"];
-      document.querySelector("#corso").href = "course.php?course_id=" + response.data["course_info"]["corso_id"];
-    } else {
-      document.querySelector("#corso").innerHTML = "Nessun corso selezionato";
-      document.querySelector("#corso").href = "uni-list.php";
-    }
+      if (response.data["course_info"] != null) {
+        document.querySelector("#corso").innerHTML = response.data["course_info"]["nome"];
+        document.querySelector("#corso").href = "course.php?course_id=" + response.data["course_info"]["corso_id"];
+      } else {
+        document.querySelector("#corso").innerHTML = "Nessun corso selezionato";
+        document.querySelector("#corso").href = "uni-list.php";
+      }
 
-    if (response.data["user_info"]["user_image"] != null) {
-      document.querySelector("#profile_picture").src = "../img/" +response.data["user_info"]["user_image"];
+      if (response.data["user_info"]["user_image"] != null) {
+        document.querySelector("#profile_picture").src = "../img/" + response.data["user_info"]["user_image"];
+      }
     }
   });
 }

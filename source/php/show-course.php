@@ -23,11 +23,8 @@ if ($templateParams["course_exists"]) {
             <div class="row">
                 <h1 class="col text-light">$name</h1>
             </div>
-            <div class="row">
-                <h2 class="col text-light">$course_id</h2>
-            </div>
         </div>
-        <div class="container text-center">
+        <div class="container text-center mb-5">
             <div class="row justify-content-center mb-4">
                 <button type="button" id="subBtn" class="col-6 btn btn-$subBtnClass">$subBtnText</button>   
             </div>

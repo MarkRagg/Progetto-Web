@@ -1,5 +1,5 @@
 const subBtn = document.querySelector("button#subBtn");
-const course_id = document.querySelector("h2").innerText;
+const course_id = getParameter("course_id");
 const subClass = "btn-primary";
 const unsubClass = "btn-danger";
 subBtn.addEventListener("click", function(event) {

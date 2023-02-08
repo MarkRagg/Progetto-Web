@@ -18,7 +18,7 @@ if (isset($_SESSION["user_id"])) {
 <section>
     <div class="container my-5">
         <div class="row flex-row align-items-center justify-content-center text-center">
-            <div class="col-6">
+            <div class="col-3">
                 <img src="<?php echo($templateParams["user_image"]) ?>" id="profileImage" class="img-fluid rounded-circle" alt="immagine profilo"/>
             </div>
         </div>

@@ -1,5 +1,5 @@
 const followBtn = document.querySelector("button#followBtn");
-const user_id = document.querySelector("h2").innerText;
+const user_id = getParameter("username");
 const followClass = "btn-primary";
 const unfollowClass = "btn-danger";
 followBtn.addEventListener("click", function(event) {

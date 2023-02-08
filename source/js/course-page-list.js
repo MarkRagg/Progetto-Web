@@ -65,31 +65,6 @@ function makeRequestAndEdit(courseId, requestedList) {
     });
 }
 
-function deactivateAll(listElements) {
-    listElements.forEach(x => {
-        x.parentElement.classList.replace("bg-dark", "bg-light");
-        x.classList.replace("link-light", "link-dark");
-        x.classList.remove("disabled");
-        x.nextElementSibling.classList.replace("bg-light", "bg-dark");
-        x.nextElementSibling.classList.replace("text-dark", "text-light");
-    });
-}
-
-function activateElement(toActivate) {
-    toActivate.parentElement.classList.remove("bg-light");
-    toActivate.parentElement.classList.add("bg-dark");
-    toActivate.classList.replace("link-dark", "link-light");
-    toActivate.classList.add("disabled");
-    toActivate.nextElementSibling.classList.replace("bg-dark", "bg-light");
-    toActivate.nextElementSibling.classList.remove("text-light");
-    toActivate.nextElementSibling.classList.add("text-dark");
-}
-
-function updateLinks(listElements, currentLink) {
-    deactivateAll(listElements);
-    activateElement(currentLink);
-}
-
 const main = document.querySelector("main");
 const classesLink = document.querySelector("a#classes");
 const subscribersLink = document.querySelector("a#subscribers");

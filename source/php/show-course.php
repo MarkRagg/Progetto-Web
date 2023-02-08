@@ -36,8 +36,8 @@ if ($templateParams["course_exists"]) {
             </div>
             <div class="row">
                 <ul class="list-group list-group-horizontal">
-                    <li class="col-6 list-group-item align-items-center h4"><a class="link-dark" id="classes" href="#">Esami</a> <span class="badge bg-dark rounded-pill">$class_count</span></li>
-                    <li class="col-6 list-group-item align-items-center h4"><a class="link-dark" id="subscribers" href="#">Iscritti</a> <span class="badge bg-dark rounded-pill">$subscribed_count</span></li>
+                    <li class="col-6 list-group-item align-items-center h4"><a class="link-primary" id="classes" href="#">Esami</a> <span class="badge bg-primary text-light rounded-pill">$class_count</span></li>
+                    <li class="col-6 list-group-item align-items-center h4"><a class="link-primary" id="subscribers" href="#">Iscritti</a> <span class="badge bg-primary text-light rounded-pill">$subscribed_count</span></li>
                 </ul>
             </div>
         </div>

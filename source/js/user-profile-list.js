@@ -1,3 +1,12 @@
+getParameter = (key) => {
+    
+    address = window.location.search
+    
+    parameterList = new URLSearchParams(address)
+    
+    return parameterList.get(key)
+}
+
 /**
  * Makes a request to api-user-list.php and uses the result to populate the page
  * @param {string} username The username of the user of the current profile page
@@ -33,7 +42,7 @@ const main = document.querySelector("main");
 const followersLink = document.querySelector("a#followers");
 const followingLink = document.querySelector("a#following");
 const postsLink = document.querySelector("a#posts");
-const profileUsername = document.querySelector("h2").innerText;
+const profileUsername = getParameter("username");
 const linkList = [postsLink, followersLink, followingLink];
 const userImagePath = document.querySelector("img#profileImage").getAttribute("src");
 const btnLike = "bottoneL";

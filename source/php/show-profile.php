@@ -28,7 +28,7 @@ if (isset($_SESSION["user_id"])) {
             <h1 class="col text-light"><?php echo($templateParams["u_name"]." ".$templateParams["surname"]) ?></h1>
         </div>
         <div class="row">
-            <h2 class="col text-light"><?php echo($templateParams["username"]) ?></h2>
+            <h2 class="col text-light">@<?php echo($templateParams["username"]) ?></h2>
         </div>
         <div class="row justify-content-center mb-4">
             <button type="button" id="followBtn" class="col-6 btn btn-<?php echo($followBtnClass)?> <?php echo($followBtnDisable)?>"><?php echo($followBtnText) ?></button>   
@@ -39,7 +39,7 @@ if (isset($_SESSION["user_id"])) {
             <p class="col"><?php echo($templateParams["descrizione"]) ?></p>
         </div>
     </div>
-    <div class="container text-center">
+    <div class="container text-center mb-5">
         <div class="row flex-row d-flex align-items-center justify-content-center">
             <ul class="list-group list-group-horizontal p-0">
                 <li class="list-group-item col h3">Data di nascita: <?php echo($templateParams["date_of_birth"]) ?></li>

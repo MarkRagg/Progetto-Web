@@ -14,6 +14,11 @@ if(isset($_SESSION["user_id"]))
     }
     
     $result["userid"]= $_SESSION["user_id"];
+    $result["status"] = true;
+}
+else
+{
+    $result["status"] = false;
 }
 
 header("Content-Type: application/json");

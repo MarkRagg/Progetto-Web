@@ -7,7 +7,12 @@ if(isset($_POST["uni-selected"])) {
   $result["courses"] = $dbh->getCoursesFromUni($_POST["uni-selected"]);
 } else {
   $result["course-selected"] = $dbh->getUserInfo($_SESSION["user_id"])["corso_id"];
-  $result["uni-selected"] = $dbh->getUniFromCourse($result["course-selected"]);
+  if($result["course-selected"] == null) {
+    $result["course-selected"] = 0;
+    $result["uni-selected"] = 0;
+  } else {
+    $result["uni-selected"] = $dbh->getUniFromCourse($result["course-selected"]);
+  }
   $result["courses"] = $dbh->getCoursesFromUni($result["uni-selected"]);
 }
 

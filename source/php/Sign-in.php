@@ -5,6 +5,11 @@ define("DEFAULT_IMAGE", "default_image.png");
 $result["sign-in-result"] = false;
 $result["text-error"] = "";
 
+//code for include json
+$strJsonFileContents = file_get_contents("../database/province.json"); 
+$array = json_decode($strJsonFileContents, true);
+$result["cities"] = array_column($array, 'nome');
+
 if(isset($_POST["nickname"]) && isset($_POST["email"]) && isset($_POST["password"])  && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["date"]) && isset($_POST["residence"])) {
   $check_id = $dbh->checkValueInDb("user", "user_id", $_POST["nickname"]);
   $check_email = $dbh->checkValueInDb("user", "email", $_POST["email"]);

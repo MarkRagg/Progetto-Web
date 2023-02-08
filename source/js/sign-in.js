@@ -1,4 +1,14 @@
-function generateForm(loginerror = null) {
+function generateOptions(cities) {
+  options = ``;
+  cities.forEach(element => {
+    options += `<option value='${element}'>${element}</option>`;
+  });
+
+  return options;
+}
+
+function generateForm(cities) {
+  city_options = generateOptions(cities);
   let form = `
   <div class="container text-center p-5">
     <h1 class="text-primary">Sign-in</h1>
@@ -19,9 +29,9 @@ function generateForm(loginerror = null) {
             <li class="list-group-item"><label for="surname">Surname</label><input type="text" class="d-flex justify-content-end" id="surname" name="surname"/></li>
             <li class="list-group-item"><label for="date">Date</label><input type="date" class="d-flex justify-content-end" id="date" name="date"/></li>
             <li class="list-group-item"><label for="residence">Residence</label>
-              <select id="residence" class="d-flex justify-content-end" name="residence">
-                <option value="Example">Example</option>
-                </select>
+              <select id="residence" class="d-flex justify-content-end" name="residence">`
+                + city_options +
+              `</select>
               </li>
           </ul>
           <hr/>
@@ -63,14 +73,14 @@ axios.get('Sign-in.php').then(response => {
         visualizeSuccess();
     } else {
         // Utente NON loggato
-        VisualizeSigninForm();  
+        VisualizeSigninForm(response.data["cities"]);  
     }
 });
 
 
-function VisualizeSigninForm() {
+function VisualizeSigninForm(cities) {
   // Utente NON loggato
-  let form = generateForm();
+  let form = generateForm(cities);
   main.innerHTML = form;
   // Gestisco tentativo di login
   document.querySelector("main form").addEventListener("submit", function (event) {

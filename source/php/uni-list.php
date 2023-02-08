@@ -8,9 +8,6 @@ for($i = 0; $i < count($templateParams["uni_list"]); $i++) {
     $curr = $templateParams["uni_list"][$i];
     $templateParams["uni_list"][$i]["course_count"] = $dbh->getCourseCount($curr["uni_id"]);
 }
-// foreach ($templateParams["uni_list"] as $uni) {
-//     $uni["course_count"] = $dbh->getCourseCount($uni["uni_id"]);
-// }
 
 require("../template/base.php");
 ?>

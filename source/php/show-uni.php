@@ -15,11 +15,11 @@
     <?php foreach($templateParams["courses"] as $course): ?>
     <div class="container bg-white p-3 rounded-3 my-3">
         <div class="flex-row d-flex justify-content-between align-items-center">
-            <a class="col" href="course.php?course_id=<?php echo($course["corso_id"]) ?>">
-                <h4><?php echo($course["nome"]) ?></h4>
+            <a class="col-9" href="course.php?course_id=<?php echo($course["corso_id"]) ?>">
+                <?php echo($course["nome"]) ?>
             </a>
-            <p class="col">
-                <h5>Anno: <?php echo($course["anno"]) ?></h5>
+            <p class="col-3 text-center">
+                Anno: <?php echo($course["anno"]) ?>
             </p>
         </div>
     </div>

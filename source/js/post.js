@@ -39,7 +39,7 @@ function generatePost(post_data) {
             <div class="card-body" id="adddiv">`;
   for (let i = 0; i < post_data.length && i < 10; i++) {
     section += `
-              <div>
+              <div class="container">
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
                     src="../img/${post_data[i]["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
@@ -59,45 +59,42 @@ function generatePost(post_data) {
                 
                 <p class="text-justify">${post_data[i]["string"]}.</p>
               </div>
-              <div class="d-flex align-items-center mt-4">
+              <div class="mt-4">
 
 
-                <button id="bottoneLikePost${i}" class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
-                  <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroLikePost${i}">
+                <button class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-hand-thumbs-up"></em>
+                  <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data[i]["num_like"]}
                   </span>
                 </button>
 
-                <button id="bottoneCommentPost${i}" class="btn btn-outline-danger position-relative me-2 ms-2 " onclick="location.href='../php/post-comment.php?post_id=${post_data[i]["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
-                  <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroCommentiPost${i}">
+                <button class="btn btn-outline-danger position-relative me-2 ms-2 mb-2" onclick="location.href='../php/post-comment.php?post_id=${post_data[i]["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
+                  <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data[i]["num_comments"]}
                   </span>
                 </button>
 
-                <button id="bottoneFirePost${i}" class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
-                  <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="numeroFirePost${i}">
+                <button class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-fire"></em>
+                  <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data[i]["num_fire"]}
                   </span>
                 </button>
 
-                <button class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-smile-upside-down"></em>
+                <button class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-emoji-smile-upside-down"></em>
                   <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroSmilePost${i}">
                     ${post_data[i]["num_smile"]}
                   </span>
                 </button>
 
-                <button class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-heart-fill"></em>
+                <button class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-heart-fill"></em>
                   <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroCuoriPost${i}">
                     ${post_data[i]["num_cuore"]}
                   </span>
                 </button>
 
-                <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
+                <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-emoji-kiss"></em>
                   <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="numeroBaciPost${i}">
                     ${post_data[i]["num_baci"]}
@@ -146,7 +143,7 @@ function newPosts(post_data, i) {
               <div class="d-flex align-items-center mt-4">
 
 
-                <button class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
+                <button class="bottone bottoneL btn btn-outline-danger position-relative me-2"><em class="bi bi-hand-thumbs-up"></em>
                   <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_like"]}
                   </span>
@@ -309,10 +306,6 @@ axios.get("api-showpost.php").then(response => {
   getLoggedUserInfo()
   dynamicButtonPost();
 });
-
-
-
-
 
 let loading = false;
 

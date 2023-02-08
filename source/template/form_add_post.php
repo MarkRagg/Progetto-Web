@@ -1,5 +1,5 @@
 <div class="container mt-2 mb-5">
-    <div class="d-flex justify-content-between border bg-light">
+    <div class="justify-content-center border bg-light">
         <div class="p-5 text-center">
             <p class="text-danger"> <?php echo $error; ?> </p>
             <form action="insertpost.php" method="POST" enctype="multipart/form-data">

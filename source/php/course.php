@@ -2,14 +2,15 @@
 require_once 'db_config.php';
 
 $templateParams["title"] = "Corso";
-$templateParams["name"] = "show-course.php";
 $templateParams["course_exists"] = false;
 $templateParams["errormsg"] = "Missing id";
 $templateParams["paginaprofilouser"]=$_SESSION["user_id"];
+$templateParams["name"] = "show-error.php";
 
 if (isset($_GET["course_id"])) {
     $templateParams["course_exists"] = $dbh->checkValueInDb("corsi", "corso_id", $_GET["course_id"]);
     if ($templateParams["course_exists"]) {
+        $templateParams["name"] = "show-course.php";
         $course = $dbh->getCourseInfo($_GET["course_id"]);
         $templateParams["course_id"] = $_GET["course_id"];
         $templateParams["course_name"] = $course["nome"];

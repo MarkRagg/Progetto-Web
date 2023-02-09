@@ -513,5 +513,13 @@ class DatabaseManager {
         $stmt->bind_param("ss", $bio, $user_id);
         return $stmt->execute();
     }
+
+    public function getCourseFromUser($user_id) {
+        $stmt = $this->db->prepare("SELECT corso_id FROM user_info WHERE user_id = ?;");
+        $stmt->bind_param("s", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_array(MYSQLI_ASSOC)["corso_id"];
+    }
 }  
 ?>

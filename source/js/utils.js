@@ -15,22 +15,10 @@ const numeroBacio = "numeroBacio";
  */
 function showPostList(posts) {
     document.querySelectorAll("div.listElement")?.forEach(x => x.remove());
-    const card = document.createElement("div");
-    card.classList = "container mt-2 mb-5 listElement";
-    card.innerHTML = `
-    <div class="row">
-        <div class="col-12">
-            <div class="middle-column">
-                <div class="card border-primary">
-                    <div class="card-body">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
-    main.appendChild(card);
-    const cardBody = document.querySelector("div.card-body");
+    const middleColumn = document.querySelector("div.middle-column");
+    const cardBody = document.createElement("div");
+    cardBody.classList = "card-body bg-white listElement";
+    middleColumn.appendChild(cardBody);
     posts.forEach(element => {
         let esame = "";
         let img = "";
@@ -114,9 +102,12 @@ function showPostList(posts) {
  */
 function showUserList(users) {
     document.querySelectorAll("div.listElement")?.forEach(x => x.remove());
+    const middleColumn = document.querySelector("div.middle-column");
+    const cardBody = document.createElement("div");
+    cardBody.classList = "card-body bg-white listElement";
+    middleColumn.appendChild(cardBody);
     users.forEach(element => {
         const newUser = document.createElement("div");
-        newUser.classList = "listElement";
         newUser.innerHTML = `
         <div class="container mt-4 mb-5 bg-white rounded-3 p-3">
             <div class="row">
@@ -130,7 +121,7 @@ function showUserList(users) {
                 </div>
             </div>
         </div>`;
-        main.appendChild(newUser);
+        cardBody.appendChild(newUser);
     });
 }
 

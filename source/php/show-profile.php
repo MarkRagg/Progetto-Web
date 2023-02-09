@@ -15,48 +15,35 @@ if (isset($_SESSION["user_id"])) {
     }
 }
 ?>
-<section>
-    <div class="container my-5">
-        <div class="row flex-row align-items-center justify-content-center text-center">
-            <div class="col-3">
-                <img src="<?php echo($templateParams["user_image"]) ?>" id="profileImage" class="img-fluid rounded-circle" alt="immagine profilo"/>
+<div class="container mt-2 mb-5">
+    <div class="row">
+        <div class="col-12 col-lg-3">
+            <div class="left-column">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img src="<?php echo($templateParams["user_image"]) ?>" id="profileImage" widh="120" height="120" class="mt-n5 rounded-circle" alt="immagine profilo"/>
+                        <p class="card-title mt-2"><?php echo($templateParams["u_name"]." ".$templateParams["surname"]) ?></p>
+                        <p class="card-text">@<?php echo($templateParams["username"]) ?></p>
+                        <p class="card-text text-justify mb-2"><?php echo($templateParams["descrizione"]) ?></p>
+                        <p class="card-text text-justify mb-2">Residenza: <?php echo($templateParams["residence"]) ?></p>
+                        <p class="card-text text-justify mb-2"><?php echo($templateParams["date_of_birth"]) ?></p>
+                        <button type="button" id="followBtn" class="col-6 btn btn-<?php echo($followBtnClass)?>" <?php echo($followBtnDisable)?>><?php echo($followBtnText) ?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="middle-column">
+                <div class="card border-primary">
+                    <div class="card-header">
+                        <ul class="list-group list-group-horizontal p-0 text-center">
+                            <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="posts" href="#">Post</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["post_count"]) ?></span></li>
+                            <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="followers" href="#">Seguaci</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["follower_count"]) ?></span></li>
+                            <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="following" href="#">Seguiti</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["followed_count"]) ?></span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container text-center">
-        <div class="row">
-            <h1 class="col text-light"><?php echo($templateParams["u_name"]." ".$templateParams["surname"]) ?></h1>
-        </div>
-        <div class="row">
-            <h2 class="col text-light">@<?php echo($templateParams["username"]) ?></h2>
-        </div>
-        <div class="row justify-content-center mb-4">
-            <button type="button" id="followBtn" class="col-6 btn btn-<?php echo($followBtnClass)?>" <?php echo($followBtnDisable)?>><?php echo($followBtnText) ?></button>   
-        </div>
-    </div>
-    <div class="container text-center bg-white rounded-3">
-        <div class="row flex-row d-flex align-items-center justifiy-content-center text-dark rounded-3 my-3 p-4">
-            <p class="col"><?php echo($templateParams["descrizione"]) ?></p>
-        </div>
-    </div>
-    <div class="container text-center mb-5">
-        <div class="row flex-row d-flex align-items-center justify-content-center">
-            <ul class="list-group list-group-horizontal p-0 mb-1">
-                <li class="list-group-item col"><?php echo($templateParams["date_of_birth"]) ?></li>
-                <li class="list-group-item col">Residenza: <?php echo($templateParams["residence"]) ?></li>
-                <?php 
-                if ($templateParams["corso_id"] !== NULL) {
-                    echo("<li class=\"list-group-item col \">Corso: <a href=\"course.php?course_id=".$courseInfo["corso_id"]."\">".$courseInfo["nome"]."</a></li>");
-                }
-                ?>
-            </ul>
-        </div>
-        <div class="row flex-row d-flex align-items-center justify-content-center">
-            <ul class="list-group list-group-horizontal p-0">
-                <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="posts" href="#">Post</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["post_count"]) ?></span></li>
-                <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="followers" href="#">Seguaci</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["follower_count"]) ?></span></li>
-                <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="following" href="#">Seguiti</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["followed_count"]) ?></span></li>
-            </ul>
-        </div>
-    </div>
-</section>
+</div>

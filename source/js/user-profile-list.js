@@ -60,3 +60,5 @@ postsLink.addEventListener("click", function(event) {
     makeRequestAndEdit(profileUsername, "posts");
     updateLinks(linkList, postsLink);
 });
+makeRequestAndEdit(profileUsername, "posts");
+updateLinks(linkList, postsLink);

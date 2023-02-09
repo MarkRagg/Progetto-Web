@@ -61,36 +61,36 @@ function showPostList(posts) {
             <p class="text-justify">${element["string"]}.</p>
             </div>
             <div class="mt-4">
-            <button class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-4 "><em class="bi bi-hand-thumbs-up"></em>
+            <button class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em class="bi bi-hand-thumbs-up"></em>
                 <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 ${element["num_like"]}
                 </span>
             </button>
 
-            <button class="btn btn-outline-danger position-relative me-2 ms-2 " onclick="location.href='../php/post-comment.php?post_id=${element["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
+            <button class="btn btn-outline-danger position-relative me-2 ms-2 mb-2" onclick="location.href='../php/post-comment.php?post_id=${element["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
                 <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 ${element["num_comments"]}
                 </span>
             </button>
 
-            <button class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-fire"></em>
+            <button class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em class="bi bi-fire"></em>
                 <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 ${element["num_fire"]}
                 </span>
             </button>
 
-            <button class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-smile-upside-down"></em>
+            <button class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em class="bi bi-emoji-smile-upside-down"></em>
                 <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 ${element["num_smile"]}
                 </span>
             </button>
 
-            <button class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-heart-fill"></em>
+            <button class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-heart-fill"></em>
                 <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 ${element["num_cuore"]}
                 </span>
             </button>
-            <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 "><em class="bi bi-emoji-kiss"></em>
+            <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em class="bi bi-emoji-kiss"></em>
                 <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 ${element["num_baci"]}
                 </span>

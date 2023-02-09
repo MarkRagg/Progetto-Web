@@ -4,12 +4,12 @@
             <h1 class="col text-light"><?php echo($templateParams["uni_name"]) ?></h1>
         </div>
         <div class="row">
-            <h2 class="col text-light"><?php echo("Sede: ".$templateParams["location"]) ?></h2>
+            <p class="col text-light fs-3"><?php echo("Sede: ".$templateParams["location"]) ?></p>
         </div>
     </div>
     <div class="container text-center bg-white p-3 rounded-3">
         <div class="flex-row d-flex justify-content-center align-items-center">
-            <h3 class="col text-primary">Corsi <span class="badge bg-primary rounded-pill"><?php echo($templateParams["course_count"]) ?></span></h3>
+            <p class="col text-primary fs-3">Corsi <span class="badge bg-primary rounded-pill"><?php echo($templateParams["course_count"]) ?></span></p>
         </div>
     </div>
     <?php foreach($templateParams["courses"] as $course): ?>

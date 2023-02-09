@@ -112,7 +112,7 @@ function generatePost(post_data) {
 `;
 
   const variabile = document.createElement("div");
-  variabile.classList.add("container", "mt-2" , "mb-5");
+  variabile.classList.add("container", "mt-2", "mb-5");
   variabile.innerHTML = section;
   return variabile;
 }
@@ -246,6 +246,9 @@ function getLoggedUserInfo() {
       if (response.data["user_info"]["user_image"] != null) {
         document.querySelector("#profile_picture").src = "../img/" + response.data["user_info"]["user_image"];
       }
+    } else {
+      main.innerHTML = "";
+      main.appendChild(showError());
     }
   });
 }
@@ -274,38 +277,54 @@ let rd;
 let end = false;
 const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {
-  showPost(response.data);
-  num = response.data.length;
-  if(num == 0){
-    let element = document.getElementById('adddiv');
-    let newdiv = showEndPost();
-    element.append(newdiv);
-    end = true;
+  if (response.data["success"]) {
+    num = response.data["posts"].length;
+    if (num == 0) {
+      let element = document.getElementById('adddiv');
+      let newdiv = showEndPost();
+      element.append(newdiv);
+      end = true;
+    } else if (num < 10) {
+      showPost(response.data["posts"]);
+      let element = document.getElementById('adddiv');
+      let newdiv = showEndPost();
+      element.append(newdiv);
+      end = true;
+      enableButtons(response);
+    } else {
+      showPost(response.data["posts"]);
+      enableButtons(response);
+    }
+    rd = response.data["posts"];
+    console.log(response.data);
+    sendPost();
+    getLoggedUserInfo()
+    dynamicButtonPost();
   } else {
-    const btnLike = "bottoneL";
-    const numeroLike = "numeroLike"
-    updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");
-    const btnFire = "btnFireL";
-    const numeroFire = "numeroFire"
-    updateButton(response.data, btnFire, numeroFire, 2, -2, "btnFireLkd");
-    const btnSmile = "btnSmileL"
-    const numeroSmile = "numeroSmile"
-    updateButton(response.data, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
-    const btnCuore = "btnCuoreL"
-    const numeroCuore = "numeroCuore"
-    updateButton(response.data, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
-    const btnBacio = "btnBacioL"
-    const numeroBacio = "numeroBacio"
-    updateButton(response.data, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
+    main.appendChild(showError());
   }
-  rd = response.data;
-  console.log(rd);
-  sendPost();
-  getLoggedUserInfo()
-  dynamicButtonPost();
+
 });
 
 let loading = false;
+
+function enableButtons(response) {
+  const btnLike = "bottoneL";
+  const numeroLike = "numeroLike";
+  updateButton(response.data["posts"], btnLike, numeroLike, 1, -1, "btnlkd");
+  const btnFire = "btnFireL";
+  const numeroFire = "numeroFire";
+  updateButton(response.data["posts"], btnFire, numeroFire, 2, -2, "btnFireLkd");
+  const btnSmile = "btnSmileL";
+  const numeroSmile = "numeroSmile";
+  updateButton(response.data["posts"], btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
+  const btnCuore = "btnCuoreL";
+  const numeroCuore = "numeroCuore";
+  updateButton(response.data["posts"], btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
+  const btnBacio = "btnBacioL";
+  const numeroBacio = "numeroBacio";
+  updateButton(response.data["posts"], btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
+}
 
 async function loadMore() {
   if (window.scrollY + window.innerHeight >= document.body.scrollHeight && !loading) {
@@ -313,47 +332,53 @@ async function loadMore() {
     const formData = new FormData();
     formData.append('num', num);
     const resp = await axios.post("api-loadPost.php", formData);
+    console.log(resp.data);
 
-    q = resp.data;
-    if (q.length == 0) {
-      document.removeEventListener('scroll', loadMore);
-      if (end == false){
+    if (!resp.data["errors"]) {
+      q = resp.data["posts"];
+      if (q.length == 0) {
+        document.removeEventListener('scroll', loadMore);
+        if (end == false) {
+          let element = document.getElementById('adddiv');
+          let newdiv = showEndPost();
+          element.append(newdiv);
+        }
+        return;
+      }
+
+      rd = rd.concat(q);
+
+      for (let i = 0; i < q.length; i++) {
+        let newdiv = newPosts(q[i], i + num);
         let element = document.getElementById('adddiv');
-        let newdiv = showEndPost();
         element.append(newdiv);
       }
-      return;
+
+      num = num + q.length;
+      const btnLike = "bottoneL";
+      const numeroLike = "numeroLike"
+      updateButton(rd, btnLike, numeroLike, 1, -1, "btnlkd");
+
+      const btnFire = "btnFireL";
+      const numeroFire = "numeroFire"
+      updateButton(rd, btnFire, numeroFire, 2, -2, "btnFireLkd");
+
+      const btnSmile = "btnSmileL"
+      const numeroSmile = "numeroSmile"
+      updateButton(rd, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
+
+      const btnCuore = "btnCuoreL"
+      const numeroCuore = "numeroCuore"
+      updateButton(rd, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
+
+      const btnBacio = "btnBacioL"
+      const numeroBacio = "numeroBacio"
+      updateButton(rd, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
+      loading = false;
+    } else {
+      main.innerHTML = "";
+      main.appendChild(showError());
     }
-
-    rd = rd.concat(q);
-
-    for (let i = 0; i < q.length; i++) {
-      let newdiv = newPosts(q[i], i + num);
-      let element = document.getElementById('adddiv');
-      element.append(newdiv);
-    }
-
-    num = num + q.length;
-    const btnLike = "bottoneL";
-    const numeroLike = "numeroLike"
-    updateButton(rd, btnLike, numeroLike, 1, -1, "btnlkd");
-
-    const btnFire = "btnFireL";
-    const numeroFire = "numeroFire"
-    updateButton(rd, btnFire, numeroFire, 2, -2, "btnFireLkd");
-
-    const btnSmile = "btnSmileL"
-    const numeroSmile = "numeroSmile"
-    updateButton(rd, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");
-
-    const btnCuore = "btnCuoreL"
-    const numeroCuore = "numeroCuore"
-    updateButton(rd, btnCuore, numeroCuore, 4, -4, "btnCuoreLkd");
-
-    const btnBacio = "btnBacioL"
-    const numeroBacio = "numeroBacio"
-    updateButton(rd, btnBacio, numeroBacio, 5, -5, "btnBacioLkd");
-    loading = false;
   }
 
 }
@@ -361,6 +386,15 @@ async function loadMore() {
 function showEndPost() {
   let newdiv = `<div class="d-flex justify-content-between p-2 px-3">
     <p>Non ci sono più post da mostrare</p>
+  </div>`
+  let div = document.createElement("div");
+  div.innerHTML = newdiv;
+  return div;
+}
+
+function showError(){
+  let newdiv = `<div class="d-flex justify-content-between p-2 px-3 bg-light">
+    <p class="fs-3">An error has occurred; please retry or log in. </p>
   </div>`
   let div = document.createElement("div");
   div.innerHTML = newdiv;

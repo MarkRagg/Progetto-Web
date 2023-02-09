@@ -2,6 +2,8 @@
 
 require_once 'db_config.php';
 
+$res = true;
+
 if (isset($_POST["num"])) {
     $numeropost = 5;
     $scarto = $_POST["num"];
@@ -32,15 +34,16 @@ if (isset($_POST["num"])) {
             $post[$i]["nome_corso"] = "";
         }
     }
+    $res = false;
 
-    $templateParams["title"] = "Show Post";
-    header("Content-Type: application/json");
-    echo json_encode($post);
-} else {
-    
 }
 
+$post1["posts"] = $post;
+$post1["errors"] = $res;
 
+$templateParams["title"] = "Show Post";
+header("Content-Type: application/json");
+echo json_encode($post1);
 
 
 

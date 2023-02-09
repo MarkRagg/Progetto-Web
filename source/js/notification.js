@@ -13,7 +13,7 @@ function showNotifications(response) {
       <div class="row d-flex align-items-center">`
       + html_string + 
       `</div>
-      <button type="submit" data-toggle="button" class="delete-btn btn btn-outline-danger m-1">Delete</button>
+      <button type="submit" data-toggle="button" class="delete-btn btn btn-outline-danger m-1"><em class="bi bi-x-circle"></em></button>
     </div> 
     `;
     updateBtn(element["user_1_id"], response["following-list"], element["notifica_id"], element["post_id"], new_notification);
@@ -42,13 +42,13 @@ if(element["post_id"] != null) {
     case 2:
       html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
       <p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has react your post!</p>
-      <button type="button" data-toggle="button" class="post-btn btn"><em class="bi bi-arrow-right"></em></button>
+      <button type="button" data-toggle="button" class="post-btn btn btn-outline-primary"><em class="bi bi-arrow-right"></em></button>
       </div>`;
       break;
     case 3:
       html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
       <p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has comment your post!</p>
-      <button type="button" data-toggle="button" class="post-btn btn"><em class="bi bi-arrow-right"></em></button>
+      <button type="button" data-toggle="button" class="post-btn btn btn-outline-primary"><em class="bi bi-arrow-right"></em></button>
       </div>`;
       break;
     default:

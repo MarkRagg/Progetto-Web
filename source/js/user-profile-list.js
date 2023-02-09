@@ -45,14 +45,6 @@ const postsLink = document.querySelector("a#posts");
 const profileUsername = getParameter("username");
 const linkList = [postsLink, followersLink, followingLink];
 const userImagePath = document.querySelector("img#profileImage").getAttribute("src");
-const btnLike = "bottoneL";
-const numeroLike = "numeroLike"
-const btnFire = "btnFireL";
-const numeroFire = "numeroFire";
-const btnSmile = "btnSmileL";
-const numeroSmile = "numeroSmile";
-const btnCuore = "btnCuoreL";
-const numeroCuore = "numeroCuore";
 followersLink.addEventListener("click", function(event) {
     event.preventDefault();
     makeRequestAndEdit(profileUsername, "followers");

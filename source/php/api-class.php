@@ -6,6 +6,7 @@ $result["success"] = false;
 if (isset($_POST["class_id"]) && isset($_SESSION["user_id"])) {
     $class_id = $_POST["class_id"];
     if ($dbh->checkValueInDb("esami", "esame_id", $_POST["class_id"])) {
+        $classInfo = $dbh->getClassInfo($class_id);
         $result["posts"] = $dbh->getPostsFromClass($class_id);
         for ($i = 0; $i < count($result["posts"]); $i++) {
             $post_id = $result["posts"][$i]["post_id"];
@@ -16,6 +17,7 @@ if (isset($_POST["class_id"]) && isset($_SESSION["user_id"])) {
             $result["posts"][$i] = array_merge($result["posts"][$i], $author);
             $result["posts"][$i] = array_merge($result["posts"][$i], $reactions);
             $result["posts"][$i] = array_merge($result["posts"][$i], $userReactions);
+            $result["posts"][$i] = array_merge($result["posts"][$i], $classInfo);
         }
         $result["success"] = true;
     } else {

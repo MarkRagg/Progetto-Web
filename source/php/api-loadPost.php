@@ -4,7 +4,7 @@ require_once 'db_config.php';
 
 $res = true;
 
-if (isset($_POST["num"])) {
+if (isset($_POST["num"]) && isset($_SESSION["user_id"])) {
     $numeropost = 5;
     $scarto = $_POST["num"];
     $post = $dbh->getMorePosts($_SESSION["user_id"], $numeropost, $scarto);

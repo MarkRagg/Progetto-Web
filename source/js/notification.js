@@ -9,12 +9,11 @@ function showNotifications(response) {
     const new_notification = document.createElement("div");
     new_notification.classList = "list-element";
     new_notification.innerHTML = `
-    <div class="container mt-5 mb-5> 
-      <div class="row d-flex align-items-center bg-light">`
+    <div class="container mt-5 mb-5 bg-light"> 
+      <div class="row d-flex align-items-center">`
       + html_string + 
-      `
+      `</div>
       <button type="submit" data-toggle="button" class="delete-btn btn btn-outline-danger m-1">Delete</button>
-      </div>
     </div> 
     `;
     updateBtn(element["user_1_id"], response["following-list"], element["notifica_id"], element["post_id"], new_notification);
@@ -43,13 +42,13 @@ if(element["post_id"] != null) {
     case 2:
       html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
       <p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has react your post!</p>
-      <button type="button" data-toggle="button" class="post-btn btn btn-outline-primary">Go into</button>
+      <button type="button" data-toggle="button" class="post-btn btn"><em class="bi bi-arrow-right"></em></button>
       </div>`;
       break;
     case 3:
       html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
       <p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has comment your post!</p>
-      <button type="button" data-toggle="button" class="post-btn btn btn-outline-primary">Go into</button>
+      <button type="button" data-toggle="button" class="post-btn btn"><em class="bi bi-arrow-right"></em></button>
       </div>`;
       break;
     default:

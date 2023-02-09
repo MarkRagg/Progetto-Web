@@ -38,53 +38,51 @@ function showPage(response_settings, response_select) {
   course_options = generateOptions(response_select["courses"], 1, "course");
   residence_options = generateOptions(response_settings["cities"], response_settings["current-residence"], "residence");
   let form = `
-    <div class="d-flex justify-content-center align-middle ">
-      <div class="flex-column border">
-        <div class="p-5 bg-light">
-          <div class="row p-2">
-            <div class="col-6">
-              <label for="bio">Bio</label>
-            </div>
-            <div class="col-6">
-              <textarea id="bio" name="bio" rows="5" cols="30">${response_settings["bio"]}</textarea>
-            </div>
-          <div class="w-100 p-2"></div>
-            <div class="col-6">
-              <label for="user_image">Profile image</label>
-            </div>
-            <div class="col-6">
-              <input type="file" name="user_image" id="user_image" />
-            </div>
-          <div class="w-100 p-2"></div>
-            <div class="col-6">
-              <label for="course">Course</label>
-            </div>
-            <div class="col-3">
-              <select id="uni" name="uni" class="d-flex justify-content-end">`
-                + uni_options + 
-              `</select>
-            </div>
-            <div class="col-3">
-              <select id="course" name="course" class="d-flex justify-content-end">`
-                + course_options +
-              `</select>
-            </div>
-            <div class="w-100 p-2"></div>
-            <div class="col-6">
-              <label for="residence">Residence</label>
-            </div>
-            <div class="col-6">
-              <select id="residence" name="Residence" class="d-flex justify-content-end">`
-                + residence_options +
-              `</select>
-            </div>
+    <div class="container justify-content-center align-middle ">
+      <div class="p-5 bg-light">
+        <div class="row p-2">
+          <div class="col-sm-6">
+            <label for="bio">Bio</label>
           </div>
-          <hr/>
-          <div class="d-flex justify-content-end">
-            <button type="submit" data-toggle="button" class="btn btn-outline-primary" id="apply_changes">Save</button>
+          <div class="col-sm-6">
+            <textarea id="bio" name="bio" rows="5" cols="30">${response_settings["bio"]}</textarea>
           </div>
-       </div> 
-      </div>
+        <div class="w-100 p-2"></div>
+          <div class="col-sm-6">
+            <label for="user_image">Profile image</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="file" name="user_image" id="user_image" class="form-control" />
+          </div>
+        <div class="w-100 p-2"></div>
+          <div class="col-sm-6">
+            <label for="course">Course</label>
+          </div>
+          <div class="col-sm-3">
+            <select id="uni" name="uni" class="justify-content-end">`
+              + uni_options + 
+            `</select>
+          </div>
+          <div class="col-sm-3">
+            <select id="course" name="course" class="justify-content-end">`
+              + course_options +
+            `</select>
+          </div>
+          <div class="w-100 p-2"></div>
+          <div class="col-sm-6">
+            <label for="residence">Residence</label>
+          </div>
+          <div class="col-sm-6">
+            <select id="residence" name="Residence" class="justify-content-end">`
+              + residence_options +
+            `</select>
+          </div>
+        </div>
+        <hr/>
+        <div class="d-flex justify-content-end">
+          <button type="submit" data-toggle="button" class="btn btn-outline-primary" id="apply_changes">Save</button>
+        </div>
+      </div> 
     </div>
   `;
   main.innerHTML = form;

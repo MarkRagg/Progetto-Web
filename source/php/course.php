@@ -6,6 +6,9 @@ $templateParams["course_exists"] = false;
 $templateParams["errormsg"] = "Missing id";
 $templateParams["paginaprofilouser"]=$_SESSION["user_id"];
 $templateParams["name"] = "show-error.php";
+$templateParams["homepage"] = "";
+$templateParams["uni-list"] = "";
+$templateParams["notifications"] = "";
 
 if (isset($_GET["course_id"])) {
     $templateParams["course_exists"] = $dbh->checkValueInDb("corsi", "corso_id", $_GET["course_id"]);

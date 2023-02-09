@@ -3,6 +3,9 @@ require_once("db_config.php");
 
 $templateParams["title"] = "University";
 $templateParams["name"] = "show-error.php";
+$templateParams["homepage"] = "";
+$templateParams["uni-list"] = "";
+$templateParams["notifications"] = "";
 
 if (isset($_GET["uni_id"])) {
     $uni_exists = $dbh->checkValueInDb("universita", "uni_id", $_GET["uni_id"]);

@@ -3,6 +3,9 @@ require_once("db_config.php");
 
 $templateParams["title"] = "Insert Post";
 $templateParams["name"] = "../template/form_add_post.php";
+$templateParams["homepage"] = "link-secondary";
+$templateParams["uni-list"] = "";
+$templateParams["notifications"] = "";
 $templateParams["paginaprofilouser"]= $_SESSION["user_id"];
 
 $error = "";

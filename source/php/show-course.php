@@ -29,13 +29,13 @@ if ($templateParams["course_exists"]) {
                 <button type="button" id="subBtn" class="col-6 btn btn-$subBtnClass">$subBtnText</button>   
             </div>
             <div class="row mb-2">
-                <ul class="list-group list-group-horizontal">
+                <ul class="list-group list-group-horizontal p-0">
                     <li class="list-group-item col-6">Anno scolastico: $year</li>
                     <li class="list-group-item col-6">Università: <a href="uni.php?uni_id=$uni_id">$uni_name</a></li>
                 </ul>
             </div>
             <div class="row">
-                <ul class="list-group list-group-horizontal">
+                <ul class="list-group list-group-horizontal p-0">
                     <li class="col-6 list-group-item align-items-center"><a class="link-primary" id="classes" href="#">Esami</a> <span class="badge bg-primary text-light rounded-pill">$class_count</span></li>
                     <li class="col-6 list-group-item align-items-center"><a class="link-primary" id="subscribers" href="#">Iscritti</a> <span class="badge bg-primary text-light rounded-pill">$subscribed_count</span></li>
                 </ul>

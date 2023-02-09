@@ -521,5 +521,13 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_array(MYSQLI_ASSOC)["corso_id"];
     }
+
+    public function getSearchResult($search_term) {
+        $stmt = $this->db->prepare("SELECT * FROM user_info WHERE user_id LIKE CONCAT(\"%\", ?, \"%\") OR surname LIKE CONCAT(\"%\", ?, \"%\") OR CONCAT(name, \" \", surname) LIKE CONCAT(\"%\", ?, \"%\")");
+        $stmt->bind_param("sss", $search_term, $search_term, $search_term);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }  
 ?>

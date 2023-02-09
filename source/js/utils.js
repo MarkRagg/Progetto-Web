@@ -17,7 +17,7 @@ function showPostList(posts) {
     document.querySelectorAll("div.listElement")?.forEach(x => x.remove());
     const middleColumn = document.querySelector("div.middle-column");
     const cardBody = document.createElement("div");
-    cardBody.classList = "card-body bg-white listElement";
+    cardBody.classList = "card-body bg-white listElement rounded-3";
     middleColumn.appendChild(cardBody);
     posts.forEach(element => {
         let esame = "";

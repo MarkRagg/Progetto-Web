@@ -9,11 +9,12 @@ function showNotifications(response) {
     const new_notification = document.createElement("div");
     new_notification.classList = "list-element";
     new_notification.innerHTML = `
-    <div class="container mt-5 mb-5 bg-light> 
-      <div class="row d-flex align-items-center">`
+    <div class="container mt-5 mb-5> 
+      <div class="row d-flex align-items-center bg-light">`
       + html_string + 
-      `</div>
+      `
       <button type="submit" data-toggle="button" class="delete-btn btn btn-outline-danger m-1">Delete</button>
+      </div>
     </div> 
     `;
     updateBtn(element["user_1_id"], response["following-list"], element["notifica_id"], element["post_id"], new_notification);

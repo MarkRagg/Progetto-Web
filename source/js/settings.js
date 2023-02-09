@@ -38,9 +38,9 @@ function showPage(response_settings, response_select) {
   course_options = generateOptions(response_select["courses"], 1, "course");
   residence_options = generateOptions(response_settings["cities"], response_settings["current-residence"], "residence");
   let form = `
-    <div class="d-flex justify-content-center align-middle">
+    <div class="d-flex justify-content-center align-middle ">
       <div class="flex-column border">
-        <div class="p-5">
+        <div class="p-5 bg-light">
           <div class="row p-2">
             <div class="col-6">
               <label for="bio">Bio</label>

@@ -19,7 +19,7 @@ if (isset($_GET["course_id"])) {
         $templateParams["uni_id"] = $uni["uni_id"];
         $templateParams["class_count"] = $dbh->getClassCount($templateParams["course_id"]);
         $templateParams["sub_count"] = $dbh->getSubCount($templateParams["course_id"]);
-        $templateParams["js"] = array("../js/utils.js", "../js/course-page-list.js", "../js/subscribe.js", "https://unpkg.com/axios/dist/axios.min.js");
+        $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../js/utils.js", "../js/course-page-list.js", "../js/subscribe.js");
     } else {
         $templateParams["errormsg"] = "Course not found";
     }

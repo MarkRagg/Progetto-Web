@@ -10,8 +10,12 @@ getParameter = (key) => {
 function showClassList(classList) {
     if (classList.length > 0) {
         document.querySelectorAll(".listElement")?.forEach(x => x.remove());
+        const middleColumn = document.querySelector("div.middle-column");
+        const cardBody = document.createElement("div");
+        cardBody.classList = "card-body bg-white listElement";
+        middleColumn.appendChild(cardBody);
         const classTable = document.createElement("div");
-        classTable.classList = "listElement container";
+        classTable.classList = "container";
         classTable.innerHTML = `
         <div class="row bg-white flex-row d-flex justify-content-center align-items-center p-3 m-3 rounded-3">
             <table class="table col-6">
@@ -27,7 +31,7 @@ function showClassList(classList) {
             </table>
         </div>
         `;
-        main.appendChild(classTable);
+        cardBody.appendChild(classTable);
         const tbody = document.querySelector("tbody");
         classList.forEach(element => {
             const headId = element["nome"].toLowerCase().replaceAll(" ", "");
@@ -83,3 +87,6 @@ subscribersLink.addEventListener("click", function(event) {
     makeRequestAndEdit(courseId, "subscribers");
     updateLinks(linkSet, subscribersLink);
 });
+
+makeRequestAndEdit(courseId, "classes");
+updateLinks(linkSet, classesLink);

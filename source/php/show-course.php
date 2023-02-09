@@ -18,30 +18,34 @@ if ($templateParams["course_exists"]) {
         $subBtnClass = "danger";
     }
     $main = <<<EOD
-    <section>
-        <div class="container text-center">
-            <div class="row">
-                <h1 class="col text-light">$name</h1>
+    <div class="container mt-2 mb-5">
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <div class="left-column">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <p class="card-title mt-2">$name</p>
+                            <p class="card-text text-justify mb-2">Anno scolastico: $year</p>
+                            <p class="card-text text-justify mb-2">Università: <a href="uni.php?uni_id=$uni_id">$uni_name</a></p>
+                            <button type="button" id="subBtn" class="col-6 btn btn-$subBtnClass">$subBtnText</button>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="middle-column">
+                    <div class="card border-primary">
+                        <div class="card-header">
+                            <ul class="list-group list-group-horizontal p-0">
+                                <li class="col-6 list-group-item align-items-center"><a class="link-primary" id="classes" href="#">Esami</a> <span class="badge bg-primary text-light rounded-pill">$class_count</span></li>
+                                <li class="col-6 list-group-item align-items-center"><a class="link-primary" id="subscribers" href="#">Iscritti</a> <span class="badge bg-primary text-light rounded-pill">$subscribed_count</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="container text-center mb-5">
-            <div class="row justify-content-center mb-4">
-                <button type="button" id="subBtn" class="col-6 btn btn-$subBtnClass">$subBtnText</button>   
-            </div>
-            <div class="row mb-2">
-                <ul class="list-group list-group-horizontal p-0">
-                    <li class="list-group-item col-6">Anno scolastico: $year</li>
-                    <li class="list-group-item col-6">Università: <a href="uni.php?uni_id=$uni_id">$uni_name</a></li>
-                </ul>
-            </div>
-            <div class="row">
-                <ul class="list-group list-group-horizontal p-0">
-                    <li class="col-6 list-group-item align-items-center"><a class="link-primary" id="classes" href="#">Esami</a> <span class="badge bg-primary text-light rounded-pill">$class_count</span></li>
-                    <li class="col-6 list-group-item align-items-center"><a class="link-primary" id="subscribers" href="#">Iscritti</a> <span class="badge bg-primary text-light rounded-pill">$subscribed_count</span></li>
-                </ul>
-            </div>
-        </div>
-    </section>
+    </div>
     EOD;
 } else {
     $errormsg = $templateParams["errormsg"];

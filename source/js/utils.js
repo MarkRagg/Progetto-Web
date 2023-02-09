@@ -107,7 +107,7 @@ function showUserList(users) {
                         <img src="${uploadDir}${element["user_image"]}" class="rounded-circle" width="50" hight="50" alt="">
                     </div>
                     <div class="flex-grow-1 ms-3">
-                        <a class="h5" href="profile.php?username=${element["username"]}">${element["name"]} ${element["surname"]} @${element["username"]}</a> 
+                        <a href="profile.php?username=${element["username"]}">${element["name"]} ${element["surname"]} @${element["username"]}</a> 
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@ function showErrorMsg(errorMsg) {
     errorNode.classList = "listElement";
     errorNode.innerHTML = `
         <div class="bg-danger text-white border border-danger-subtle rounded-3 container-md my-5">
-            <h1 class="text-center">${errorMsg}</h1>
+            <p class="text-center">${errorMsg}</p>
         </div>
     `;
     main.appendChild(errorNode);

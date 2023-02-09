@@ -24,9 +24,9 @@
                         class="rounded-circle">
                <!-- </a> -->
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="showhomepage.php" class="nav-link px-2 link-secondary">Home</a></li>
-                    <li><a href="uni-list.php" class="nav-link px-2 ">Università</a></li>
-                    <li><a href="notification.php" class="nav-link px-2 ">Notifiche</a></li>
+                    <li><a href="showhomepage.php" class="nav-link px-2 <?php echo $templateParams["homepage"]?>">Home</a></li>
+                    <li><a href="uni-list.php" class="nav-link px-2 <?php echo $templateParams["uni-list"]?>">Università</a></li>
+                    <li><a href="notification.php" class="nav-link px-2 <?php echo $templateParams["notifications"]?>">Notifiche</a></li>
                 </ul>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"

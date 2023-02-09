@@ -3,7 +3,6 @@ $isFollowing = false;
 $followBtnText = "Segui";
 $followBtnClass = "primary";
 $followBtnDisable = "";
-$courseInfo = $dbh->getCourseInfo($templateParams["corso_id"]);
 if (isset($_SESSION["user_id"])) {
     $isFollowing = $dbh->isUserFollowing($_SESSION["user_id"], $templateParams["username"]);
     if ($isFollowing) {
@@ -24,6 +23,12 @@ if (isset($_SESSION["user_id"])) {
                         <img src="<?php echo($templateParams["user_image"]) ?>" id="profileImage" widh="120" height="120" class="mt-n5 rounded-circle" alt="immagine profilo"/>
                         <p class="card-title mt-2"><?php echo($templateParams["u_name"]." ".$templateParams["surname"]) ?></p>
                         <p class="card-text">@<?php echo($templateParams["username"]) ?></p>
+                        <?php
+                            if ($templateParams["corso_id"] !== null) {
+                                $courseInfo = $dbh->getCourseInfo($templateParams["corso_id"]);
+                                echo ("<p class=\"card-text\">Iscritto a: <a href=\"course.php?course_id=".$courseInfo["corso_id"]."\">".$courseInfo["nome"]."</a></p>");
+                            }
+                        ?>
                         <p class="card-text text-justify mb-2"><?php echo($templateParams["descrizione"]) ?></p>
                         <p class="card-text text-justify mb-2">Residenza: <?php echo($templateParams["residence"]) ?></p>
                         <p class="card-text text-justify mb-2"><?php echo($templateParams["date_of_birth"]) ?></p>

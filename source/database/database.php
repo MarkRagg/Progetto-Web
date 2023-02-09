@@ -529,5 +529,11 @@ class DatabaseManager {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function updateResidence($user_id, $new_residence) {
+        $stmt = $this->db->prepare("UPDATE user_info SET uni_residence=? WHERE user_id=?");
+        $stmt->bind_param("ss", $new_residence, $user_id);
+        return $stmt->execute();
+    } 
 }  
 ?>

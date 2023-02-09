@@ -28,6 +28,14 @@ if(isset($_SESSION["user_id"])) {
       $dbh->subUserToCourse($_SESSION["user_id"], null);
     }
   }
+  //code for change course
+  if(isset($_POST["residence"]) && $_POST["residence"] != $user_info["uni_residence"]) {
+    if($_POST["residence"] != null) {
+      $result["success"] = true;
+      $result["residence"] = $_POST["residence"];
+      $dbh->updateResidence($_SESSION["user_id"], $_POST["residence"]);
+    }
+  }
 }
 
 header("Content-Type: application/json");

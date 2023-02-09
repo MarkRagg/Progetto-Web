@@ -4,21 +4,30 @@ function generateOptions(values, selected, category) {
   if(values == null && category == 'course') {
     return options;
   }
-  if(category == 'course') {
+  if(category != 'uni') {
     options = ``;
   }
   values.forEach(element => {
     add_selected = ``;
-    if(category == "uni") {
-      if(selected == element["uni_id"]) {
-        add_selected = `selected='selected'`;
-      }
-      options += `<option value='${element["uni_id"]}' ` + add_selected + `>${element["nome"]}</option>`;
-    } else if (category == "course") {
-      if(selected == element["corso_id"]) {
-        add_selected = `selected='selected'`;
-      }
-      options += `<option value='${element["corso_id"]}' ` + add_selected + `>${element["nome"]}</option>`;
+    switch (category) {
+      case 'uni':
+        if(selected == element["uni_id"]) {
+          add_selected = `selected='selected'`;
+        }
+        options += `<option value='${element["uni_id"]}' ` + add_selected + `>${element["nome"]}</option>`;
+        break;
+      case 'course':
+        if(selected == element["corso_id"]) {
+          add_selected = `selected='selected'`;
+        }
+        options += `<option value='${element["corso_id"]}' ` + add_selected + `>${element["nome"]}</option>`;
+        break;
+      case 'residence':
+        if(selected == element["current-residence"]) {
+          add_selected = `selected='selected'`;
+        }
+        options += `<option value='${element}' ` + add_selected + `>${element}</option>`;
+        break;
     }
   });
   return options;
@@ -27,6 +36,7 @@ function generateOptions(values, selected, category) {
 function showPage(response_settings, response_select) {
   uni_options = generateOptions(response_select["unis"], response_select["uni-selected"],"uni");
   course_options = generateOptions(response_select["courses"], 1, "course");
+  residence_options = generateOptions(response_settings["cities"], response_settings["current-residence"], "residence");
   let form = `
     <div class="d-flex justify-content-center align-middle">
       <div class="flex-column border">
@@ -59,6 +69,15 @@ function showPage(response_settings, response_select) {
                 + course_options +
               `</select>
             </div>
+            <div class="w-100 p-2"></div>
+            <div class="col-6">
+              <label for="residence">Residence</label>
+            </div>
+            <div class="col-6">
+              <select id="residence" name="Residence" class="d-flex justify-content-end">`
+                + residence_options +
+              `</select>
+            </div>
           </div>
           <hr/>
           <div class="d-flex justify-content-end">
@@ -71,16 +90,19 @@ function showPage(response_settings, response_select) {
   main.innerHTML = form;
 }
 
-function saveChanges(bio, img, course, user_id) {
+function saveChanges(bio, img, course, user_id, residence) {
   var formData = new FormData();
   formData.append("bio", bio);
   formData.append("img", img); 
   formData.append("course_id", course);
+  formData.append("residence", residence);
+
   select = document.querySelector("#uni");
 
   axios.post('api-save-settings.php', formData).then(response => {
     if(response.data["success"]) {
-      window.location.href = "../php/profile.php?username=" + user_id;
+      console.log(response.data);
+      //window.location.href = "../php/profile.php?username=" + user_id;
     } else {
       //TODO
     }
@@ -93,7 +115,9 @@ function updateButton(user_id) {
     const bio = document.querySelector("#bio").value;
     const img = document.querySelector("#user_image") != null ? document.querySelector("#user_image").files[0] : null;
     const course = document.querySelector("#course").value;
-    saveChanges(bio, img, course, user_id);
+    const residence = document.querySelector("#residence").value;
+
+    saveChanges(bio, img, course, user_id, residence);
   });
 }
 

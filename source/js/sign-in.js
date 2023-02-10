@@ -33,6 +33,11 @@ function generateForm(cities) {
                 + city_options +
               `</select>
               </li>
+            <li class="list-group-item"><label for="birthplace">Luogo di nascita</label>
+            <select id="birthplace" class="d-flex justify-content-end" name="birthplace" required>`
+              + city_options +
+            `</select>
+            </li>
           </ul>
           <hr/>
           <div class="d-flex justify-content-end">
@@ -52,10 +57,10 @@ function generateSuccesfullSignin(loginerror = null) {
   let form = `
   <section>
   <div class="container text-center p-5">
-    <h1 class="text-primary">Sign-in completed!</h1>
+    <h1 class="text-primary"Registrazione completata!></h1>
   </div>
   <div class="d-flex justify-content-center align-middle">
-    <button type="button" class="btn btn-outline-primary" onclick="location.href='../php/Login.php';">Log in</button>
+    <button type="button" class="btn btn-outline-primary" onclick="location.href='../php/Login.php';">Accedi</button>
   </div>
   </section>`;
   return form;
@@ -92,11 +97,12 @@ function VisualizeSigninForm(cities) {
       const password = document.querySelector("#password").value;
       const date = document.querySelector("#date").value;
       const residence = document.querySelector("#residence").value;
-      signin(nickname, email, name, surname, password, date, residence);
+      const birthplace = document.querySelector("#birthplace").value;
+      signin(nickname, email, name, surname, password, date, residence, birthplace);
   });
 }
 
-function signin(nickname, email, name, surname, password, date, residence) {
+function signin(nickname, email, name, surname, password, date, residence, birthplace) {
   const formData = new FormData();
 
   formData.append('nickname', nickname);
@@ -106,6 +112,7 @@ function signin(nickname, email, name, surname, password, date, residence) {
   formData.append('date', date);
   formData.append('password', password);
   formData.append('residence', residence);
+  formData.append('birthplace', birthplace);
 
   axios.post('Sign-in.php', formData).then(response => {
       if (response.data["sign-in-result"]) {

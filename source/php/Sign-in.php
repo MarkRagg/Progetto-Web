@@ -14,7 +14,7 @@ $date = new DateTime('now');
 $date->modify("-14 years");
 $date = date_format($date, "Y-m-d");
 
-if(isset($_POST["nickname"]) && isset($_POST["email"]) && isset($_POST["password"])  && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["date"]) && isset($_POST["residence"])) {
+if(isset($_POST["nickname"], $_POST["email"], $_POST["password"], $_POST["name"], $_POST["surname"], $_POST["date"], $_POST["residence"], $_POST["birthplace"])) {
   $check_id = $dbh->checkValueInDb("user", "user_id", $_POST["nickname"]);
   $check_email = $dbh->checkValueInDb("user", "email", $_POST["email"]);
   if(!$check_id && !$check_email) {
@@ -24,7 +24,7 @@ if(isset($_POST["nickname"]) && isset($_POST["email"]) && isset($_POST["password
           if(!empty($_POST["name"])) {
             if(!empty($_POST["surname"])) {
               if($_POST["date"] < $date) {
-                $result["sign-in-result"] = $dbh->addUser($_POST["nickname"], $_POST["email"], $_POST["password"], $_POST["name"], $_POST["surname"], $_POST["date"], $_POST["residence"]);
+                $result["sign-in-result"] = $dbh->addUser($_POST["nickname"], $_POST["email"], $_POST["password"], $_POST["name"], $_POST["surname"], $_POST["date"], $_POST["residence"], $_POST["birthplace"]);
                 $dbh->setImageToUser(DEFAULT_IMAGE, $_POST["nickname"]);
               } else {
                 $result["sign-in-result"] = false;

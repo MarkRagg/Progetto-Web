@@ -18,7 +18,7 @@ class DatabaseManager {
     /**
      * it insert a user into the db
      */
-    public function addUser($nickname, $email, $passw, $name, $surname, $date, $residence) {
+    public function addUser($nickname, $email, $passw, $name, $surname, $date, $residence, $birthplace) {
         $user_query = $this->db->prepare("INSERT INTO user (user_id, password, email)
                         VALUES (?, ?, ?);");
         $user_query->bind_param("sss", $nickname, $passw, $email);
@@ -28,7 +28,7 @@ class DatabaseManager {
         
         $user_info_query = $this->db->prepare("INSERT INTO user_info(user_info_count, user_id, name, surname, date_of_birth, birthplace, uni_residence, user_image, descrizione)
                                             VALUES(?, ?, ?, ?, ?, ?, ?, null, ' ');");                     
-        $user_info_query->bind_param("sssssss",$id, $nickname, $name, $surname, $date, $residence, $residence);
+        $user_info_query->bind_param("sssssss",$id, $nickname, $name, $surname, $date, $birthplace, $residence);
         $second_result = $user_info_query->execute();
         
 

@@ -28,6 +28,10 @@
                     <li><a href="uni-list.php" class="nav-link px-2 <?php echo $templateParams["uni-list"]?>">Università</a></li>
                     <li><a href="notification.php" class="nav-link px-2 <?php echo $templateParams["notifications"]?>">Notifiche</a></li>
                 </ul>
+                <form class="d-flex mb-2 me-lg-3 mb-lg-0 align-items-center" role="search">
+                    <input class="form-control" type="search" placeholder="Cerca" aria-label="Search">
+                    <button class="btn btn-primary" type="submit"><em class="bi bi-search"></em></button>
+                </form>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"
                         data-bs-toggle="dropdown" aria-expanded="false">

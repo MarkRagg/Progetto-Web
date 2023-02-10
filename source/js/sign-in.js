@@ -25,10 +25,10 @@ function generateForm(cities) {
             <li class="list-group-item"><label for="nickname"">Nickname</label><input type="text" class="d-flex justify-content-end" id="nickname" name="nickname"/></li>
             <li class="list-group-item"><label for="email">Email</label><input type="email" class="d-flex justify-content-end" id ="email" name="email"/></li>
             <li class="list-group-item"><label for="password">Password</label><input type="password" class="d-flex justify-content-end" id="password" name="password"/></li>
-            <li class="list-group-item"><label for="name">Name</label><input type="text" class="d-flex justify-content-end" id="name" name="name"/></li>
-            <li class="list-group-item"><label for="surname">Surname</label><input type="text" class="d-flex justify-content-end" id="surname" name="surname"/></li>
-            <li class="list-group-item"><label for="date">Date</label><input type="date" class="d-flex justify-content-end" id="date" name="date"/></li>
-            <li class="list-group-item"><label for="residence">Residence</label>
+            <li class="list-group-item"><label for="name">Nome</label><input type="text" class="d-flex justify-content-end" id="name" name="name"/></li>
+            <li class="list-group-item"><label for="surname">Cognome</label><input type="text" class="d-flex justify-content-end" id="surname" name="surname"/></li>
+            <li class="list-group-item"><label for="date">Data</label><input type="date" class="d-flex justify-content-end" id="date" name="date"/></li>
+            <li class="list-group-item"><label for="residence">Residenza</label>
               <select id="residence" class="d-flex justify-content-end" name="residence">`
                 + city_options +
               `</select>

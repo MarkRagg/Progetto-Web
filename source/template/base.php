@@ -40,14 +40,14 @@
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
                         <li><a class="dropdown-item"
-                                href="../php/profile.php?username=<?php echo $_SESSION["user_id"];?>">Profile</a>
+                                href="../php/profile.php?username=<?php echo $_SESSION["user_id"];?>">Profilo</a>
                         </li>
                         <li><a class="dropdown-item" href="../php/insertpost.php">Inserisci post</a></li>
-                        <li><a class="dropdown-item" href="../php/settings.php">Settings</a></li>
+                        <li><a class="dropdown-item" href="../php/settings.php">Impostazioni</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="../php/Login.php">Sign out</a></li>
+                        <li><a class="dropdown-item" href="../php/Login.php">Disconnetti</a></li>
                     </ul>
                 </div>
             </div>

@@ -42,21 +42,21 @@ function showPage(response_settings, response_select) {
       <div class="p-5 bg-light">
         <div class="row p-2">
           <div class="col-sm-6">
-            <label for="bio">Bio</label>
+            <label for="bio">Descrizione</label>
           </div>
           <div class="col-sm-6">
             <textarea id="bio" name="bio" rows="5" cols="30">${response_settings["bio"]}</textarea>
           </div>
         <div class="w-100 p-2"></div>
           <div class="col-sm-6">
-            <label for="user_image">Profile image</label>
+            <label for="user_image">Immagine profilo</label>
           </div>
           <div class="col-sm-6">
             <input type="file" name="user_image" id="user_image" class="form-control" />
           </div>
         <div class="w-100 p-2"></div>
           <div class="col-sm-6">
-            <label for="course">Course</label>
+            <label for="course">Corso</label>
           </div>
           <div class="col-sm-3">
             <select id="uni" name="uni" class="justify-content-end">`
@@ -70,7 +70,7 @@ function showPage(response_settings, response_select) {
           </div>
           <div class="w-100 p-2"></div>
           <div class="col-sm-6">
-            <label for="residence">Residence</label>
+            <label for="residence">Residenza</label>
           </div>
           <div class="col-sm-6">
             <select id="residence" name="Residence" class="justify-content-end">`
@@ -80,7 +80,7 @@ function showPage(response_settings, response_select) {
         </div>
         <hr/>
         <div class="d-flex justify-content-end">
-          <button type="submit" data-toggle="button" class="btn btn-outline-primary" id="apply_changes">Save</button>
+          <button type="submit" data-toggle="button" class="btn btn-outline-primary" id="apply_changes">Salva</button>
         </div>
       </div> 
     </div>

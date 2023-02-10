@@ -28,7 +28,7 @@
                     <li><a href="uni-list.php" class="nav-link px-2 <?php echo $templateParams["uni-list"]?>">Università</a></li>
                     <li><a href="notification.php" class="nav-link px-2 <?php echo $templateParams["notifications"]?>">Notifiche</a></li>
                 </ul>
-                <button id="searchBtn" role="search" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#searchModal"><em class="bi bi-search"> Cerca utente</em></button>
+                <button id="searchBtn" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#searchModal"><em class="bi bi-search"> Cerca utente</em></button>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,7 +54,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <label for="searchInput">Ricerca:</label>
+                <label for="searchInput" class="modal-title" id="searchModalLabel">Ricerca:</label>
                 <input type="search" class="form-control" id="searchInput" placeholder="Cerca utente">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

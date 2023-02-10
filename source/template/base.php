@@ -28,10 +28,7 @@
                     <li><a href="uni-list.php" class="nav-link px-2 <?php echo $templateParams["uni-list"]?>">Università</a></li>
                     <li><a href="notification.php" class="nav-link px-2 <?php echo $templateParams["notifications"]?>">Notifiche</a></li>
                 </ul>
-                <form class="d-flex mb-2 me-lg-3 mb-lg-0 align-items-center" role="search">
-                    <input class="form-control" type="search" placeholder="Cerca" aria-label="Search">
-                    <button class="btn btn-primary" type="submit"><em class="bi bi-search"></em></button>
-                </form>
+                <button id="searchBtn" role="search" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#searchModal"><em class="bi bi-search"> Cerca utente</em></button>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,6 +50,26 @@
             </div>
         </div>
     </header>
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h1 class="modal-title fs-5" id="searchModalLabel">Cerca</h1> -->
+                <input type="search" class="form-control" id="searchInput" placeholder="Cerca utente">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container searchResult p-3">
+                    <p>Utilizza la barra di ricerca per cercare utenti in base al loro nome, cognome e/o username.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+            </div>
+        </div>
+    </div>
     <main>
         <?php
             if (isset($templateParams["name"])) {
@@ -76,6 +93,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
 </script>
+<script src="../js/search.js"></script>
 <?php 
     if (isset($templateParams["js"])) :
         foreach($templateParams["js"] as $script):

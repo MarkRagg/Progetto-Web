@@ -28,6 +28,7 @@ if (isset($_GET["username"])) {
         $templateParams["followed_count"] = $dbh->getFollowedCount($templateParams["username"]);
         $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../js/reactions.js", "../js/utils.js", "../js/user-profile-list.js", "../js/follow.js");
     } else {
+        $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../js/utils.js");
         $templateParams["errormsg"] = "User not found";
         $templateParams["name"] = "show-error.php";
     }

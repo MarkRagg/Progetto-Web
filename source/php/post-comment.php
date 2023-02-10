@@ -9,6 +9,9 @@ $templateParams["name"] = "show-post-comment.php";
 $templateParams["post_exists"] = false;
 $templateParams["errormsg"] = "Missing post id";
 $templateParams["loggedUser"]=$_SESSION["user_id"];
+$templateParams["homepage"] = "";
+$templateParams["uni-list"] = "";
+$templateParams["notifications"] = "";
 
 
 $io=$_GET["post_id"];

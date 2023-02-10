@@ -279,20 +279,21 @@ const main = document.querySelector("main");
 axios.get("api-showpost.php").then(response => {
   if (response.data["success"]) {
     num = response.data["posts"].length;
+    showPost(response.data["posts"]);
     if (num == 0) {
       let element = document.getElementById('adddiv');
       let newdiv = showEndPost();
       element.append(newdiv);
       end = true;
     } else if (num < 10) {
-      showPost(response.data["posts"]);
+      //showPost(response.data["posts"]);
       let element = document.getElementById('adddiv');
       let newdiv = showEndPost();
       element.append(newdiv);
       end = true;
       enableButtons(response);
     } else {
-      showPost(response.data["posts"]);
+      //showPost(response.data["posts"]);
       enableButtons(response);
     }
     rd = response.data["posts"];

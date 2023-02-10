@@ -1,3 +1,12 @@
+getParameter = (key) => {
+    
+    address = window.location.search
+    
+    parameterList = new URLSearchParams(address)
+    
+    return parameterList.get(key)
+}
+
 const followBtn = document.querySelector("button#followBtn");
 const user_id = getParameter("username");
 const followClass = "btn-primary";

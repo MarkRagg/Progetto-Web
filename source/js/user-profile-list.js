@@ -37,7 +37,6 @@ function makeRequestAndEdit(username, requestedList) {
     }
 }
 
-const uploadDir = "../img/";
 const main = document.querySelector("main");
 const followersLink = document.querySelector("a#followers");
 const followingLink = document.querySelector("a#following");

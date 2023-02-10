@@ -53,7 +53,6 @@ function getSearchResults(searchTerm) {
 
 const searchInput = document.getElementById("searchInput");
 const modalBody = document.querySelector("div.modal-body");
-const uploadDir = "../img/";
 
 searchInput.addEventListener("keyup", function(event) {
     event.preventDefault();

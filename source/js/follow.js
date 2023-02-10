@@ -23,7 +23,9 @@ followBtn.addEventListener("click", function(event) {
                 showErrorMsg(response.data["errormsg"]);
             } else {
                 followBtn.classList.replace(followClass, unfollowClass);
-                followBtn.innerText = "Non seguire";
+                followBtn.innerHTML= `
+                    <em class="bi bi-person-slash"> Non seguire</em>
+                `;
             }
         });
     } else {
@@ -33,7 +35,9 @@ followBtn.addEventListener("click", function(event) {
                 showErrorMsg(response.data["errormsg"]);
             } else {
                 followBtn.classList.replace(unfollowClass, followClass);
-                followBtn.innerText = "Segui";
+                followBtn.innerHTML = `
+                    <em class="bi bi-person-plus"> Segui</em>
+                `;
             }
         });
     }

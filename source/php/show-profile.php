@@ -1,12 +1,12 @@
 <?php
 $isFollowing = false;
-$followBtnText = "Segui";
+$followBtnText = "<em class=\"bi bi-person-plus\"> Segui</em>";
 $followBtnClass = "primary";
 $followBtnDisable = "";
 if (isset($_SESSION["user_id"])) {
     $isFollowing = $dbh->isUserFollowing($_SESSION["user_id"], $templateParams["username"]);
     if ($isFollowing) {
-        $followBtnText = "Non seguire";
+        $followBtnText = "<em class=\"bi bi-person-slash\"> Non seguire</em>";
         $followBtnClass = "danger";
     }
     if ($templateParams["username"] === $_SESSION["user_id"]) {
@@ -32,7 +32,7 @@ if (isset($_SESSION["user_id"])) {
                         <p class="card-text text-justify mb-2"><?php echo($templateParams["descrizione"]) ?></p>
                         <p class="card-text text-justify mb-2">Residenza: <?php echo($templateParams["residence"]) ?></p>
                         <p class="card-text text-justify mb-2"><?php echo($templateParams["date_of_birth"]) ?></p>
-                        <button type="button" id="followBtn" class="col-6 btn btn-<?php echo($followBtnClass)?>" <?php echo($followBtnDisable)?>><?php echo($followBtnText) ?></button>
+                        <button type="button" id="followBtn" class="btn btn-<?php echo($followBtnClass)?>" <?php echo($followBtnDisable)?>><?php echo($followBtnText) ?></button>
                     </div>
                 </div>
             </div>

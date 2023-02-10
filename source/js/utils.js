@@ -8,6 +8,7 @@ const btnCuore = "btnCuoreL";
 const numeroCuore = "numeroCuore";
 const btnBacio = "btnBacioL";
 const numeroBacio = "numeroBacio";
+const uploadDir = "../img/";
 
 /**
  * Shows a list of posts in the main section of html

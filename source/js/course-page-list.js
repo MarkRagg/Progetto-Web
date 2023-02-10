@@ -74,7 +74,6 @@ const classesLink = document.querySelector("a#classes");
 const subscribersLink = document.querySelector("a#subscribers");
 const linkSet = new Set([classesLink, subscribersLink]);
 const courseId = getParameter("course_id");
-const uploadDir = "../img/";
 
 classesLink.addEventListener("click", function(event) {
     event.preventDefault();

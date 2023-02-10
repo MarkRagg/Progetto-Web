@@ -7,7 +7,6 @@ getParameter = (key) => {
   return parameterList.get(key)
 }
 
-const uploadDir = "../img/";
 const classId = getParameter("class_id");
 const main = document.querySelector("main");
 const formData = new FormData();

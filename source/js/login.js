@@ -19,7 +19,7 @@ function generateForm(loginerror = null) {
           </ul>
           <hr/>
           <div class="d-flex justify-content-end">
-            <button type="submit" data-toggle="button" class="btn btn-outline-primary">Next</button>
+            <button type="submit" data-toggle="button" class="btn btn-outline-primary">Accedi</button>
           </div>
           <p class="text-danger m-0" id="error-text"></p>
           </form>

@@ -27,7 +27,7 @@ function showResults(userList) {
                             <img src="${uploadDir}${user["user_image"]}" class="rounded-circle" width="50" hight="50" alt="">
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <a href="profile.php?username=${user["username"]}">${user["name"]} ${user["surname"]} @${user["user_id"]}</a> 
+                            <a href="profile.php?username=${user["user_id"]}">${user["name"]} ${user["surname"]} @${user["user_id"]}</a> 
                         </div>
                     </div>
                 </div>

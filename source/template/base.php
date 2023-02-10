@@ -55,6 +55,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <!-- <h1 class="modal-title fs-5" id="searchModalLabel">Cerca</h1> -->
+                <label for="searchInput">Ricerca:</label>
                 <input type="search" class="form-control" id="searchInput" placeholder="Cerca utente">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

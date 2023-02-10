@@ -4,7 +4,6 @@
  */
 function showResults(userList) {
     document.querySelectorAll("div.searchResult")?.forEach(element => element.remove());
-    console.log(userList.length);
     if (userList.length <= 0) {
         const container = document.createElement("div");
         container.classList = "container searchResult p-3";
@@ -42,11 +41,9 @@ function showResults(userList) {
  * @param {string} searchTerm The search term typed by the user in the search bar
  */
 function getSearchResults(searchTerm) {
-    console.log(searchTerm);
     const formData = new FormData();
     formData.append("searchTerm", searchTerm);
     axios.post("api-search.php", formData).then(response => {
-        console.log(response.data);
         showResults(response.data["users"]);
     });
 }

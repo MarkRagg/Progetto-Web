@@ -1,15 +1,3 @@
-const btnLike = "bottoneL";
-const numeroLike = "numeroLike"
-const btnFire = "btnFireL";
-const numeroFire = "numeroFire";
-const btnSmile = "btnSmileL";
-const numeroSmile = "numeroSmile";
-const btnCuore = "btnCuoreL";
-const numeroCuore = "numeroCuore";
-const btnBacio = "btnBacioL";
-const numeroBacio = "numeroBacio";
-const uploadDir = "../img/";
-
 /**
  * Shows a list of posts in the main section of html
  * @param {*} posts The list of posts to show

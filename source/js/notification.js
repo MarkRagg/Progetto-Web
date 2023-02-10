@@ -35,19 +35,19 @@ if(element["post_id"] != null) {
   switch(tipology) {
     case 1:
       html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
-        <p class="m-0"><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has followed you!</p>
+        <p class="m-0"><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> ha iniziato a seguirti!</p>
         <button type="button" data-toggle="button" class="follow-btn btn btn-outline-primary"></button>
       </div>`;
       break;
     case 2:
       html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
-      <p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has react your post!</p>
+      <p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> ha reagito al tuo post!</p>
       <button type="button" data-toggle="button" class="post-btn btn btn-outline-primary"><em class="bi bi-arrow-right"></em></button>
       </div>`;
       break;
     case 3:
       html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
-      <p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> has comment your post!</p>
+      <p><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> ha commentato il tuo post!</p>
       <button type="button" data-toggle="button" class="post-btn btn btn-outline-primary"><em class="bi bi-arrow-right"></em></button>
       </div>`;
       break;

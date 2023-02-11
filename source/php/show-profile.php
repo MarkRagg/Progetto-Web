@@ -42,9 +42,9 @@ if (isset($_SESSION["user_id"])) {
                 <div class="card border-primary">
                     <div class="card-header">
                         <ul class="list-group list-group-horizontal p-0 text-center">
-                            <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="posts" href="#">Post</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["post_count"]) ?></span></li>
-                            <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="followers" href="#">Seguaci</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["follower_count"]) ?></span></li>
-                            <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="following" href="#">Seguiti</a> <span class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["followed_count"]) ?></span></li>
+                            <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="posts" href="#">Post</a> <span id="postCount" class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["post_count"]) ?></span></li>
+                            <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="followers" href="#">Seguaci</a> <span id="followerCount" class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["follower_count"]) ?></span></li>
+                            <li class="col-4 list-group-item align-items-center"><a class="link-primary" id="following" href="#">Seguiti</a> <span id="followingCount" class="badge bg-primary rounded-pill text-light"><?php echo($templateParams["followed_count"]) ?></span></li>
                         </ul>
                     </div>
                 </div>

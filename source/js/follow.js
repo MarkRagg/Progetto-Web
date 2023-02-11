@@ -8,6 +8,7 @@ getParameter = (key) => {
 }
 
 const followBtn = document.querySelector("button#followBtn");
+const followerCount = document.querySelector("span#followerCount");
 const user_id = getParameter("username");
 const followClass = "btn-primary";
 const unfollowClass = "btn-danger";
@@ -16,7 +17,6 @@ followBtn.addEventListener("click", function(event) {
     const formData = new FormData();
     formData.append("followed_id", user_id);
     if (followBtn.classList.contains(followClass)) {
-        // User follows profile their veiwing
         formData.append("action", "follow");
         axios.post("api-follow.php", formData).then(response => {
             if (!response.data["success"]) {
@@ -26,6 +26,7 @@ followBtn.addEventListener("click", function(event) {
                 followBtn.innerHTML= `
                     <em class="bi bi-person-slash"> Non seguire</em>
                 `;
+                followerCount.innerText = Number(followerCount.innerText) + 1;
             }
         });
     } else {
@@ -38,6 +39,7 @@ followBtn.addEventListener("click", function(event) {
                 followBtn.innerHTML = `
                     <em class="bi bi-person-plus"> Segui</em>
                 `;
+                followerCount.innerText = Number(followerCount.innerText) - 1;
             }
         });
     }

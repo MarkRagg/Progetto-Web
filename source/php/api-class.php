@@ -13,6 +13,7 @@ if (isset($_POST["class_id"]) && isset($_SESSION["user_id"])) {
             $author = $dbh->getUserInfo($result["posts"][$i]["author"]);
             $reactions = $dbh->getAllReactionCount($post_id);
             $userReactions = $dbh->hasReactedAll($_SESSION["user_id"], $post_id);
+            $result["posts"][$i]["data"] = date("F j, Y", strtotime($result["posts"][$i]["data"]));
             $result["posts"][$i]["num_comments"] = $dbh->getPostComments($post_id);
             $result["posts"][$i] = array_merge($result["posts"][$i], $author);
             $result["posts"][$i] = array_merge($result["posts"][$i], $reactions);

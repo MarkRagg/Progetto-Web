@@ -45,10 +45,10 @@ function generatePost(post_data) {
                     src="../img/${post_data[i]["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data[i]["author"]}">@${post_data[i]["author"]}</a>
                   `;
-                  
-                  if (post_data[i]["esame_id"] != null){
-                  section +=  ` <small class="text-primary"><a href="class.php?class_id=${post_data[i]["esame_id"]}"> ${post_data[i]["nome_esame"]}</a></small>`;
-                  }
+
+    if (post_data[i]["esame_id"] != null) {
+      section += ` <small class="text-primary"><a href="class.php?class_id=${post_data[i]["esame_id"]}"> ${post_data[i]["nome_esame"]}</a></small>`;
+    }
     section += `
                   </div>
                 </div>
@@ -127,12 +127,10 @@ function newPosts(post_data, i) {
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
                     src="../img/${post_data["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data["author"]}">@${post_data["author"]}</a>`
-                  if (post_data["esame_id"] != null){
-                    newdiv +=  ` <small class="text-primary"><a href="class.php?class_id=${post_data["esame_id"]}"> ${post_data["nome_esame"]}</a></small>`;
-                  }
-                    
-                  newdiv += `</div>
-
+  if (post_data["esame_id"] != null) {
+    newdiv += ` <small class="text-primary"><a href="class.php?class_id=${post_data["esame_id"]}"> ${post_data["nome_esame"]}</a></small>`;
+  }
+  newdiv += `</div>
                 </div>
                 <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">${post_data["data"]}</small> <em
                     class="fa fa-ellipsis-h"></em> </div>
@@ -398,7 +396,7 @@ function showEndPost() {
   return div;
 }
 
-function showError(){
+function showError() {
   let newdiv = `<div class="d-flex justify-content-between p-2 px-3 bg-light">
     <p class="fs-3">Errore! Si prega di riprovare o ripetere l'accesso. </p>
   </div>`

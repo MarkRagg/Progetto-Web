@@ -14,6 +14,7 @@ if (isset($_GET["post_id"]) && isset($_SESSION["user_id"])) {
         $postInfo = $dbh->getPost($post_id);
         if ($postInfo["author"] === $loggedUserId) {
             $templateParams["post_info"] = $postInfo;
+            $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../js/modify-post.js");
             $templateParams["name"] = "show-modify-post.php";
         } else {
             $templateParams["name"] = "show-error.php";

@@ -34,7 +34,8 @@
                             <div class="mt-4">
 
 
-                                <button class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em
+                                <button
+                                    class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em
                                         class="bi bi-hand-thumbs-up"></em>
                                     <span
                                         class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -42,7 +43,8 @@
                                     </span>
                                 </button>
 
-                                <button class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em
+                                <button
+                                    class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em
                                         class="bi bi-fire"></em>
                                     <span
                                         class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -104,8 +106,19 @@
                                 <em class="fa fa-ellipsis-h"></em>
                             </div>
                         </div>
+
+
+
                         <div class="px-4 mt-3 mb-3">
+                            
                             <p class="text-justify"><?php echo $commento["post_comment"];?>.</p>
+                            <?php if ($commento["author"] == $_SESSION["user_id"]){ ?>
+                            <div class="d-flex justify-content-end p-2 px-3">
+                                <div class="d-flex flex-row align-items-center">
+                                    <button class="btn btn-danger elimina" id="<?php echo $commento["comment_id"] ; ?>"><em class="bi bi-trash"></em></button>
+                                </div>
+                            </div>
+                            <?php } ?>
                         </div>
                         <?php endforeach; ?>
                         <?php } else { ?>
@@ -118,8 +131,8 @@
                                 </div>
                             </div>
                             <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>

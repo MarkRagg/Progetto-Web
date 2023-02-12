@@ -35,6 +35,24 @@ bottonePosta.addEventListener('click', function onClick() {
   }
 });
 
+const elimina = document.querySelectorAll(".elimina");
+if(elimina.length > 0){
+  for (let i = 0; i < elimina.length; i++) {
+    elimina[i].addEventListener('click', function onClick() {
+      const id = elimina[i].getAttribute("id");
+      const formData = new FormData();
+      formData.append('comment_id', id);
+      formData.append('post_id', idjs);
+      axios.post('../php/api-delete-comment.php', formData).then(response => {
+        console.log(response.data);
+        if(response.data["status"]=="success"){
+          location.reload();
+        }
+      });
+    });
+  }
+}
+
 const formData = new FormData();
 formData.append('post_id', idjs);
 

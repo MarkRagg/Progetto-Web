@@ -34,10 +34,10 @@ if (isset($_GET["class_id"])) {
         $templateParams["name"] = "show-class.php";
         $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../js/reactions.js", "../js/utils.js", "../js/class-posts.js");
     } else {
-        $templateParams["errormsg"] = "Class not found";
+        $templateParams["errormsg"] = "Esame non trovato.";
     }
 } else {
-    $templateParams["errormsg"] = "Missing id";
+    $templateParams["errormsg"] = "Id esame non trovato.";
 }
 
 require("../template/base.php");

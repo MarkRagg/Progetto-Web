@@ -25,7 +25,7 @@ if (isset($_GET["course_id"])) {
         $templateParams["sub_count"] = $dbh->getSubCount($templateParams["course_id"]);
         $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../js/utils.js", "../js/course-page-list.js", "../js/subscribe.js");
     } else {
-        $templateParams["errormsg"] = "Course not found";
+        $templateParams["errormsg"] = "Corso non trovato.";
     }
 }
 

@@ -126,9 +126,12 @@ function newPosts(post_data, i) {
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
                     src="../img/${post_data["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
-                  <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data["author"]}">@${post_data["author"]}</a>
-                    <small class="text-primary">${post_data["nome_esame"]}</small>
-                  </div>
+                  <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data["author"]}">@${post_data["author"]}</a>`
+                  if (post_data["esame_id"] != null){
+                    newdiv +=  ` <small class="text-primary"><a href="class.php?class_id=${post_data[i]["esame_id"]}"> ${post_data[i]["nome_esame"]}</a></small>`;
+                    }
+                    
+                  newdiv += `</div>
 
                 </div>
                 <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">${post_data["data"]}</small> <em

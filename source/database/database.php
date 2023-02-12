@@ -118,11 +118,11 @@ class DatabaseManager {
     /** 
      * add a post to the db
     */   
-    public function addPost($string, $author, $img){
+    public function addPost($string, $author, $img, $exam){
         $data = date("Y-m-d");
         $id = $this->getNewId("post_id", "post");
-        $stmt = $this->db->prepare("INSERT INTO post (post_id, author, string, data, esame_id, immagine) VALUES (?, ?, ?, ?, null, ?);");
-        $stmt->bind_param("sssss", $id, $author, $string, $data, $img);
+        $stmt = $this->db->prepare("INSERT INTO post (post_id, author, string, data, esame_id, immagine) VALUES (?, ?, ?, ?, ?, ?);");
+        $stmt->bind_param("ssssss", $id, $author, $string, $data, $exam, $img);
         $result = $stmt->execute();
         return $result;
     }
@@ -557,6 +557,11 @@ class DatabaseManager {
         $stmt = $this->db->prepare("DELETE FROM comment WHERE comment_id=?");
         $stmt->bind_param("s", $comment_id);
         return $stmt->execute();
+    }
+
+    public function getExams(){
+        $result = $this->db->query("SELECT * FROM esami;");
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }  
 ?>

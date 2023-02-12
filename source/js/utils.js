@@ -2,13 +2,21 @@
  * Shows a list of posts in the main section of html
  * @param {*} posts The list of posts to show
  */
-function showPostList(posts) {
+function showPostList(posts, addModifyButton) {
     document.querySelectorAll("div.listElement")?.forEach(x => x.remove());
     const middleColumn = document.querySelector("div.middle-column");
     const cardBody = document.createElement("div");
     cardBody.classList = "card-body bg-white listElement rounded-3";
     middleColumn.appendChild(cardBody);
     posts.forEach(element => {
+        let modifyButton = "";
+        if (addModifyButton) {
+            modifyButton = `
+                <button id="modify${element["post_id"]}" class="btn btn-outline-primary position-relative me-2 ms-2 mb-2">
+                    Modifica post
+                </button>
+            `;
+        }
         let esame = "";
         let img = "";
         if (element["esame_id"] != null) {
@@ -71,12 +79,19 @@ function showPostList(posts) {
                 <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 ${element["num_baci"]}
                 </span>
-            </button>
+            </button>`
+            + modifyButton +
+            `
             <hr>
             </div>
             </div>
         `;
         cardBody.appendChild(newPost);
+        if (addModifyButton) {
+            document.getElementById("modify" + element["post_id"]).addEventListener("click", function() {
+                window.location.href = `../php/modify-post.php?post_id=${element["post_id"]}`;
+            });
+        }
         updateButton(posts, btnLike, numeroLike, 1, -1, "btnlkd");
         updateButton(posts, btnFire, numeroFire, 2, -2, "btnFireLkd");
         updateButton(posts, btnSmile, numeroSmile, 3, -3, "btnSmileLkd");

@@ -9,6 +9,7 @@ if (isset($_POST["profileUsername"])) {
     if ($nameCheck) {
         $result["success"] = true;
         $result["userPosts"] = $dbh->getAllUserPosts($username);
+        $result["viewingLoggedUserPosts"] = $_SESSION["user_id"] === $username;
         $authorInfo = $dbh->getUserInfo($username);
         for ($i = 0; $i < count($result["userPosts"]); $i++) {
             $id = $result["userPosts"][$i]["post_id"];

@@ -31,7 +31,7 @@ function makeRequestAndEdit(username, requestedList) {
                 showErrorMsg(response.data["errormsg"]);
             } else {
                 console.log(response.data);
-                showPostList(response.data["userPosts"]);
+                showPostList(response.data["userPosts"], response.data["viewingLoggedUserPosts"]);
             }
         });
     }

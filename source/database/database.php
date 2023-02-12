@@ -172,7 +172,9 @@ class DatabaseManager {
         $result = $stmt->execute();
         return $result;
     }
-
+    /**
+     * return the number of likes of a post
+     */
     public function getPostLikes($post_id){
         $stmt = $this->db->prepare("SELECT COUNT(*) AS likes FROM post_user_reaction WHERE post_id = ? AND reaction_id = 1");
         $stmt->bind_param("s", $post_id);
@@ -225,6 +227,9 @@ class DatabaseManager {
         return $result->fetch_array(MYSQLI_ASSOC)["classCount"];
     }
 
+    /**
+     * remove the reaction of a user to a post
+     */
     public function removeLike($post_id, $reaction_type, $user_id){
         $stmt = $this->db->prepare("DELETE FROM post_user_reaction WHERE post_id = ? and reaction_id = ? and user_id = ?");
         $stmt->bind_param("sss", $post_id, $reaction_type, $user_id);
@@ -535,5 +540,17 @@ class DatabaseManager {
         $stmt->bind_param("ss", $new_residence, $user_id);
         return $stmt->execute();
     } 
+
+    public function removePost($post_id) {
+        $stmt = $this->db->prepare("DELETE FROM post WHERE post_id=?");
+        $stmt->bind_param("s", $post_id);
+        return $stmt->execute();
+    }
+
+    public function updatePost($post_id, $author, $string, $data, $esame_id, $immagine){
+        $stmt = $this->db->prepare("UPDATE post SET author=?, string=?, data=?, esame_id=?, immagine=? WHERE post_id=?");
+        $stmt->bind_param("ssssss", $author, $string, $data, $esame_id, $immagine, $post_id);
+        return $stmt->execute();
+    }
 }  
 ?>

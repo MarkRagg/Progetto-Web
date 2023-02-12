@@ -21,7 +21,6 @@ function makeRequestAndEdit(username, requestedList) {
             if (!response.data["success"]) {
                 showErrorMsg(response.data["errormsg"]);
             } else {
-                console.log(response.data);
                 showUserList(response.data["userList"])
             }
         });
@@ -30,7 +29,6 @@ function makeRequestAndEdit(username, requestedList) {
             if (!response.data["success"]) {
                 showErrorMsg(response.data["errormsg"]);
             } else {
-                console.log(response.data);
                 showPostList(response.data["userPosts"], response.data["viewingLoggedUserPosts"]);
             }
         });

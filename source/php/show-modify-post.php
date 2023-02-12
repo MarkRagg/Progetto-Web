@@ -27,7 +27,7 @@
                 </div>
                 <hr />
                 <div class="d-flex justify-content-between">
-                    <input type="checkbox" class="btn-check" id="deletePost" autocomplete="off">
+                    <input name="delete" type="checkbox" class="btn-check" id="deletePost" autocomplete="off">
                     <label class="btn btn-danger" for="deletePost">Elimina post</label>
                     <button type="submit" data-toggle="button" class="btn btn-outline-primary"
                         name="submit">Conferma</button>

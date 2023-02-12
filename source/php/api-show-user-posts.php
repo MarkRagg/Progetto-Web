@@ -9,6 +9,7 @@ if (isset($_POST["profileUsername"])) {
     if ($nameCheck) {
         $result["success"] = true;
         $result["userPosts"] = $dbh->getAllUserPosts($username);
+        $result["viewingLoggedUserPosts"] = $_SESSION["user_id"] === $username;
         $authorInfo = $dbh->getUserInfo($username);
         for ($i = 0; $i < count($result["userPosts"]); $i++) {
             $id = $result["userPosts"][$i]["post_id"];
@@ -16,6 +17,7 @@ if (isset($_POST["profileUsername"])) {
                 $class = $dbh->getClassInfo($result["userPosts"][$i]["esame_id"]);
                 $result["userPosts"][$i] = array_merge($result["userPosts"][$i], $class);
             }
+            $result["userPosts"][$i]["data"] = date("F j, Y", strtotime($result["userPosts"][$i]["data"]));
             $reactCount = $dbh->getAllReactionCount($id);
             $userReactions = $dbh->hasReactedAll($_SESSION["user_id"], $id);
             $result["userPosts"][$i]["user_image"] = $authorInfo["user_image"];

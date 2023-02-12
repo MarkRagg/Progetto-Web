@@ -14,7 +14,7 @@ formData.append("class_id", classId);
 axios.post("api-class.php", formData).then(response => {
     console.log(response.data);
     if (response.data["success"]) {
-        showPostList(response.data["posts"]);
+        showPostList(response.data["posts"], false);
     } else {
         showErrorMsg(response.data["errormsg"]);
     }

@@ -17,6 +17,7 @@ if (isset($_POST["profileUsername"])) {
                 $class = $dbh->getClassInfo($result["userPosts"][$i]["esame_id"]);
                 $result["userPosts"][$i] = array_merge($result["userPosts"][$i], $class);
             }
+            $result["userPosts"][$i]["data"] = date("F j, Y", strtotime($result["userPosts"][$i]["data"]));
             $reactCount = $dbh->getAllReactionCount($id);
             $userReactions = $dbh->hasReactedAll($_SESSION["user_id"], $id);
             $result["userPosts"][$i]["user_image"] = $authorInfo["user_image"];

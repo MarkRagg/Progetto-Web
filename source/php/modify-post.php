@@ -2,7 +2,7 @@
 require_once("db_config.php");
 
 $templateParams["title"] = "Modifica Post";
-$templateParams["homepage"] = "link-secondary";
+$templateParams["homepage"] = "";
 $templateParams["uni-list"] = "";
 $templateParams["notifications"] = "";
 

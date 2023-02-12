@@ -22,7 +22,7 @@
                         Cambia o aggiungi immagine.
                     </label>
                 </div>
-                <textarea class="form-control" id="post" name="post" rows="4"></textarea>
+                <textarea class="form-control" id="post" name="post" rows="4"><?php echo($templateParams["post_info"]["string"]) ?></textarea>
                 <hr />
                 <div class="d-flex justify-content-end">
                     <button type="submit" data-toggle="button" class="btn btn-outline-primary"

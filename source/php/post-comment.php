@@ -30,7 +30,7 @@ if (isset($_GET["post_id"])){
         $templateParams["author"] = $post["author"];
         $templateParams["data"] = date("F j, Y", strtotime($post["data"]));
         $templateParams["string"] = $post["string"];
-        $templateParams["esame_id"] = $post["esame_id"];
+        $templateParams["esame_id"] = $dbh->getClassInfo($post["esame_id"])["nome"];
         $templateParams["immagine"] = $post["immagine"];
         $templateParams["user_img"] = $dbh->getUserInfo($post["author"])["user_image"];
         $comments = $dbh->getComments($idPost);

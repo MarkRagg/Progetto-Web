@@ -128,8 +128,8 @@ function newPosts(post_data, i) {
                     src="../img/${post_data["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data["author"]}">@${post_data["author"]}</a>`
                   if (post_data["esame_id"] != null){
-                    newdiv +=  ` <small class="text-primary"><a href="class.php?class_id=${post_data[i]["esame_id"]}"> ${post_data[i]["nome_esame"]}</a></small>`;
-                    }
+                    newdiv +=  ` <small class="text-primary"><a href="class.php?class_id=${post_data["esame_id"]}"> ${post_data["nome_esame"]}</a></small>`;
+                  }
                     
                   newdiv += `</div>
 

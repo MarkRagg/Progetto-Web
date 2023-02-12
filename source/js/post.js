@@ -395,7 +395,7 @@ function showEndPost() {
 
 function showError(){
   let newdiv = `<div class="d-flex justify-content-between p-2 px-3 bg-light">
-    <p class="fs-3">An error has occurred; please retry or log in. </p>
+    <p class="fs-3">Errore! Si prega di riprovare o ripetere l'accesso. </p>
   </div>`
   let div = document.createElement("div");
   div.innerHTML = newdiv;

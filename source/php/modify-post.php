@@ -40,6 +40,8 @@ if (isset($_POST["submit"]) && isset($_GET["post_id"]) && isset($_SESSION["user_
                         }
                         break;
                     default:
+                        $templateParams["name"] = "show-error.php";
+                        $templateParams["errormsg"] = "Opzione immagine non riconosciuta.";
                         break;
                 }
                 header("Location: post-comment.php?post_id=".$post_id);
@@ -49,11 +51,11 @@ if (isset($_POST["submit"]) && isset($_GET["post_id"]) && isset($_SESSION["user_
             }
         } else {
             $templateParams["name"] = "show-error.php";
-            $templateParams["errormsg"] = "Logged user isn't post author";
+            $templateParams["errormsg"] = "L'utente loggato non e' l'autore del post.";
         }
     } else {
         $templateParams["name"] = "show-error.php";
-        $templateParams["errormsg"] = "Post not found";
+        $templateParams["errormsg"] = "Post non trovato.";
     }
 } else if (isset($_GET["post_id"]) && isset($_SESSION["user_id"])) {
     $loggedUserId = $_SESSION["user_id"];
@@ -67,15 +69,15 @@ if (isset($_POST["submit"]) && isset($_GET["post_id"]) && isset($_SESSION["user_
             $templateParams["name"] = "show-modify-post.php";
         } else {
             $templateParams["name"] = "show-error.php";
-            $templateParams["errormsg"] = "Logged user isn't post author";
+            $templateParams["errormsg"] = "L'utente loggato non e' l'autore del post.";
         }
     } else {
         $templateParams["name"] = "show-error.php";
-        $templateParams["errormsg"] = "Post not found";
+        $templateParams["errormsg"] = "Post non trovato.";
     }
 } else {
     $templateParams["name"] = "show-error.php";
-    $templateParams["errormsg"] = "Post id missing or user not logged";
+    $templateParams["errormsg"] = "Utente non loggato o id del post non presente.";
 }
 require '../template/base.php';
 ?>

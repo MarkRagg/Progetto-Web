@@ -72,11 +72,11 @@ function generatePost(post_data) {
                   </span>
                 </button>
 
-                <button type="button" class="btn btn-outline-danger position-relative me-2 ms-2 mb-2" onclick="location.href='../php/post-comment.php?post_id=${post_data[i]["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
+                <a class="btn btn-outline-danger position-relative me-2 ms-2 mb-2" href="../php/post-comment.php?post_id=${post_data[i]["post_id"]}"><em class="bi bi-chat-left-text-fill"></em>
                   <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data[i]["num_comments"]}
                   </span>
-                </button>
+                </a>
 
                 <button type="button" class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-fire"></em>
                   <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -117,6 +117,7 @@ function generatePost(post_data) {
 
   const variabile = document.createElement("div");
   variabile.classList.add("container", "mt-2", "mb-5");
+
   variabile.innerHTML = section;
   return variabile;
 }
@@ -151,11 +152,11 @@ function newPosts(post_data, i) {
                   </span>
                 </button>
 
-                <button type="button" class="btn btn-outline-danger position-relative me-2 ms-2 mb-2" onclick="location.href='../php/post-comment.php?post_id=${post_data["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
+                <a class="btn btn-outline-danger position-relative me-2 ms-2 mb-2" href="../php/post-comment.php?post_id=${post_data["post_id"]}"><em class="bi bi-chat-left-text-fill"></em>
                   <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_comments"]}
                   </span>
-                </button>
+                </a>
 
                 <button type="button" class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-fire"></em>
                   <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">

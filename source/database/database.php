@@ -446,8 +446,8 @@ class DatabaseManager {
     }
 
     public function getMorePosts($id, $num, $from){
-        $stmt = $this->db->prepare("SELECT post.*, user_info.user_image, user_info.corso_id FROM user_followers_followed LEFT JOIN post ON post.author = user_followers_followed.user_id LEFT JOIN user_info on post.author=user_info.user_id WHERE user_followers_followed.follower_id = ? and post.author is not null ORDER by post.data DESC limit ? OFFSET ?;");
-        $stmt->bind_param("sss", $id, $num, $from);
+        $stmt = $this->db->prepare("SELECT post.*, user_info.user_image, user_info.corso_id FROM user_followers_followed LEFT JOIN post ON post.author = user_followers_followed.user_id LEFT JOIN user_info on post.author=user_info.user_id WHERE user_followers_followed.follower_id = ? and post.author is not null ORDER by post.data DESC OFFSET ? limit ?;");
+        $stmt->bind_param("sss", $id, $from, $num);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);

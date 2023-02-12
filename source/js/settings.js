@@ -99,8 +99,7 @@ function saveChanges(bio, img, course, user_id, residence) {
 
   axios.post('api-save-settings.php', formData).then(response => {
     if(response.data["success"]) {
-      console.log(response.data);
-      //window.location.href = "../php/profile.php?username=" + user_id;
+      window.location.href = "../php/profile.php?username=" + user_id;
     } else {
       //TODO
     }

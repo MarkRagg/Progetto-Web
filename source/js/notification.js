@@ -36,7 +36,7 @@ if(element["post_id"] != null) {
     case 1:
       html_string = `<div class="d-flex justify-content-between bd-highlight p-2">
         <p class="m-0"><a href="profile.php?username=${element["user_1_id"]}">@${element["user_1_id"]}</a> ha iniziato a seguirti!</p>
-        <button type="button" data-toggle="button" class="follow-btn btn btn-outline-primary"></button>
+        <button type="button" data-toggle="button" class="follow-btn btn btn-primary"></button>
       </div>`;
       break;
     case 2:
@@ -60,7 +60,6 @@ if(element["post_id"] != null) {
 
 function deleteNotification(notification_id) {
   const formData = new FormData();
-  console.log(notification_id);
   formData.append("notification_id", notification_id);
   axios.post("api-remove-notification.php", formData).then(response => {
     if(!response.data["success"]) {
@@ -117,19 +116,17 @@ function addOrReplace(btn, class_to_add, class_to_replace) {
  * @param {*} following_list 
  */
 function updateBtn(user_follower, following_list, notification_id, post_id, div) {
-  console.log("entra");
-
   followBtn = div.querySelector(".follow-btn");
   if(followBtn != null) {
     if(!following_list.includes(user_follower)) {
-      followBtn.innerText = "Follow";
-      addOrReplace(followBtn, "btn-outline-primary", "btn-primary");
+      followBtn.innerHTML = `<em class="bi bi-person-plus"> Segui</em>`;
+      addOrReplace(followBtn, "btn-primary", "btn-danger");
       followBtn.addEventListener('click', function abstractFunct() {
         followOrUnfollow(user_follower, "follow");
       });
     } else {
-      followBtn.innerText = "Unfollow";
-      addOrReplace(followBtn, "btn-primary", "btn-outline-primary");
+      followBtn.innerHTML = `<em class="bi bi-person-plus"> Non seguire</em>`;
+      addOrReplace(followBtn, "btn-danger", "btn-primary");
       followBtn.addEventListener('click', function abstractFunct() {
         followOrUnfollow(user_follower, "unfollow");
       });

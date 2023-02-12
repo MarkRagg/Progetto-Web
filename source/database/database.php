@@ -552,5 +552,11 @@ class DatabaseManager {
         $stmt->bind_param("ssssss", $author, $string, $data, $esame_id, $immagine, $post_id);
         return $stmt->execute();
     }
+
+    public function removeComment($comment_id) {
+        $stmt = $this->db->prepare("DELETE FROM comment WHERE comment_id=?");
+        $stmt->bind_param("s", $comment_id);
+        return $stmt->execute();
+    }
 }  
 ?>

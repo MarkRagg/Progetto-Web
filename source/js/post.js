@@ -44,9 +44,13 @@ function generatePost(post_data) {
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
                     src="../img/${post_data[i]["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data[i]["author"]}">@${post_data[i]["author"]}</a>
-                    <small class="text-primary"> ${post_data[i]["nome_corso"]}</small>
+                  `;
+                  
+                  if (post_data[i]["esame_id"] != null){
+                  section +=  ` <small class="text-primary"><a href="class.php?class_id=${post_data[i]["esame_id"]}"> ${post_data[i]["nome_esame"]}</a></small>`;
+                  }
+    section += `
                   </div>
-
                 </div>
                 <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">${post_data[i]["data"]}</small> <em
                     class="fa fa-ellipsis-h"></em> </div>
@@ -123,7 +127,7 @@ function newPosts(post_data, i) {
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
                     src="../img/${post_data["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data["author"]}">@${post_data["author"]}</a>
-                    <small class="text-primary">${post_data["nome_corso"]}</small>
+                    <small class="text-primary">${post_data["nome_esame"]}</small>
                   </div>
 
                 </div>
@@ -286,14 +290,12 @@ axios.get("api-showpost.php").then(response => {
       element.append(newdiv);
       end = true;
     } else if (num < 10) {
-      //showPost(response.data["posts"]);
       let element = document.getElementById('adddiv');
       let newdiv = showEndPost();
       element.append(newdiv);
       end = true;
       enableButtons(response);
     } else {
-      //showPost(response.data["posts"]);
       enableButtons(response);
     }
     rd = response.data["posts"];

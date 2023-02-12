@@ -29,10 +29,10 @@ if (isset($_SESSION["user_id"])){
         $userReactions = $dbh->hasReactedAll($_SESSION["user_id"], $post[$i]["post_id"]);
         $post[$i] = array_merge($post[$i] , $reactCount);
         $post[$i] = array_merge($post[$i] , $userReactions);
-        if($post[$i]["corso_id"] != null){
-            $post[$i]["nome_corso"]= $dbh->getCourseInfo($post[$i]["corso_id"])["nome"];
+        if($post[$i]["esame_id"] != null){
+            $post[$i]["nome_esame"]= $dbh->getClassInfo($post[$i]["esame_id"])["nome"];
         } else {
-            $post[$i]["nome_corso"] = "";
+            $post[$i]["nome_esame"] = "";
         }
         
     }

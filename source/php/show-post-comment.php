@@ -34,7 +34,7 @@
                             <div class="mt-4">
 
 
-                                <button
+                                <button type="button"
                                     class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em
                                         class="bi bi-hand-thumbs-up"></em>
                                     <span
@@ -43,7 +43,7 @@
                                     </span>
                                 </button>
 
-                                <button
+                                <button type="button"
                                     class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em
                                         class="bi bi-fire"></em>
                                     <span
@@ -52,7 +52,7 @@
                                     </span>
                                 </button>
 
-                                <button
+                                <button type="button"
                                     class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 mb-2 "><em
                                         class="bi bi-emoji-smile-upside-down"></em>
                                     <span
@@ -61,7 +61,7 @@
                                     </span>
                                 </button>
 
-                                <button
+                                <button type="button"
                                     class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em
                                         class="bi bi-heart-fill"></em>
                                     <span
@@ -70,7 +70,7 @@
                                     </span>
                                 </button>
 
-                                <button
+                                <button type="button"
                                     class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em
                                         class="bi bi-emoji-kiss"></em>
                                     <span
@@ -115,7 +115,7 @@
                             <?php if ($commento["author"] == $_SESSION["user_id"]){ ?>
                             <div class="d-flex justify-content-end p-2 px-3">
                                 <div class="d-flex flex-row align-items-center">
-                                    <button class="btn btn-danger elimina" id="<?php echo $commento["comment_id"] ; ?>"><em class="bi bi-trash"></em></button>
+                                    <button type="button" class="btn btn-danger elimina" id="<?php echo $commento["comment_id"] ; ?>"><em class="bi bi-trash"></em></button>
                                 </div>
                             </div>
                             <?php } ?>

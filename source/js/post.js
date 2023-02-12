@@ -62,37 +62,37 @@ function generatePost(post_data) {
               <div class="mt-4">
 
 
-                <button class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-hand-thumbs-up"></em>
+                <button type="button" class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-hand-thumbs-up"></em>
                   <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data[i]["num_like"]}
                   </span>
                 </button>
 
-                <button class="btn btn-outline-danger position-relative me-2 ms-2 mb-2" onclick="location.href='../php/post-comment.php?post_id=${post_data[i]["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
+                <button type="button" class="btn btn-outline-danger position-relative me-2 ms-2 mb-2" onclick="location.href='../php/post-comment.php?post_id=${post_data[i]["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
                   <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data[i]["num_comments"]}
                   </span>
                 </button>
 
-                <button class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-fire"></em>
+                <button type="button" class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-fire"></em>
                   <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data[i]["num_fire"]}
                   </span>
                 </button>
 
-                <button class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-emoji-smile-upside-down"></em>
+                <button type="button" class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-emoji-smile-upside-down"></em>
                   <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data[i]["num_smile"]}
                   </span>
                 </button>
 
-                <button class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-heart-fill"></em>
+                <button type="button" class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-heart-fill"></em>
                   <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data[i]["num_cuore"]}
                   </span>
                 </button>
 
-                <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-emoji-kiss"></em>
+                <button type="button" class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-emoji-kiss"></em>
                   <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data[i]["num_baci"]}
                   </span>
@@ -140,37 +140,37 @@ function newPosts(post_data, i) {
               <div class="mt-4">
 
 
-                <button class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-hand-thumbs-up"></em>
+                <button type="button" class="bottone bottoneL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-hand-thumbs-up"></em>
                   <span class="numeroLike position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_like"]}
                   </span>
                 </button>
 
-                <button class="btn btn-outline-danger position-relative me-2 ms-2 mb-2" onclick="location.href='../php/post-comment.php?post_id=${post_data["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
+                <button type="button" class="btn btn-outline-danger position-relative me-2 ms-2 mb-2" onclick="location.href='../php/post-comment.php?post_id=${post_data["post_id"]}';"><em class="bi bi-chat-left-text-fill"></em>
                   <span class="numeroCommento position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_comments"]}
                   </span>
                 </button>
 
-                <button class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-fire"></em>
+                <button type="button" class="btnFire btnFireL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-fire"></em>
                   <span class="numeroFire position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_fire"]}
                   </span>
                 </button>
 
-                <button class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-emoji-smile-upside-down"></em>
+                <button type="button" class="btnSmile btnSmileL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-emoji-smile-upside-down"></em>
                   <span class="numeroSmile position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_smile"]}
                   </span>
                 </button>
 
-                <button class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-heart-fill"></em>
+                <button type="button" class="btnCuore btnCuoreL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-heart-fill"></em>
                   <span class="numeroCuore position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_cuore"]}
                   </span>
                 </button>
 
-                <button  class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-emoji-kiss"></em>
+                <button type="button" class="btnBacio btnBacioL btn btn-outline-danger position-relative me-2 ms-2 mb-2"><em class="bi bi-emoji-kiss"></em>
                   <span class="numeroBacio position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     ${post_data["num_baci"]}
                   </span>

@@ -6,6 +6,15 @@
                 <p class="fs-3"><strong><label for="post">Il Tuo Nuovo Post:</label></strong></p>
                 <hr />
                 <label for="imgpost">Aggiungi immagine</label><input type="file" name="imgpost" id="imgpost" class="form-control"/>
+                <label for="esame">Esame</label>
+                <select name="esame" id="esame">
+                    <option value="-1" selected>Seleziona una categoria</option>
+                    <?php   require_once("db_config.php");
+                            $esami = $dbh->getExams();
+                            foreach ($esami as $esame) { ?>
+                    <option value="<?php echo $esame['esame_id']; ?>"><?php echo $esame['nome']; ?></option>
+                    <?php } ?>
+                </select>
                 <textarea class="form-control" id="post" name="post" rows="4"></textarea>
                 <small id="infoPostLunghezza" class="form-text text-muted">
                     Il post puo' essere lungo massimo 200 caratteri.</small>

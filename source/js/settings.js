@@ -23,7 +23,7 @@ function generateOptions(values, selected, category) {
         options += `<option value='${element["corso_id"]}' ` + add_selected + `>${element["nome"]}</option>`;
         break;
       case 'residence':
-        if(selected == element["current-residence"]) {
+        if(selected == element) {
           add_selected = `selected='selected'`;
         }
         options += `<option value='${element}' ` + add_selected + `>${element}</option>`;

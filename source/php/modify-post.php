@@ -16,7 +16,7 @@ if (isset($_POST["submit"]) && isset($_GET["post_id"]) && isset($_SESSION["user_
             var_dump($_POST);
             if (isset($_POST["delete"]) && $_POST["delete"] === "on") {
                 $dbh->removePost($post_id);
-                header("Location: profile.php?user_id=".$loggedUserId);
+                header("Location: profile.php?username=".$loggedUserId);
             } else if ($_POST["post"]){
                 switch ($_POST["image"]) {
                     case "sameImage":

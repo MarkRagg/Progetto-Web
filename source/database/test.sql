@@ -7,6 +7,8 @@
 -- Versione del server: 10.4.25-MariaDB
 -- Versione PHP: 8.1.10
 
+CREATE DATABASE socialnetwork;
+USE socialnetwork;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";

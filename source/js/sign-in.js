@@ -57,7 +57,7 @@ function generateSuccesfullSignin(loginerror = null) {
   let form = `
   <section>
   <div class="container text-center p-5">
-    <h1 class="text-primary"Registrazione completata!></h1>
+    <h1 class="text-primary">Registrazione completata!</h1>
   </div>
   <div class="d-flex justify-content-center align-middle">
     <button type="button" class="btn btn-outline-primary" onclick="location.href='../php/Login.php';">Accedi</button>

@@ -33,7 +33,6 @@ function generateForm(loginerror = null) {
 
 const main = document.querySelector("main");
 axios.get('api-login.php').then(response => {
-    console.log("a");
     if (!response.data["login-result"]) {
       VisualizeLoginForm();          
     }

@@ -42,7 +42,7 @@ function generatePost(post_data) {
               <div class="container">
               <div class="d-flex justify-content-between p-2 px-3">
                 <div class="d-flex flex-row align-items-center"> <img id="imgProfile${i}"
-                    src="../img/${post_data[i]["user_image"]}" width="50" class="rounded-circle" alt="immagine profilo autore post">
+                    src="../img/${post_data[i]["user_image"]}" width="40" height="40" class="rounded-circle" alt="immagine profilo autore post">
                   <div class="d-flex flex-column ml-2"> <a class="nav-link" href="profile.php?username=${post_data[i]["author"]}">@${post_data[i]["author"]}</a>
                   `;
 

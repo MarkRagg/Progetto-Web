@@ -86,8 +86,8 @@ function showPage(response_settings, response_select) {
           </div>
         </div>
         <hr/>
-        <p class="text-danger" id="errormsg"></p>
-        <div class="d-flex justify-content-end">
+        <div class="flex d-flex justify-content-between">
+          <p class="text-danger" id="errormsg"></p>
           <button type="submit" data-toggle="button" class="btn btn-outline-primary" id="apply_changes">Salva</button>
         </div>
       </div> 

@@ -61,7 +61,7 @@ function generatePost(post_data) {
     }
     section += `
                 
-                <p class="text-justify">${post_data[i]["string"]}.</p>
+                <p class="text-justify">${post_data[i]["string"]}</p>
               </div>
               <div class="mt-4">
 

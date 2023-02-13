@@ -8,7 +8,7 @@ function generateForm(loginerror = null) {
       <div class="flex-column border">
         <div class="p-5">
           <div class="pb-2 text-center">
-            <button type="button" class="btn btn-primary mx-2" data-toggle="button" aria-pressed="true" disabled>Log in</button><button type="button" class="btn btn-primary mx-2" data-toggle="button" aria-pressed="false" onclick="location.href='../php/index.php';">Sign in</button>
+            <button type="button" class="btn btn-primary mx-2" data-toggle="button" aria-pressed="true" disabled>Log in</button><a class="btn btn-primary mx-2" data-toggle="button" aria-pressed="false" href='../php/index.php'>Sign in</a>
           </div>
           <form action="../php/Login.php" method="POST">
           <ul class="list-unstyled">

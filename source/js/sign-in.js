@@ -18,7 +18,7 @@ function generateForm(cities) {
       <div class="flex-column border">
         <div class="p-5">
           <div class="pb-2 text-center">
-            <button class="btn btn-primary mx-2" data-toggle="button" aria-pressed="false" type="button" onclick="location.href='../php/Login.php';">Log in</button><button type="button" class="btn btn-primary mx-2" data-toggle="button" aria-pressed="true" disabled>Sign in</button>
+            <a class="btn btn-primary mx-2" data-toggle="button" aria-pressed="false" href='../php/Login.php'>Log in</a><button type="button" class="btn btn-primary mx-2" data-toggle="button" aria-pressed="true" disabled>Sign in</button>
           </div>
             <form action="../php/Sign-in.php" method="POST">
           <ul class="list-group list-group-flush">

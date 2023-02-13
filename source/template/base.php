@@ -1,8 +1,25 @@
-<!--
-    questo file si comporta come il template finale utilizzato per tutte le pagine
-    deve includere $templateParams["name"] con require se presente (sarebbe il contenuto del main)
-    utilizza i dati in $templateParams pre conpilare l'html
--->
+<?php
+
+$homeBg = "bg-light";
+$homeLink = "link-primary";
+$uniBg = "bg-light";
+$uniLink = "link-primary";
+$notifyBg = "bg-light";
+$notifyLink = "link-primary";
+if ($templateParams["homepage"] === "link-secondary") {
+    $homeBg = "bg-primary";
+    $homeLink = "link-light";
+}
+if ($templateParams["uni-list"] === "link-secondary") {
+    $uniBg = "bg-primary";
+    $uniLink = "link-light";
+}
+if ($templateParams["notifications"] === "link-secondary") {
+    $notifyBg = "bg-primary";
+    $notifyLink = "link-light";
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="it">
@@ -22,9 +39,9 @@
                     <img src="../img/logo.png" alt="logo" width="50" height="50"
                         class="rounded-circle">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="showhomepage.php" class="nav-link px-2 <?php echo $templateParams["homepage"]?>">Home</a></li>
-                    <li><a href="uni-list.php" class="nav-link px-2 <?php echo $templateParams["uni-list"]?>">Università</a></li>
-                    <li><a href="notification.php" class="nav-link px-2 <?php echo $templateParams["notifications"]?>">Notifiche</a></li>
+                    <li class="<?php echo($homeBg) ?> rounded-3"><a href="showhomepage.php" class="nav-link px-2 <?php echo($homeLink) ?>">Home</a></li>
+                    <li class="<?php echo($uniBg) ?> rounded-3"><a href="uni-list.php" class="nav-link px-2 <?php echo($uniLink) ?>">Università</a></li>
+                    <li class="<?php echo($notifyBg) ?> rounded-3"><a href="notification.php" class="nav-link px-2 <?php echo($notifyLink) ?>">Notifiche</a></li>
                 </ul>
                 <button type="button" id="searchBtn" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#searchModal"><em class="bi bi-search"> Cerca utente</em></button>
                 <div class="dropdown text-end">

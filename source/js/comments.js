@@ -22,14 +22,14 @@ document.querySelector(".commento").addEventListener('keyup', function () {
 
 bottonePosta.addEventListener('click', function onClick() {
   const comment = document.querySelector(".commento").value;
-  console.log(comment);
+  //console.log(comment);
   if (comment.length > 0) {
     const formData = new FormData();
     formData.append('comment', comment);
     formData.append('post_id', idjs);
 
     axios.post('../php/api-add-comment.php', formData).then(response => {
-      console.log(response.data);
+      //console.log(response.data);
       location.reload();
     });
   }
@@ -44,7 +44,7 @@ if(elimina.length > 0){
       formData.append('comment_id', id);
       formData.append('post_id', idjs);
       axios.post('../php/api-delete-comment.php', formData).then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         if(response.data["status"]=="success"){
           location.reload();
         }
@@ -58,7 +58,7 @@ formData.append('post_id', idjs);
 
 axios.post('../php/api-reactions-on-comment-post.php', formData).then(response => {
   if(response.data[0]["error"] == false){
-    console.log(response.data);
+    //console.log(response.data);
     const btnLike = "bottoneL";
     const numeroLike = "numeroLike"
     updateButton(response.data, btnLike, numeroLike, 1, -1, "btnlkd");

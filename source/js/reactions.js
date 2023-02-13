@@ -56,7 +56,7 @@ function addReaction(formData, response, i, numeroin) {
     formData.append('post_id', response[i]["post_id"]);
     formData.append('type', numeroin);
     axios.post('../php/api-like.php', formData).then(response => {
-        console.log(response);
+        //console.log(response);
     });
 
     formData.delete('post_id');
@@ -68,14 +68,14 @@ function removeReaction(formData, response, i, numeroout) {
     formData.append('post_id', response[i]["post_id"]);
     formData.append('type', numeroout);
     axios.post('../php/api-like.php', formData).then(response => {
-        console.log(response);
+        //console.log(response);
     });
     formData.delete('post_id');
     formData.delete('type');
 }
 
 function changeReaction(btn, i, nlikes, replaceThis, replaceWithThis, number) {
-    console.log(btn[i]);
+    //console.log(btn[i]);
     if (number > 0) {
         btn[i].classList.replace("btn-outline-danger", "btn-danger");
     } else {

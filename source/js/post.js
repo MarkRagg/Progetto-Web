@@ -201,28 +201,28 @@ function sendPost() {
   btnpost.addEventListener('click', function onClick() {
     const qpost = document.querySelector(".quickpost").value;
     if (qpost != "") {
-      console.log(qpost);
+      //console.log(qpost);
       const formData = new FormData();
       formData.append('post', qpost);
       axios.post('../php/quickpost.php', formData).then(response => {
         if (!response.data["error"]) {
           location.reload();
-          console.log(response.data["info"]);
+          //console.log(response.data["info"]);
         } else {
-          console.log(response.data["info"]);
+          //console.log(response.data["info"]);
           document.querySelector(".quickpost").value = "";
           document.querySelector(".quickpost").placeholder = "C'è stato un errore, riprova";
         }
       });
     } else {
-      console.log("Post is empty");
+      //console.log("Post is empty");
     }
   });
 }
 
 function getLoggedUserInfo() {
   axios.get('../php/api-getuserinfo.php').then(response => {
-    console.log(response.data);
+    //console.log(response.data);
     if (response.data["status"]) {
       document.querySelector("#nome_utente").innerHTML = "@" + response.data["userid"];
       if (response.data["user_info"]["descrizione"] != ' ') {
@@ -301,7 +301,7 @@ axios.get("api-showpost.php").then(response => {
       enableButtons(response);
     }
     rd = response.data["posts"];
-    console.log(response.data);
+    //console.log(response.data);
     sendPost();
     getLoggedUserInfo()
     dynamicButtonPost();
@@ -337,7 +337,7 @@ async function loadMore() {
     const formData = new FormData();
     formData.append('num', num);
     const resp = await axios.post("api-loadPost.php", formData);
-    console.log(resp.data);
+    //console.log(resp.data);
 
     if (!resp.data["errors"]) {
       q = resp.data["posts"];

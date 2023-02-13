@@ -11,6 +11,7 @@ if(isset($_POST["comment_id"]) && isset($_SESSION["user_id"])) {
 
 
 } else {
+    header("Content-Type: application/json");
     echo json_encode(array("status" => "error", "message" => "Parametri mancanti"));
 }
 

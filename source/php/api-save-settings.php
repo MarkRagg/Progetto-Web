@@ -5,6 +5,7 @@ $result["success"] = false;
 
 if(isset($_SESSION["user_id"])) {
   $user_info = $dbh->getUserInfo($_SESSION["user_id"]);
+  $user = $dbh->getUserById($_SESSION["user_id"]);
   //code for change the bio
   if(isset($_POST["bio"]) && $_POST["bio"] != $user_info["descrizione"]) {
     $result["success"] = true;
@@ -35,6 +36,19 @@ if(isset($_SESSION["user_id"])) {
       $result["residence"] = $_POST["residence"];
       $dbh->updateResidence($_SESSION["user_id"], $_POST["residence"]);
     }
+  }
+   //code for change course
+   if(isset($_POST["password"]) && $_POST["password"] != $user["password"] && strlen($_POST["password"]) != 0) {
+    if(strlen($_POST["password"]) >= 8 && strlen($_POST["password"]) <= 16) {
+      $result["success"] = true;
+      $dbh->updatePassword($_SESSION["user_id"], $_POST["password"]);
+    } else {
+      $result["errormsg"] = "La password non rispetta il range di caratteri";
+    }
+  }
+
+  if(empty($result["errormsg"]) && !$result["success"]) {
+    $result["errormsg"] = "Non è stato cambiato nulla";
   }
 }
 

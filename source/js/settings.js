@@ -77,8 +77,16 @@ function showPage(response_settings, response_select) {
               + residence_options +
             `</select>
           </div>
+          <div class="w-100 p-2"></div>
+          <div class="col-sm-6">
+            <label for="passw">Password</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="password" id="passw" name="passw" class="justify-content-end" />
+          </div>
         </div>
         <hr/>
+        <p class="text-danger" id="errormsg"></p>
         <div class="d-flex justify-content-end">
           <button type="submit" data-toggle="button" class="btn btn-outline-primary" id="apply_changes">Salva</button>
         </div>
@@ -88,12 +96,18 @@ function showPage(response_settings, response_select) {
   main.innerHTML = form;
 }
 
-function saveChanges(bio, img, course, user_id, residence) {
+function showErrorMsg(errormsg) {
+  p = document.querySelector("#errormsg");
+  p.innerText = errormsg;
+}
+
+function saveChanges(bio, img, course, user_id, residence, password) {
   var formData = new FormData();
   formData.append("bio", bio);
   formData.append("img", img); 
   formData.append("course_id", course);
   formData.append("residence", residence);
+  formData.append("password", password);
 
   select = document.querySelector("#uni");
 
@@ -101,7 +115,7 @@ function saveChanges(bio, img, course, user_id, residence) {
     if(response.data["success"]) {
       window.location.href = "../php/profile.php?username=" + user_id;
     } else {
-      //TODO
+      showErrorMsg(response.data["errormsg"]);
     }
   });
 }
@@ -113,8 +127,9 @@ function updateButton(user_id) {
     const img = document.querySelector("#user_image") != null ? document.querySelector("#user_image").files[0] : null;
     const course = document.querySelector("#course").value;
     const residence = document.querySelector("#residence").value;
+    const password = document.querySelector("#passw").value;
 
-    saveChanges(bio, img, course, user_id, residence);
+    saveChanges(bio, img, course, user_id, residence, password);
   });
 }
 
@@ -139,7 +154,7 @@ axios.get("api-get-current-settings.php").then(response_settings => {
       updateButton(response_settings.data["user_id"]);
       updateSelect(response_settings);
     } else {
-      console.log(response_settings.data["errormsg"]);
+      window.location.href = "../php/index.php";
     }
   });
 });

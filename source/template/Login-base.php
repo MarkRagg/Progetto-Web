@@ -15,7 +15,7 @@
       ?>
     </main>
     <footer>
-      <!--TODO--> 
+
     </footer>
     <?php
     if(isset($templateParams["js"])):

@@ -563,5 +563,19 @@ class DatabaseManager {
         $result = $this->db->query("SELECT * FROM esami;");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getUserById($user_id) {
+        $stmt = $this->db->prepare("SELECT * FROM user WHERE user_id = ?");
+        $stmt->bind_param("s", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0];
+    }
+
+    public function updatePassword($user_id, $password) {
+        $stmt = $this->db->prepare("UPDATE user SET password = ? WHERE user_id = ?");
+        $stmt->bind_param("ss", $password, $user_id);
+        return $stmt->execute();
+    }
 }  
 ?>

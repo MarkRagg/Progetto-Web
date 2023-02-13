@@ -3,10 +3,11 @@ require_once("db_config.php");
 
 $templateParams["title"] = "Insert Post";
 $templateParams["name"] = "../template/form_add_post.php";
-$templateParams["homepage"] = "link-secondary";
+$templateParams["homepage"] = "";
 $templateParams["uni-list"] = "";
 $templateParams["notifications"] = "";
 $templateParams["paginaprofilouser"]= $_SESSION["user_id"];
+$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js");
 
 $error = "";
 

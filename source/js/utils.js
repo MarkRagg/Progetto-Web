@@ -23,7 +23,7 @@ function showPostList(posts, addModifyButton) {
             esame = `<a href="class.php?class_id=${element["esame_id"]}">${element["nome"]}</a>`;
         }
         if (element["immagine"] != null) {
-            img = `<img src="${uploadDir}${element["immagine"]}" alt="" class="img-fluid">`;
+            img = `<img src="${uploadDir}${element["immagine"]}" alt="immagine del post" class="img-fluid">`;
         }
         const newPost = document.createElement("div");
         newPost.innerHTML = `

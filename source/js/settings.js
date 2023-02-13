@@ -39,7 +39,7 @@ function showPage(response_settings, response_select) {
   residence_options = generateOptions(response_settings["cities"], response_settings["current-residence"], "residence");
   let form = `
     <div class="container justify-content-center align-middle ">
-      <div class="p-5 bg-light">
+      <div class="p-lg-5 mb-5 bg-light">
         <div class="row p-2">
           <div class="col-sm-6">
             <label for="bio">Descrizione</label>
